@@ -15,11 +15,20 @@
 
 int	main(void)
 {
-	char *str;
+//	int a;
+//	int *b;
+//
+//	a = 2545;
+//	b = &a;
+//	printf("%p\n", b);
+//	ft_printf("%p\n", b);
 
-	str = NULL;
-	ft_printf("%s\n", "test");
-	printf("%s\n", str);
+char *test;
+test = "c'est beau % :)";
+	printf("%s\n", test);
+	ft_printf("%s\n", test);
+	printf("%i", 353234);
+
 //	system("leaks ft_printf");
-	return(0);
+	return(0);	
 }

@@ -29,7 +29,7 @@
 */
 int	ft_print_char(int c);
 int	ft_printf(const char *str, ...);
-int	find_format(va_list args, const char format);
+int	conversion_type(va_list args, const char type);
 
 /*
 ** ft_utils.c
@@ -37,5 +37,7 @@ int	find_format(va_list args, const char format);
 
 int	ft_print_str(char *str);
 int	ft_print_ptr(void *ptr);
+int	ft_print_nbr(signed int nb);
+int	ft_print_percent(void);
 
 #endif

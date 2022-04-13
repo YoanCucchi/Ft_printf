@@ -32,7 +32,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			return_value += find_format(args, str[i + 1]);
+			return_value += conversion_type(args, str[i + 1]);
 			i++;
 		}
 		else
@@ -43,24 +43,24 @@ int	ft_printf(const char *str, ...)
 	return (return_value);
 }
 
-int	find_format(va_list args, const char format)
+int	conversion_type(va_list args, const char type)
 {
 	int	return_value;
 
 	return_value = 0;
-	if (format == 'c')
+	if (type == 'c')
 		return_value += ft_print_char(va_arg(args, int));
-	else if (format == 's')
+	else if (type == 's')
 		return_value += ft_print_str(va_arg(args, char *));
-	else if (format == 'p')
-		return_value += ft_print_ptr((unsigned long long)va_arg(args, void *));
-	else if (format == 'd' || format == 'i')
-		return_value += ft_print_nbr(va_arg(args, int));
-	else if (format == 'u')
-		return_value += ft_print_unsigned(va_arg(args, unsigned int));
-	else if (format == 'x' || format == 'X')
-		return_value += ft_print_hex(va_arg(args, unsigned int));
-	else if (format == '%')
+//	else if (type == 'p')
+//		return_value += ft_print_ptr(va_arg(args, void *));
+//	else if (type == 'd' || type == 'i')
+//		return_value += ft_print_nbr(va_arg(args, int));
+//	else if (type == 'u')
+//		return_value += ft_print_unsigned(va_arg(args, unsigned int));
+//	else if (type == 'x' || type == 'X')
+//		return_value += ft_print_hex(va_arg(args, unsigned int));
+	else if (type == '%')
 		return_value += ft_print_percent();
 	return(return_value);
 }

@@ -16,7 +16,6 @@ int	ft_print_str(char *str)
 {
 	int	i;
 
-	str = NULL;
 	if (!str)
 	{
 		write(1, "(null)", 6);
@@ -28,7 +27,20 @@ int	ft_print_str(char *str)
 	return(i);
 }
 
-int	ft_print_ptr(unsigned long long ptr)
+//int	ft_print_ptr(void *ptr)
+//{
+//	int	i;
+//	void *temp;
+//
+//	return_value = 0;
+//	temp = &ptr;
+//	while (temp)
+//		write(1, &temp, 1);
+//	return(i);
+//}
+
+int	ft_print_percent(void)
 {
+	ft_print_char('%');
 	return(1);
 }
