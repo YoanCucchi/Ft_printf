@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 18:17:40 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/12 10:51:13 by ycucchi          ###   ########.fr       */
+/*   Created: 2022/04/12 16:03:54 by ycucchi           #+#    #+#             */
+/*   Updated: 2022/04/12 16:04:10 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/ft_printf.h"
+#include <stdio.h>
 
-typedef struct s_print
+int	main(void)
 {
-	va_list args; # args to print out
-	int	wdt; # width
-	int	prc; # precision
-	int	zero; # zero padding
-}	t_print;
+	char *str;
 
-#endif
+	str = NULL;
+	ft_printf("%s\n", "test");
+	printf("%s\n", str);
+//	system("leaks ft_printf");
+	return(0);
+}
