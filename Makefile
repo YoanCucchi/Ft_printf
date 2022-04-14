@@ -13,6 +13,7 @@
 NAME = ft_printf
 SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_utils.c
 OBJ = ft_printf.o main.o ft_utils.o
+OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
@@ -34,35 +35,20 @@ WHITE = \033[0;97m
 all: $(NAME)
 
 $(NAME):
-	@echo "$(PURPLE)Compiling libft..$(DEFAULT)"
-
-
 	@make -C $(LIBFT_PATH)
-
-
-	@echo "$(GREEN)libft compiled!$(DEFAULT)"
-
-
 	@$(CC) $(FLAGS) -c $(SRCS)
-
-
 	@echo "$(GREEN)$(NAME) compiled!$(DEFAULT)"
-
-
 	@cp $(LIBFT_PATH)$(LIBFT) ./$(LIBFT_PRINTF)
-
-
-	@echo "$(GREEN)$(LIBFT) copied in root with name : $(LIBFT_PRINTF)$(DEFAULT)"
+	@echo "$(CYAN)$(LIBFT) copied in root with name : $(LIBFT_PRINTF)$(DEFAULT)"
 	@echo "$(PURPLE)Compiling $(NAME) with library..$(DEFAULT)"
-
-
 	@$(CC) $(OBJ) $(LIBFT_PRINTF) $(FLAGS) -o $(NAME)
-
-	
 	@echo "$(GREEN)$(NAME) with $(LIBFT_PRINTF) compiled!$(DEFAULT)"
+	@mkdir -p $(OBJ_DIR)
+	@mv $(OBJ) $(OBJ_DIR)
+	@echo "$(CYAN)objects moved in $(OBJ_DIR)$(DEFAULT)"
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@echo "$(GRAY)$(OBJ) cleaned!$(DEFAULT)"
 	@rm -rf $(LIBFT_PRINTF)
 	@echo "$(GRAY)$(LIBFT_PRINTF) cleaned!$(DEFAULT)"

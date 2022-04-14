@@ -44,10 +44,10 @@ all: $(NAME)
 	@gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
-	@echo "$(PURPLE)Creating $(NAME)..$(DEFAULT)"
+	@echo "$(PURPLE)Creating libft..$(DEFAULT)"
 	@ar rcs $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
+	@echo "$(GREEN)libft created!$(DEFAULT)"
 
 clean:
 	@echo "$(PURPLE)Cleaning all objects..$(DEFAULT)"
