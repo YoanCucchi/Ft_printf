@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+         #
+#    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
 #    Updated: 2022/04/11 15:25:27 by ycucchi          ###   ########.fr        #
@@ -12,20 +12,19 @@
 
 NAME = ft_printf
 SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_utils.c
-HEADER = ft_printf.h
 OBJ = ft_printf.o main.o ft_utils.o
 LIBFT_PATH = ./libft/
-LIBFT = ./libft/libftprintf.a
+LIBFT = libft.a
+LIBFT_PRINTF = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
 
-# Colors
-DEF_COLOR = \033[0;39m
+DEFAULT = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m
 GREEN = \033[0;92m
 YELLOW = \033[0;93m
-BLUE = \033[0;94m
+PURPLE = \033[0;94m
 MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
@@ -35,17 +34,42 @@ WHITE = \033[0;97m
 all: $(NAME)
 
 $(NAME):
-	make -C $(LIBFT_PATH)
-	$(CC) $(FLAGS) -c $(SRCS)
-	$(CC) $(OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
+	@echo "$(PURPLE)Compiling libft..$(DEFAULT)"
 
+
+	@make -C $(LIBFT_PATH)
+
+
+	@echo "$(GREEN)libft compiled!$(DEFAULT)"
+
+
+	@$(CC) $(FLAGS) -c $(SRCS)
+
+
+	@echo "$(GREEN)$(NAME) compiled!$(DEFAULT)"
+
+
+	@cp $(LIBFT_PATH)$(LIBFT) ./$(LIBFT_PRINTF)
+
+
+	@echo "$(GREEN)$(LIBFT) copied in root with name : $(LIBFT_PRINTF)$(DEFAULT)"
+	@echo "$(PURPLE)Compiling $(NAME) with library..$(DEFAULT)"
+
+
+	@$(CC) $(OBJ) $(LIBFT_PRINTF) $(FLAGS) -o $(NAME)
+
+	
+	@echo "$(GREEN)$(NAME) with $(LIBFT_PRINTF) compiled!$(DEFAULT)"
 
 clean:
-	rm -rf $(OBJ)
-	make clean -C libft/
+	@rm -rf $(OBJ)
+	@echo "$(GRAY)$(OBJ) cleaned!$(DEFAULT)"
+	@rm -rf $(LIBFT_PRINTF)
+	@echo "$(GRAY)$(LIBFT_PRINTF) cleaned!$(DEFAULT)"
+	@make clean -C libft/
 
 fclean: clean
-	rm -rf $(NAME)
-	make fclean -C libft/
+	@rm -rf $(NAME)
+	@echo "$(GRAY)$(NAME) cleaned!$(DEFAULT)"
 
 re: fclean all

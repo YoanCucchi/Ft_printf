@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -27,19 +27,35 @@ ft_toupper.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
+# Colors
+DEFAULT = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+PURPLE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
+
 all: $(NAME)
 
 .c.o: $(SOURCES)
-		gcc $(FLAGS) -c $< -o $@
+	@gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
-		ar rcs $(NAME) $(OBJECTS)
-		ranlib $(NAME)
+	@echo "$(PURPLE)Creating $(NAME)..$(DEFAULT)"
+	@ar rcs $(NAME) $(OBJECTS)
+	@ranlib $(NAME)
+	@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
-		rm -f *.o
+	@echo "$(PURPLE)Cleaning all objects..$(DEFAULT)"
+	@rm -f *.o
+	@echo "$(GRAY)$(OBJECTS) cleaned!$(DEFAULT)"
 
 fclean: clean
-		rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(GRAY)$(NAME) cleaned!$(DEFAULT)"
 
 re: fclean all

@@ -23,6 +23,10 @@ int	main(void)
 //	printf("%p\n", b);
 //	ft_printf("%p\n", b);
 
+
+//%[Flags][Width].[Precision][Specifier]
+
+
 char *test;
 test = "c'est beau % :)";
 	printf("%s\n", test);
