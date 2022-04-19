@@ -13,9 +13,9 @@
 NAME = ft_printf
 SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_print_utils.c \
 ./srcs/ft_parse.c ./srcs/ft_initialize_parameter.c ./srcs/ft_print_str.c \
-./srcs/ft_print_nbr.c
+./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c
 OBJ = ft_printf.o main.o ft_print_utils.o ft_parse.o \
-ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o
+ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o ft_print_hex.o
 OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a

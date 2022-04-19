@@ -12,7 +12,6 @@
 
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 void parameter_print(t_parameter p)
 {

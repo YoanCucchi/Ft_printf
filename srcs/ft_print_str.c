@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-# include <stdio.h>
 
 int	ft_print_str(t_parameter p, va_list args)
 {

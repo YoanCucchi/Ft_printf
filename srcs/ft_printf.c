@@ -11,38 +11,31 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
-int	ft_print_char(int c)
-{
-	write(1, &c, 1);
-	return(1);
-}
-
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int	return_value;
 	char	*first;
 	
-	va_start(args, str);
+	va_start(args, format);
 	return_value = 0;
-	while (*str)
+	while (*format)
 	{
-		if (*str == '%')
+		if (*format == '%')
 		{
-			first = (char *)str;
-			if (*(++str))
-				return_value += ft_parse((char *)str, args);
-			while (*str && !ft_strchr(SPECIFIERS, *str))
-				str++;
-			if (!(*str))
-				str = first;
+			first = (char *)format;
+			if (*(++format))
+				return_value += ft_parse((char *)format, args);
+			while (*format && !ft_strchr(SPECIFIERS, *format))
+				format++;
+			if (!(*format))
+				format = first;
 		}
 		else
-			return_value += ft_print_char(*str);
-		if (*str)
-			str++;
+			return_value += ft_print_char(*format);
+		if (*format)
+			format++;
 	}
 	va_end(args);
 	return (return_value);
@@ -55,11 +48,13 @@ int	conversion_type(t_parameter p, va_list args)
 	return_value = 0;
 	if (p.specifier == 'c')
 		return_value += ft_print_char(p.specifier);
-	if (p.specifier == 'd')
-		return_value += ft_print_nbr(p, args);∑
-	if (p.specifier == 's')
+	else if (p.specifier == 's')
 		return_value += ft_print_str(p, args);
-	if (p.specifier == '%')
+	else if (p.specifier == 'p' || p.specifier == 'x' || p.specifier == 'X')
+		return_value += ft_print_hex(p, args);
+	else if (p.specifier == 'd' || p.specifier == 'i' || p.specifier == 'u')
+		return_value += ft_print_nbr(p, args);
+	else if (p.specifier == '%')
 		return_value += ft_print_percent();
 	return(return_value);
 }

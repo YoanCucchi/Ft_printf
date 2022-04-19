@@ -14,21 +14,24 @@
 # define FT_PRINTF_H
 
 # define SPECIFIERS "cspdiouxX%"
+# define FLAGS "#0-+ "
+# define WIDTH "0123456789"
+# define LENGTH "hlL"
+# define HEXALOWCASE "0123456789abcdef"
+# define HEXAUPCASE "0123456789ABCDEF"
+
 /*
 ** Headers
 */
 
 #include "../libft/libft.h"
 #include <stdarg.h>
+#include <stdio.h> // A VIRER !!!!!
 
 /*
 ** Prototypes
 */
 
-
-
-
-//%%
 // #0-+ and space
 // minimum field-width
 // precision
@@ -52,17 +55,34 @@ typedef struct s_parameter
 /*
 ** main.c
 */
-int	ft_print_char(int c);
-int	ft_printf(const char *str, ...);
+
+int	ft_printf(const char *format, ...);
 int	conversion_type(t_parameter p, va_list args);
 
 /*
 ** ft_print_utils.c
 */
-int	ft_print_str(t_parameter p, va_list args);
-int	ft_print_ptr(void *ptr);
-int	ft_print_nbr(t_parameter p , va_list args);
+
+int	ft_print_char(int c);
 int	ft_print_percent(void);
+
+/*
+** ft_print_str.c
+*/
+
+int	ft_print_str(t_parameter p, va_list args);
+
+/*
+** ft_print_nbr.c
+*/
+
+int	ft_print_nbr(t_parameter p , va_list args);
+
+/*
+** ft_print_hex.c
+*/
+
+int	ft_print_hex(t_parameter p, va_list args);
 
 /*
 ** ft_parse.c
@@ -74,7 +94,7 @@ int	ft_parse(char *str, va_list args);
 ** ft_initialize_parameter.c
 */
 
-void parameter_print(t_parameter p);
+void parameter_print(t_parameter p); // A VIRER !!!
 t_parameter	ft_all_to_0(void);
 
 #endif

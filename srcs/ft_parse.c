@@ -11,20 +11,21 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 static t_parameter	ft_parse_flags(char *str, t_parameter p)
 {
-	while (*str != '.' && !ft_strchr(SPECIFIERS, *str))
+	while (*str != '.' && ft_strchr(FLAGS, *str))
 	{
+		if (*str == '#')
+			p.sharp = 1;
+		if (*str == '0')
+			p.zero = 1;
 		if (*str == '-')
 			p.minus = 1;
 		if (*str == '+')
 			p.plus = 1;
 		if (*str == ' ')
 			p.space = 1;
-		if (*str == '#')
-			p.sharp = 1;
 		str++;
 	}
 	return (p);
@@ -72,13 +73,18 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 	return (p);
 }
 
+/*
+** Here we are parsing flags, width, precision and lenght to set up
+** all our parameters and return the proper conversion type
+*/
 int	ft_parse(char *str, va_list args)
 {
-	//%[Flags][Width].[Precision][Specifier]
+	//%[Flags][Width].[Precision][Length]
 
 	t_parameter	newparameter;
 
 	newparameter = ft_all_to_0();
+	newparameter = ft_parse_flags(str, newparameter);
 	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 		str++;
 	newparameter.specifier = *str;
