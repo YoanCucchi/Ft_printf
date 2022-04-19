@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "ft_printf.h": "c",
+        "string": "c",
+        "iosfwd": "c",
+        "stdio.h": "c"
+    }
+}

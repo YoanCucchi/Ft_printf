@@ -23,44 +23,43 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int	return_value;
-	int	i;
-
+	char	*first;
+	
 	va_start(args, str);
 	return_value = 0;
-	i = 0;
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == '%')
+		if (*str == '%')
 		{
-			return_value += conversion_type(args, str[i + 1]);
-			i++;
+			first = (char *)str;
+			if (*(++str))
+				return_value += ft_parse((char *)str, args);
+			while (*str && !ft_strchr(SPECIFIERS, *str))
+				str++;
+			if (!(*str))
+				str = first;
 		}
 		else
-			return_value += ft_print_char(str[i]);
-		i++;
+			return_value += ft_print_char(*str);
+		if (*str)
+			str++;
 	}
 	va_end(args);
 	return (return_value);
 }
 
-int	conversion_type(va_list args, const char type)
+int	conversion_type(t_parameter p, va_list args)
 {
 	int	return_value;
 
 	return_value = 0;
-	if (type == 'c')
-		return_value += ft_print_char(va_arg(args, int));
-	else if (type == 's')
-		return_value += ft_print_str(va_arg(args, char *));
-//	else if (type == 'p')
-//		return_value += ft_print_ptr(va_arg(args, void *));
-//	else if (type == 'd' || type == 'i')
-//		return_value += ft_print_nbr(va_arg(args, int));
-//	else if (type == 'u')
-//		return_value += ft_print_unsigned(va_arg(args, unsigned int));
-//	else if (type == 'x' || type == 'X')
-//		return_value += ft_print_hex(va_arg(args, unsigned int));
-	else if (type == '%')
+	if (p.specifier == 'c')
+		return_value += ft_print_char(p.specifier);
+	if (p.specifier == 'd')
+		return_value += ft_print_nbr(p, args);∑
+	if (p.specifier == 's')
+		return_value += ft_print_str(p, args);
+	if (p.specifier == '%')
 		return_value += ft_print_percent();
 	return(return_value);
 }

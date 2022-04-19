@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_print_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 04:10:51 by ycucchi           #+#    #+#             */
-/*   Updated: 2021/12/16 17:05:51 by ycucchi          ###   ########.fr       */
+/*   Created: 2022/04/15 15:35:58 by ycucchi           #+#    #+#             */
+/*   Updated: 2022/04/15 15:36:06 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_print_percent(void)
 {
-	return ((int)write(fd, &c, 1));
+	ft_print_char('%');
+	return(1);
 }

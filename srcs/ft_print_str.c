@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 04:10:51 by ycucchi           #+#    #+#             */
-/*   Updated: 2021/12/16 17:05:51 by ycucchi          ###   ########.fr       */
+/*   Created: 2022/04/15 15:38:10 by ycucchi           #+#    #+#             */
+/*   Updated: 2022/04/15 15:38:11 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
+# include <stdio.h>
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_print_str(t_parameter p, va_list args)
 {
-	return ((int)write(fd, &c, 1));
+	char	*string;
+	int	i;
+	i = 0;
+	string = va_arg(args, char *);
+
+	if (!string)
+	{
+		write(1, "(null)", 6);
+		return(6);
+	}
+	while(string[i])
+		ft_print_char(string[i++]);
+	return(i);
 }

@@ -24,15 +24,22 @@ int	main(void)
 //	ft_printf("%p\n", b);
 
 
-//%[Flags][Width].[Precision][Specifier]
 
+printf("normal = %d", 50);
+ft_printf("mine = %d", 50);
 
-char *test;
-test = "c'est beau % :)";
-	printf("%s\n", test);
-	ft_printf("%s\n", test);
-	printf("%i", 353234);
+//	char *test, *test2;
+//	int ret1, ret2;
+//	test = "c'est beau :)";
+//	test2 = "c'est pas beau :(";
+//	ret1 = printf("real printf: %s\n", test);
+//	ret2 = ft_printf("my printf: %s\n", test);
+//	printf("%d %d\n", ret1, ret2);
+//	printf("real printf: %c\n", 't');
+//	ft_printf("my printf: %c\n", 't');
 
+//	printf("%%\n");
+//	ft_printf("%%\n");
 //	system("leaks ft_printf");
-	return(0);	
+	return(0);
 }

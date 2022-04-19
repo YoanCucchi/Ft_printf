@@ -6,18 +6,21 @@
 #    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/04/11 15:25:27 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/04/19 11:38:15 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf
-SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_utils.c
-OBJ = ft_printf.o main.o ft_utils.o
+SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_print_utils.c \
+./srcs/ft_parse.c ./srcs/ft_initialize_parameter.c ./srcs/ft_print_str.c \
+./srcs/ft_print_nbr.c
+OBJ = ft_printf.o main.o ft_print_utils.o ft_parse.o \
+ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o
 OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra #-Werror
 CC = gcc
 
 DEFAULT = \033[0;39m
@@ -47,12 +50,18 @@ $(NAME):
 	@mv $(OBJ) $(OBJ_DIR)
 	@echo "$(CYAN)objects moved in $(OBJ_DIR)$(DEFAULT)"
 
+debug:
+	gcc -g $(FLAGS) -I . libft/libft.a $(SRCS) -o debug
+
 clean:
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GRAY)$(OBJ) cleaned!$(DEFAULT)"
 	@rm -rf $(LIBFT_PRINTF)
 	@echo "$(GRAY)$(LIBFT_PRINTF) cleaned!$(DEFAULT)"
 	@make clean -C libft/
+
+	rm -rf debug.dSYM
+	rm -rf debug
 
 fclean: clean
 	@rm -rf $(NAME)
