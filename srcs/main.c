@@ -35,9 +35,9 @@ int	main(void)
 // %[Flags][Width].[Precision][Length]
 	char *test;
 //	int ret1, ret2;
-	test = NULL;
-	printf("real printf:%s\n", test);
-	ft_printf("my printf:%s\n", test);
+	test = "it's working :)";
+	printf("real printf: %s\n", test);
+	ft_printf("my printf: %s\n", test);
 //	ret1 = printf("real printf: %s\n%s\n", test, test2);
 //	ret2 = ft_printf("my printf: %s\n%s\n", test, test2);
 //	printf("%d %d\n", ret1, ret2);

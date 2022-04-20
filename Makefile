@@ -20,7 +20,7 @@ OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra #-Werror
+FLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 DEFAULT = \033[0;39m
@@ -52,6 +52,11 @@ $(NAME):
 
 debug:
 	gcc -g $(FLAGS) -I . libft/libft.a $(SRCS) -o debug
+
+git:
+	git add -A
+	git commit
+	git push
 
 clean:
 	@rm -rf $(OBJ_DIR)
