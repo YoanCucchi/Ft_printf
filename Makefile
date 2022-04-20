@@ -55,7 +55,7 @@ debug:
 
 git:
 	git add -A
-	git commit -m "$m"
+	git commit -m m="$m"
 	git push
 
 clean:
