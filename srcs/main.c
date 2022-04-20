@@ -33,12 +33,13 @@ int	main(void)
 //printf("normal = %d", 50);
 //ft_printf("mine = %d", 50);
 
-	char *test, *test2;
-	int ret1, ret2;
-	test = "c'est beau :)";
-	test2 = "c'est pas beau :(";
-	ret1 = printf("real printf: %s\n%s\n", test, test2);
-	ret2 = ft_printf("my printf: %s\n%s\n", test, test2);
+	char *test;
+//	int ret1, ret2;
+	test = "it's working";
+	printf("real printf: %s\n", test);
+	ft_printf("my printf: %s\n", test);
+//	ret1 = printf("real printf: %s\n%s\n", test, test2);
+//	ret2 = ft_printf("my printf: %s\n%s\n", test, test2);
 //	printf("%d %d\n", ret1, ret2);
 //	printf("real printf: %c\n", 't');
 //	ft_printf("my printf: %c\n", 't');

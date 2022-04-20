@@ -15,9 +15,9 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	return_value;
+	int		return_value;
 	char	*first;
-	
+
 	va_start(args, format);
 	return_value = 0;
 	while (*format)
@@ -56,5 +56,5 @@ int	conversion_type(t_parameter p, va_list args)
 		return_value += ft_print_nbr(p, args);
 	else if (p.specifier == '%')
 		return_value += ft_print_percent();
-	return(return_value);
+	return (return_value);
 }

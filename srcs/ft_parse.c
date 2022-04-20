@@ -76,15 +76,17 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 /*
 ** Here we are parsing flags, width, precision and lenght to set up
 ** all our parameters and return the proper conversion type
+**%[Flags][Width].[Precision][Length]
 */
 int	ft_parse(char *str, va_list args)
 {
-	//%[Flags][Width].[Precision][Length]
-
 	t_parameter	newparameter;
 
 	newparameter = ft_all_to_0();
 	newparameter = ft_parse_flags(str, newparameter);
+//	newparameter = ft_parse_width(str, newparameter);
+//	newparameter = ft_parse_presicion(str, newparameter);
+//	newparameter = ft_parse_length(str, newparameter);
 	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 		str++;
 	newparameter.specifier = *str;

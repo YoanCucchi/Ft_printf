@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/ft_printf.h"
 
-void parameter_print(t_parameter p)
+void	parameter_print(t_parameter p)
 {
 	printf("minus = %d\n", p.minus);
 	printf("plus = %d\n", p.plus);

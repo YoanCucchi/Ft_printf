@@ -24,9 +24,9 @@
 ** Headers
 */
 
-#include "../libft/libft.h"
-#include <stdarg.h>
-#include <stdio.h> // A VIRER !!!!!
+# include "../libft/libft.h"
+# include <stdarg.h>
+# include <stdio.h> // A VIRER !!!!!
 
 /*
 ** Prototypes
@@ -56,45 +56,45 @@ typedef struct s_parameter
 ** main.c
 */
 
-int	ft_printf(const char *format, ...);
-int	conversion_type(t_parameter p, va_list args);
+int			ft_printf(const char *format, ...);
+int			conversion_type(t_parameter p, va_list args);
 
 /*
 ** ft_print_utils.c
 */
 
-int	ft_print_char(int c);
-int	ft_print_percent(void);
+int			ft_print_char(int c);
+int			ft_print_percent(void);
 
 /*
 ** ft_print_str.c
 */
 
-int	ft_print_str(t_parameter p, va_list args);
+int			ft_print_str(t_parameter p, va_list args);
 
 /*
 ** ft_print_nbr.c
 */
 
-int	ft_print_nbr(t_parameter p , va_list args);
+int			ft_print_nbr(t_parameter p, va_list args);
 
 /*
 ** ft_print_hex.c
 */
 
-int	ft_print_hex(t_parameter p, va_list args);
+int			ft_print_hex(t_parameter p, va_list args);
 
 /*
 ** ft_parse.c
 */
 
-int	ft_parse(char *str, va_list args);
+int			ft_parse(char *str, va_list args);
 
 /*
 ** ft_initialize_parameter.c
 */
 
-void parameter_print(t_parameter p); // A VIRER !!!
+void		parameter_print(t_parameter p); // A VIRER !!!
 t_parameter	ft_all_to_0(void);
 
 #endif
