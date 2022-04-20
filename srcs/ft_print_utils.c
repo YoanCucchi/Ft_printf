@@ -23,3 +23,21 @@ int	ft_print_char(int c)
 	write(1, &c, 1);
 	return (1);
 }
+
+int	ft_putnstr(char const *s, int n)
+{
+	size_t	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0' && n > 0)
+		{
+			ft_putchar(s[i]);
+			i++;
+			n--;
+		}
+	}
+	return(i);
+}
+

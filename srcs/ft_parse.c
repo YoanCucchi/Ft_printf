@@ -76,19 +76,34 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 /*
 ** Here we are parsing flags, width, precision and lenght to set up
 ** all our parameters and return the proper conversion type
-**%[Flags][Width].[Precision][Length]
+** %[Flags][Width].[Precision][Length]
 */
 int	ft_parse(char *str, va_list args)
 {
-	t_parameter	newparameter;
+	t_parameter	p;
 
-	newparameter = ft_all_to_0();
-	newparameter = ft_parse_flags(str, newparameter);
-//	newparameter = ft_parse_width(str, newparameter);
-//	newparameter = ft_parse_presicion(str, newparameter);
-//	newparameter = ft_parse_length(str, newparameter);
+	p = ft_all_to_0();
+	p = ft_parse_flags(str, p);
+	p = ft_parse_width(str, args, p);
+//	p = ft_parse_length(str, args, p);
 	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 		str++;
-	newparameter.specifier = *str;
-	return (conversion_type(newparameter, args));
+	/*
+	** DEALING WITH PRECISION
+	*/
+	if (*str == '.' && !p.specifier)
+	{
+		p.dot = 1;
+		p = ft_parse_precision(str++, args, p);
+		while (!ft_strchr(SPECIFIERS, *str))
+			str++;
+	}
+	if (p.width < 0)
+	{
+		p.minus = 1;
+		p.width *= -1;
+	}
+	p.specifier = *str;
+	p.neg_prec = p.precision < 0; // ???
+	return (conversion_type(p, args));
 }

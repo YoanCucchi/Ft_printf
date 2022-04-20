@@ -15,16 +15,20 @@
 int	ft_print_str(t_parameter p, va_list args)
 {
 	char	*string;
-	int		i;
+	int		return_value;
 
-	i = 0;
+//	printf("--------------------------------------------------------------\n");
+//	parameter_print(p);
+//	printf("--------------------------------------------------------------\n");
 	string = va_arg(args, char *);
 	if (!string)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (string[i])
-		ft_print_char(string[i++]);
-	return (i);
+		string = "(null)";
+	return_value = 0;
+	if (!p.dot || p.precision > (int)ft_strlen(string) || p.precision < 0)
+		p.precision = ft_strlen(string);
+	if (p.width - p.precision > 0)
+		while (p.width-- - p.precision > 0)
+				return_value += ft_print_char(' ');
+	return_value += ft_putnstr(string, p.precision);
+	return (return_value);
 }

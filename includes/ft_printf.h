@@ -65,6 +65,7 @@ int			conversion_type(t_parameter p, va_list args);
 
 int			ft_print_char(int c);
 int			ft_print_percent(void);
+int			ft_putnstr(char const *s, int n);
 
 /*
 ** ft_print_str.c
