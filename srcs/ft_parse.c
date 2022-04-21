@@ -40,7 +40,7 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 	{
 		if (*str == '0' && !ft_isdigit(*(str - 1)))
 			p.zero = 1;
-		else if (ft_strchr(WIDTH_OR_PRECICION, *str) && !checked)
+		else if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
 				p.width = va_arg(args, int);
@@ -60,7 +60,7 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 	checked = 0;
 	while (!ft_strchr(SPECIFIERS, *str))
 	{
-		if (ft_strchr(WIDTH_OR_PRECICION, *str) && !checked)
+		if ((ft_isdigit(*str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
 				p.precision = va_arg(args, int);
@@ -73,13 +73,13 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 	return (p);
 }
 
+// p.test = str a fixer
 static t_parameter	ft_parse_length(char *str, t_parameter p)
 {
 	while (!ft_strchr(SPECIFIERS, *str))
 	{
 		if (ft_strchr(LENGTH, *str))
 			p.test = str;
-		str++;
 	}
 	return (p);
 }
@@ -96,7 +96,6 @@ int	ft_parse(char *str, va_list args)
 	p = ft_all_to_0();
 	p = ft_parse_flags(str, p);
 	p = ft_parse_width(str, args, p);
-	p = ft_parse_length(str, p);
 	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 		str++;
 	/*
@@ -114,6 +113,7 @@ int	ft_parse(char *str, va_list args)
 		p.minus = 1;
 		p.width *= -1;
 	}
+//	p = ft_parse_length(str, p);
 	p.specifier = *str;
 	return (conversion_type(p, args));
 }

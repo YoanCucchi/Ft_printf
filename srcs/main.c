@@ -16,8 +16,8 @@ int	main(void)
 {
 // %[Flags][Width].[Precision][Length]
 	int ret1, ret2;
-	ret1 = printf("myfk printf: %10x\n", 42);
-	ret2 = ft_printf("norm printf: %10x\n", 42);
+	ret1 = printf("myfk printf: %11.10x\n", 42);
+	ret2 = ft_printf("norm printf: %11.10x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 //	printf("real printf: %c\n", 't');
 //	ft_printf("my printf: %c\n", 't');
