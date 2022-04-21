@@ -14,14 +14,10 @@
 
 int	main(void)
 {
-//printf("normal = %d", 50);
-//ft_printf("mine = %d", 50);
 // %[Flags][Width].[Precision][Length]
-	char *test;
 	int ret1, ret2;
-	test = "it's working :)";
-	ret1 = printf("real printf: %s\n", test);
-	ret2 = ft_printf("my printf: %s\n", test);
+	ret1 = printf("myfk printf: %10x\n", 42);
+	ret2 = ft_printf("norm printf: %10x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 //	printf("real printf: %c\n", 't');
 //	ft_printf("my printf: %c\n", 't');

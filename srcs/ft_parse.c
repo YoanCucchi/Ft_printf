@@ -33,20 +33,20 @@ static t_parameter	ft_parse_flags(char *str, t_parameter p)
 
 static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 {
-	int	specified;
+	int	check;
 
-	specified = 0;
+	check = 0;
 	while (*str != '.' && !ft_strchr(SPECIFIERS, *str))
 	{
 		if (*str == '0' && !ft_isdigit(*(str - 1)))
 			p.zero = 1;
-		else if (((*str > '0' && *str <= '9') || *str == '*') && !specified)
+		else if (((*str > '0' && *str <= '9') || *str == '*') && !check)
 		{
 			if (*str == '*')
 				p.width = va_arg(args, int);
 			else
 				p.width = ft_atoi(str);
-			specified = 1;
+			check = 1;
 		}
 		str++;
 	}	
@@ -55,21 +55,27 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 
 static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 {
-	int	specified;
+	int	check;
 
-	specified = 0;
+	check = 0;
 	while (!ft_strchr(SPECIFIERS, *str))
 	{
-		if ((ft_isdigit(*str) || *str == '*') && !specified)
+		if ((ft_isdigit(*str) || *str == '*') && !check)
 		{
 			if (*str == '*')
 				p.precision = va_arg(args, int);
 			else
 				p.precision = ft_atoi(str);
-			specified = 1;
+			check = 1;
 		}
 		str++;
 	}
+	return (p);
+}
+
+static t_parameter	ft_parse_length(char *str, va_list args, t_parameter p)
+{
+//	while (!ft_strchr(SPECIFIERS, *str))
 	return (p);
 }
 
