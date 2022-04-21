@@ -44,7 +44,6 @@ typedef struct s_parameter
 	int		plus;
 	int		width;
 	int		precision;
-	int		neg_prec;
 	char	specifier;
 	int		zero;
 	int		dot;

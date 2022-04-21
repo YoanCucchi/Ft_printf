@@ -14,33 +14,15 @@
 
 int	main(void)
 {
-//	int a;
-//	int *b;
-//	int c;
-
-//	a = 2545;
-//	b = &a;
-//	c = 1111;
-//	printf("normal : %d\n%d\n", a, c);
-//	ft_printf("mine : %d\n%d\n", a, c );
-//	printf("normal : %+i\n", a);
-//	ft_printf("mine : %+i\n", a);
-//	printf("normal : %+u\n", a);
-//	ft_printf("mine : %+u\n", a);
-
-
-
 //printf("normal = %d", 50);
 //ft_printf("mine = %d", 50);
 // %[Flags][Width].[Precision][Length]
-//	char *test;
-//	int ret1, ret2;
-//	test = "it's working :)";
-//	printf("real printf: %s\n", test);
-//	ft_printf("my printf: %s\n", test);
-//	ret1 = printf("real printf: %s\n%s\n", test, test2);
-//	ret2 = ft_printf("my printf: %s\n%s\n", test, test2);
-//	printf("%d %d\n", ret1, ret2);
+	char *test;
+	int ret1, ret2;
+	test = "it's working :)";
+	ret1 = printf("real printf: %s\n", test);
+	ret2 = ft_printf("my printf: %s\n", test);
+	printf("%d %d\n", ret1, ret2);
 //	printf("real printf: %c\n", 't');
 //	ft_printf("my printf: %c\n", 't');
 

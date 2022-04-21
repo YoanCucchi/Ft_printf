@@ -6,7 +6,7 @@
 #    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/04/19 11:38:15 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/04/21 15:01:57 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra #-Werror
 CC = gcc
 
 DEFAULT = \033[0;39m

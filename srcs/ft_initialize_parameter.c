@@ -12,8 +12,10 @@
 
 #include "../includes/ft_printf.h"
 
+// A VIRER !!!
 void	parameter_print(t_parameter p)
 {
+	printf("---------------------------------------------------------------\n");
 	printf("minus = %d\n", p.minus);
 	printf("plus = %d\n", p.plus);
 	printf("width = %d\n", p.width);
@@ -23,7 +25,7 @@ void	parameter_print(t_parameter p)
 	printf("dot = %d\n", p.dot);
 	printf("space = %d\n", p.space);
 	printf("sharp = %d\n", p.sharp);
-	printf("neg_prec = %d\n", p.neg_prec);
+	printf("---------------------------------------------------------------\n");
 }
 
 t_parameter	ft_all_to_0(void)
@@ -39,6 +41,5 @@ t_parameter	ft_all_to_0(void)
 	newparameter.dot = 0;
 	newparameter.space = 0;
 	newparameter.sharp = 0;
-	newparameter.neg_prec = 0;
 	return (newparameter);
 }

@@ -21,11 +21,10 @@ int	ft_print_nbr(t_parameter p, va_list args)
 
 	return_value = 0;
 	n = va_arg(args, int);
-	printf("n = %d\n", n);
 	if (p.plus == 1 && p.specifier != 'u')
-		return_value += write (1, "+", 1);
+		return_value += ft_print_char('+');
 	if (p.minus == 1 && p.specifier != 'u')
-		return_value += write (1, "-", 1);
+		return_value += ft_print_char('-');
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
 	return_value += write(1, nbr, len);

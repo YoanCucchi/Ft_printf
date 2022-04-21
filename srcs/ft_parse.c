@@ -104,6 +104,5 @@ int	ft_parse(char *str, va_list args)
 		p.width *= -1;
 	}
 	p.specifier = *str;
-	p.neg_prec = p.precision < 0; // ???
 	return (conversion_type(p, args));
 }
