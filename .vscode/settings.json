@@ -5,6 +5,7 @@
         "iosfwd": "c",
         "stdio.h": "c",
         "atomic": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "__locale": "c"
     }
 }

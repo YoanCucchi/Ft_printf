@@ -72,6 +72,7 @@ int			ft_putnstr(char const *s, int n);
 */
 
 int			ft_print_str(t_parameter p, va_list args);
+int			ft_print_c(va_list args);
 
 /*
 ** ft_print_nbr.c
@@ -97,5 +98,10 @@ int			ft_parse(char *str, va_list args);
 
 void		parameter_print(t_parameter p); // A VIRER !!!
 t_parameter	ft_all_to_0(void);
+
+/*
+** colors.c
+*/
+
 
 #endif

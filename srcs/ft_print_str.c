@@ -32,3 +32,14 @@ int	ft_print_str(t_parameter p, va_list args)
 	return_value += ft_putnstr(string, p.precision);
 	return (return_value);
 }
+
+int	ft_print_c(va_list args)
+{
+	char	c;
+	int		return_value;
+
+	c = va_arg(args, int);
+	return_value = 0;
+	return_value += ft_print_char(c);
+	return (return_value);
+}

@@ -47,7 +47,7 @@ int	conversion_type(t_parameter p, va_list args)
 
 	return_value = 0;
 	if (p.specifier == 'c')
-		return_value += ft_print_char(p.specifier);
+		return_value += ft_print_c(args);
 	else if (p.specifier == 's')
 		return_value += ft_print_str(p, args);
 	else if (p.specifier == 'p' || p.specifier == 'x' || p.specifier == 'X')
