@@ -40,7 +40,7 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 	{
 		if (*str == '0' && !ft_isdigit(*(str - 1)))
 			p.zero = 1;
-		else if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
+		else if (ft_strchr(WIDTH_OR_PRECICION, *str) && !checked)
 		{
 			if (*str == '*')
 				p.width = va_arg(args, int);
@@ -60,7 +60,7 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 	checked = 0;
 	while (!ft_strchr(SPECIFIERS, *str))
 	{
-		if ((ft_isdigit(*str) || *str == '*') && !checked)
+		if (ft_strchr(WIDTH_OR_PRECICION, *str) && !checked)
 		{
 			if (*str == '*')
 				p.precision = va_arg(args, int);

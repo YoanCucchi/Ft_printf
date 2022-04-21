@@ -15,7 +15,7 @@
 
 # define SPECIFIERS "cspdiouxX%"
 # define FLAGS "#0-+ "
-# define WIDTH "0123456789"
+# define WIDTH_OR_PRECICION "0123456789*"
 # define LENGTH "hlL"
 # define HEXALOWCASE "0123456789abcdef"
 # define HEXAUPCASE "0123456789ABCDEF"
