@@ -24,6 +24,7 @@ void	parameter_print(t_parameter p)
 	printf("width = %d\n", p.width);
 	printf("dot = %d\n", p.dot);
 	printf("precision = %d\n", p.precision);
+	printf("test = %s\n", p.format);
 	printf("specifier = %c\n", p.specifier);
 	printf("---------------------------------------------------------------\n");
 }
@@ -41,6 +42,5 @@ t_parameter	ft_all_to_0(void)
 	newparameter.dot = 0;
 	newparameter.precision = 0;
 	newparameter.specifier = 0;
-	newparameter.test = (char *)malloc(sizeof(char) * 10);
 	return (newparameter);
 }

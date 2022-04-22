@@ -49,7 +49,7 @@ typedef struct s_parameter
 	int		dot;
 	int		space;
 	int		sharp;
-	char	*test;
+	char	*format;
 }			t_parameter;
 
 /*

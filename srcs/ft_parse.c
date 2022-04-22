@@ -27,6 +27,7 @@ static t_parameter	ft_parse_flags(char *str, t_parameter p)
 		if (*str == ' ')
 			p.space = 1;
 		str++;
+		p.format++;
 	}
 	return (p);
 }
@@ -49,6 +50,7 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 			checked = 1;
 		}
 		str++;
+		p.format++;
 	}	
 	return (p);
 }
@@ -58,7 +60,12 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 	int	checked;
 
 	checked = 0;
-	while (!ft_strchr(SPECIFIERS, *str))
+	if (*str != '.')
+		return (p);
+	p.dot = 1;
+	str++;
+	p.format++;
+	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str))
 	{
 		if ((ft_isdigit(*str) || *str == '*') && !checked)
 		{
@@ -68,18 +75,19 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 				p.precision = ft_atoi(str);
 			checked = 1;
 		}
-		str++;
+	str++;
+	p.format++;
 	}
 	return (p);
 }
 
-// p.test = str a fixer
+// p.format = str a fixer
 static t_parameter	ft_parse_length(char *str, t_parameter p)
 {
 	while (!ft_strchr(SPECIFIERS, *str))
 	{
 		if (ft_strchr(LENGTH, *str))
-			p.test = str;
+			p.format = str;
 	}
 	return (p);
 }
@@ -94,26 +102,17 @@ int	ft_parse(char *str, va_list args)
 	t_parameter	p;
 
 	p = ft_all_to_0();
-	p = ft_parse_flags(str, p);
-	p = ft_parse_width(str, args, p);
-	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
-		str++;
-	/*
-	** DEALING WITH PRECISION
-	*/
-	if (*str == '.' && !p.specifier)
-	{
-		p.dot = 1;
-		p = ft_parse_precision(str++, args, p);
-		while (!ft_strchr(SPECIFIERS, *str))
-			str++;
-	}
-	if (p.width < 0)
-	{
-		p.minus = 1;
-		p.width *= -1;
-	}
-//	p = ft_parse_length(str, p);
-	p.specifier = *str;
+	p.format = (char *)malloc(sizeof(char) * ft_strlen(str));
+	if (!p.format)
+		return(EXIT_FAILURE);
+	p.format = str;
+	p = ft_parse_flags(p.format, p);
+	p = ft_parse_width(p.format, args, p);
+	parameter_print(p);
+	p = ft_parse_precision(p.format, args, p);
+	parameter_print(p);
+//	p = ft_parse_length(p.format, p);
+	p.specifier = *p.format;
+	printf("p.specifier = %c\n", p.specifier);
 	return (conversion_type(p, args));
 }
