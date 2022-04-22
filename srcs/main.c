@@ -16,8 +16,8 @@ int	main(void)
 {
 // PROBLEME AVEC HH LENGTH SPECIFIER A CAUSE DU CHANGEMENT EN CHAR.
 // %[Flags][Width].[Precision][Length]
-	printf("norm printf:%0#5.5hhx\n", 4512);
-	ft_printf("myfk printf:%0#5.5hx\n", 4512);
+	printf("norm printf:%0#5.5llx\n", 4512);
+	ft_printf("myfk printf:%0#5.5llx\n", 4512);
 //	printf("real printf: %c\n", 't');
 //	ft_printf("my printf: %c\n", 't');
 

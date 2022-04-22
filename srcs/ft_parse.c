@@ -85,8 +85,8 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 {
 	int		i;
 	char	*tmp;
-//	tmp = ft_memalloc(50);
-	tmp = malloc(sizeof(char) * ft_strlen(str));
+	tmp = ft_memalloc(50);
+//	tmp = malloc(sizeof(char) * ft_strlen(str));
 	i = 0;
 	while (str[i] != 'c' && str[i] != 's' && str[i] != 'p' && str[i] != 'd' && \
 	str[i] != 'i' && str[i] != 'o' && str[i] != 'u' && str[i] != 'x' && \

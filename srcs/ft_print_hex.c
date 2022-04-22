@@ -74,3 +74,27 @@ int	ft_print_hex(t_parameter p, va_list args)
 	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);
 }
+
+int	ft_print_hex_hh(t_parameter p, va_list args)
+{
+	int				return_value;
+	unsigned char	n;
+	int				len;
+	
+	return_value = 0;
+	n = va_arg(args, int);
+	len = ft_nbrlen(n, 16);
+	if (!p.precision)
+		p.precision = len;
+	if (p.sharp == 1)
+		p.width -= 2;
+	if (p.width > p.precision)
+		while (p.width-- - p.precision > 0)
+			return_value += ft_print_char(' ');
+	if (p.specifier == 'p' || p.sharp == 1)
+		return_value += ft_putnstr("0x", 2);
+	while (p.precision-- - len > 0)
+		return_value += ft_print_char('0');
+	return_value += ft_recursive_hex(p, n, n);
+	return (return_value);
+}
