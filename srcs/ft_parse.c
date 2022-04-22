@@ -38,7 +38,7 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 	checked = 0;
 	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 	{
-		if (*str == '0' && !ft_isdigit(*(str - 1)))
+		if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
 			p.zero = 1;
 		else if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
 		{

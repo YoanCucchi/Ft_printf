@@ -17,9 +17,6 @@ int	ft_print_str(t_parameter p, va_list args)
 	char	*string;
 	int		return_value;
 
-//	printf("--------------------------------------------------------------\n");
-//	parameter_print(p);
-//	printf("--------------------------------------------------------------\n");
 	string = va_arg(args, char *);
 	if (!string)
 		string = "(null)";
@@ -28,7 +25,7 @@ int	ft_print_str(t_parameter p, va_list args)
 		p.precision = ft_strlen(string);
 	if (p.width - p.precision > 0)
 		while (p.width-- - p.precision > 0)
-				return_value += ft_print_char(' ');
+			return_value += ft_print_char(' ');
 	return_value += ft_putnstr(string, p.precision);
 	return (return_value);
 }

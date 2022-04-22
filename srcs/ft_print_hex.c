@@ -54,19 +54,23 @@ static int	ft_recursive_hex(t_parameter p, size_t n, size_t iteration)
 int	ft_print_hex(t_parameter p, va_list args)
 {
 	int		return_value;
-	int	n;
+	int		n;
 	int		len;
 
 	return_value = 0;
 	n = va_arg(args, int);
-	if (p.specifier == 'p')
-		return_value += write(1, "0x", 2);
 	len = ft_nbrlen(n, 16);
-	if (!p.dot || p.precision > len || p.precision < 0)
+	if (!p.precision)
 		p.precision = len;
-	if (p.width - p.precision > 0)
+	if (p.sharp == 1)
+		p.width -= 2;
+	if (p.width > p.precision)
 		while (p.width-- - p.precision > 0)
-				return_value += ft_print_char(' ');
-	return_value +=  ft_recursive_hex(p, n, n);
+			return_value += ft_print_char(' ');
+	if (p.specifier == 'p' || p.sharp == 1)
+		return_value += ft_putnstr("0x", 2);
+	while (p.precision-- - len > 0)
+		return_value += ft_print_char('0');
+	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);
 }

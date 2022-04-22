@@ -38,6 +38,5 @@ int	ft_putnstr(char const *s, int n)
 			n--;
 		}
 	}
-	return(i);
+	return (i);
 }
-
