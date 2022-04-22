@@ -87,6 +87,7 @@ int			ft_print_nbr(t_parameter p, va_list args);
 
 int			ft_print_hex(t_parameter p, va_list args);
 int			ft_print_hex_hh(t_parameter p, va_list args);
+int			ft_print_p(t_parameter p, va_list args);
 
 /*
 ** ft_parse.c

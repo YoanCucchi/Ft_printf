@@ -20,7 +20,7 @@ OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra -fsanitize=address #-Werror 
+FLAGS = -Wall -Wextra #-Werror 
 CC = gcc
 
 DEFAULT = \033[0;39m
@@ -50,9 +50,6 @@ $(NAME):
 	@mv $(OBJ) $(OBJ_DIR)
 	@echo "$(CYAN)objects moved in $(OBJ_DIR)$(DEFAULT)"
 
-debug:
-	gcc -g $(FLAGS) -I . libft/libft.a $(SRCS) -o debug
-
 git:
 	git add -A
 	git commit -m "$m"
@@ -64,9 +61,6 @@ clean:
 	@rm -rf $(LIBFT_PRINTF)
 	@echo "$(GRAY)$(LIBFT_PRINTF) cleaned!$(DEFAULT)"
 	@make clean -C libft/
-
-	rm -rf debug.dSYM
-	rm -rf debug
 
 fclean: clean
 	@rm -rf $(NAME)

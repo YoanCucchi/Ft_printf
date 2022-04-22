@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static int	ft_nbrlen(long n, int base)
+static int	ft_nbrlen(unsigned long n, int base)
 {
 	int	len;
 
@@ -89,7 +89,31 @@ int	ft_print_hex_hh(t_parameter p, va_list args)
 	if (p.sharp == 1)
 		p.width -= 2;
 	if (p.width > p.precision)
-		while (p.width-- - p.precision > 0)
+		while (p.width-- - len > 0)
+			return_value += ft_print_char(' ');
+	if (p.specifier == 'p' || p.sharp == 1)
+		return_value += ft_putnstr("0x", 2);
+	while (p.precision-- - len > 0)
+		return_value += ft_print_char('0');
+	return_value += ft_recursive_hex(p, n, n);
+	return (return_value);
+}
+
+int	ft_print_p(t_parameter p, va_list args)
+{
+	int				return_value;
+	unsigned long	n;
+	int				len;
+	
+	return_value = 0;
+	n = va_arg(args, unsigned long);
+	len = ft_nbrlen(n, 16);
+	if (!p.precision)
+		p.precision = len;
+	if (p.specifier == 'p' || p.sharp)
+		p.width -= 2;
+	if (p.width > p.precision)
+		while (p.width-- - len > 0)
 			return_value += ft_print_char(' ');
 	if (p.specifier == 'p' || p.sharp == 1)
 		return_value += ft_putnstr("0x", 2);

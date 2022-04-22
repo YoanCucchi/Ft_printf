@@ -50,11 +50,13 @@ int	conversion_type(t_parameter p, va_list args)
 		return_value += ft_print_c(args);
 	else if (p.specifier == 's')
 		return_value += ft_print_str(p, args);
-	else if (p.specifier == 'p' || p.specifier == 'x' || p.specifier == 'X')
+	else if (p.specifier == 'x' || p.specifier == 'X')
 		if (!ft_strcmp(p.length, "hh"))
 			return_value += ft_print_hex_hh(p, args);
 		else
 			return_value += ft_print_hex(p, args);
+	else if (p.specifier == 'p')
+		return_value += ft_print_p(p, args);
 	else if (p.specifier == 'd' || p.specifier == 'i' || p.specifier == 'u')
 		return_value += ft_print_nbr(p, args);
 	else if (p.specifier == '%')
