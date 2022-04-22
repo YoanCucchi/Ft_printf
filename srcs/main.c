@@ -319,13 +319,13 @@ int main(void)
 	//i_test();
 	//o_test();
 	//u_test();
-	// x_test();
+	 x_test();
 	// X_test();
 	//o_hash_test();
 	//xX_hash_test();
 	//percent_test();
 	//ellas_tests();
 	//float_test();
-	pointer_test();
+//	pointer_test();
 	return (0);
 }
