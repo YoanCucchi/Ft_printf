@@ -14,17 +14,16 @@
 
 int	main(void)
 {
+// PROBLEME AVEC HH LENGTH SPECIFIER A CAUSE DU CHANGEMENT EN CHAR.
 // %[Flags][Width].[Precision][Length]
-	int ret1, ret2;
-	ret1 = printf("norm printf:%0#20.8x\n", 423);
-	ret2 = ft_printf("myfk printf:%0#20.8x\n", 423);
-	printf("%d %d\n", ret1, ret2);
+	printf("norm printf:%0#5.5hhx\n", 4512);
+	ft_printf("myfk printf:%0#5.5hx\n", 4512);
 //	printf("real printf: %c\n", 't');
 //	ft_printf("my printf: %c\n", 't');
 
 // celui la bug
-//	ret1 = printf("norm printf:%0#20.8x\n", 423);
-//	ret2 = ft_printf("myfk printf:%0#20.8x\n", 423);
+//	ret1 = printf("norm printf:%0#5.5hhx\n", 423);
+//	ret2 = ft_printf("myfk printf:%0#5.5hhx\n", 423);
 
 //	printf("%%\n");
 //	ft_printf("%%\n");

@@ -50,6 +50,7 @@ typedef struct s_parameter
 	int		space;
 	int		sharp;
 	char	*format;
+	char	*length;
 }			t_parameter;
 
 /*

@@ -75,26 +75,35 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 				p.precision = ft_atoi(str);
 			checked = 1;
 		}
-	str++;
-	p.format++;
+		str++;
+		p.format++;
 	}
 	return (p);
 }
 
-// p.format = str a fixer
 static t_parameter	ft_parse_length(char *str, t_parameter p)
 {
-	while (!ft_strchr(SPECIFIERS, *str))
+	int		i;
+	char	*tmp;
+//	tmp = ft_memalloc(50);
+	tmp = malloc(sizeof(char) * ft_strlen(str));
+	i = 0;
+	while (str[i] != 'c' && str[i] != 's' && str[i] != 'p' && str[i] != 'd' && \
+	str[i] != 'i' && str[i] != 'o' && str[i] != 'u' && str[i] != 'x' && \
+	str[i] != 'X')
 	{
-		if (ft_strchr(LENGTH, *str))
-			p.format = str;
+		tmp[i] = str[i];
+		i++;
+		p.format++;
 	}
+	p.length = ft_strdup(tmp);
+	free(tmp);
 	return (p);
 }
 
 /*
-** Here we are parsing flags, width, precision and lenght to set up
-** all our parameters and return the proper conversion type
+** Here we are parsing flags, width, precision and length to set up
+** all our parameters and return the proper conversion type and format
 ** %[Flags][Width].[Precision][Length]
 */
 int	ft_parse(char *str, va_list args)
@@ -102,17 +111,11 @@ int	ft_parse(char *str, va_list args)
 	t_parameter	p;
 
 	p = ft_all_to_0();
-	p.format = (char *)malloc(sizeof(char) * ft_strlen(str));
-	if (!p.format)
-		return(EXIT_FAILURE);
 	p.format = str;
 	p = ft_parse_flags(p.format, p);
 	p = ft_parse_width(p.format, args, p);
-	parameter_print(p);
 	p = ft_parse_precision(p.format, args, p);
-	parameter_print(p);
-//	p = ft_parse_length(p.format, p);
+	p = ft_parse_length(p.format, p);
 	p.specifier = *p.format;
-	printf("p.specifier = %c\n", p.specifier);
 	return (conversion_type(p, args));
 }
