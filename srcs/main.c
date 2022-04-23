@@ -98,9 +98,6 @@ static void u_test()
 	ret1 = printf("% u\n", 4294967295);
 	ret2 = ft_printf("% u\n", 4294967295);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%+u\n", 4294967295);
-	ret2 = printf("%+u\n", 4294967295);
-	printf("%d %d\n", ret1, ret2);
 }
 
 static void o_test()
@@ -110,9 +107,6 @@ static void o_test()
 	int ret1, ret2;
 	ret1 = printf("%o\n", n);
 	ret2 = ft_printf("%o\n", n);
-	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%o %o %o\n", 42242, -2442424, 0);
-	ret2 = printf("%o %o %o\n", 42242, -2442424, 0);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%-#6o\n", 2500);
 	ret2 = ft_printf("%-#6o\n", 2500);
@@ -127,20 +121,11 @@ static void x_test()
 	ret1 = printf("%x\n", n);
 	ret2 = ft_printf("%x\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%x %x %x\n", 42242, -2442424, 0);
-	ret2 = printf("%x %x %x\n", 42242, -2442424, 0);
-	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%x %d\n", 0, 0);
-	ret2 = ft_printf("%x %d\n", 0, 0);
-	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%x\n", 4294967296);
 	ret2 = ft_printf("%x\n", 4294967296);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%10x\n", 42);
 	ret2 = ft_printf("%10x\n", 42);
-	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("|@moulitest: %5.x %5.0x|\n", 0, 0);
-	ret2 = ft_printf("|@moulitest: %5.x %5.0x|\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 	
 }
@@ -306,8 +291,8 @@ void	pointer_test()
 	int *i = &a;
 	char *s = "abcde";
 	int ret1, ret2;
-	ret1 = printf("%2.9x\n", 1234);
-	ret2 = ft_printf("%2.9x\n", 1234);
+	ret1 = printf("%#2.9x\n", 1234);
+	ret2 = ft_printf("%#2.9x\n", 1234);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -317,9 +302,9 @@ int main(void)
 	//char_test();
 	//d_test();
 	//i_test();
-	//o_test();
-	//u_test();
-	 x_test();
+//	o_test();
+//	u_test();
+//	 x_test();
 	// X_test();
 	//o_hash_test();
 	//xX_hash_test();
@@ -327,5 +312,9 @@ int main(void)
 	//ellas_tests();
 	//float_test();
 //	pointer_test();
+int ret1, ret2;
+	ret1 = printf("norm:%#08llp\n", 42);
+	ret2 = ft_printf("mine:%#08llp\n", 42);
+	printf("%d %d\n", ret1, ret2);
 	return (0);
 }

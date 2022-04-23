@@ -56,18 +56,28 @@ int	ft_print_hex(t_parameter p, va_list args)
 	int		return_value;
 	int		n;
 	int		len;
-	
+
 	return_value = 0;
 	n = va_arg(args, int);
 	len = ft_nbrlen(n, 16);
 	if (!p.precision)
 		p.precision = len;
 	if (p.sharp == 1)
+	{
 		p.width -= 2;
+		if (p.zero)
+			return_value += ft_putnstr("0x", 2);
+	}
 	if (p.width > p.precision)
-		while (p.width-- - p.precision > 0)
-			return_value += ft_print_char(' ');
-	if (p.specifier == 'p' || p.sharp == 1)
+	{
+		while (p.width-- - len > 0)
+		{
+			if (!p.zero)
+				return_value += ft_print_char(' ');
+			return_value += ft_print_char('0');
+		}
+	}
+	if (!p.zero && p.sharp == 1)
 		return_value += ft_putnstr("0x", 2);
 	while (p.precision-- - len > 0)
 		return_value += ft_print_char('0');
@@ -80,18 +90,28 @@ int	ft_print_hex_hh(t_parameter p, va_list args)
 	int				return_value;
 	unsigned char	n;
 	int				len;
-	
+
 	return_value = 0;
 	n = va_arg(args, int);
 	len = ft_nbrlen(n, 16);
 	if (!p.precision)
 		p.precision = len;
 	if (p.sharp == 1)
+	{
 		p.width -= 2;
+		if (p.zero)
+			return_value += ft_putnstr("0x", 2);
+	}
 	if (p.width > p.precision)
+	{
 		while (p.width-- - len > 0)
-			return_value += ft_print_char(' ');
-	if (p.specifier == 'p' || p.sharp == 1)
+		{
+			if (!p.zero)
+				return_value += ft_print_char(' ');
+			return_value += ft_print_char('0');
+		}
+	}
+	if (!p.zero && p.sharp == 1)
 		return_value += ft_putnstr("0x", 2);
 	while (p.precision-- - len > 0)
 		return_value += ft_print_char('0');
@@ -104,18 +124,28 @@ int	ft_print_p(t_parameter p, va_list args)
 	int				return_value;
 	unsigned long	n;
 	int				len;
-	
+
 	return_value = 0;
 	n = va_arg(args, unsigned long);
 	len = ft_nbrlen(n, 16);
 	if (!p.precision)
 		p.precision = len;
-	if (p.specifier == 'p' || p.sharp)
+	if (p.sharp == 1)
+	{
 		p.width -= 2;
+		if (p.zero)
+			return_value += ft_putnstr("0x", 2);
+	}
 	if (p.width > p.precision)
+	{
 		while (p.width-- - len > 0)
-			return_value += ft_print_char(' ');
-	if (p.specifier == 'p' || p.sharp == 1)
+		{
+			if (!p.zero)
+				return_value += ft_print_char(' ');
+			return_value += ft_print_char('0');
+		}
+	}
+	if (!p.zero && p.sharp == 1)
 		return_value += ft_putnstr("0x", 2);
 	while (p.precision-- - len > 0)
 		return_value += ft_print_char('0');
