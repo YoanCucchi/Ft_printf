@@ -40,3 +40,17 @@ int	ft_print_c(va_list args)
 	return_value += ft_print_char(c);
 	return (return_value);
 }
+
+int	ft_print_percent(t_parameter p, va_list args)
+{
+	int		return_value;
+
+	return_value = 0;
+	if (!p.precision)
+		p.precision = 1;
+	if (p.width - p.precision > 0)
+		while (p.width-- - p.precision > 0)
+			return_value += ft_print_char(' ');
+	return_value += ft_print_char('%');
+	return(return_value);
+}

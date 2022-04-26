@@ -65,8 +65,8 @@ int			conversion_type(t_parameter p, va_list args);
 */
 
 int			ft_print_char(int c);
-int			ft_print_percent(void);
 int			ft_putnstr(char const *s, int n);
+void		is_it_double_specifier(char *str, t_parameter p, char *tmp, int i);
 
 /*
 ** ft_print_str.c
@@ -74,6 +74,7 @@ int			ft_putnstr(char const *s, int n);
 
 int			ft_print_str(t_parameter p, va_list args);
 int			ft_print_c(va_list args);
+int			ft_print_percent(t_parameter p, va_list args);
 
 /*
 ** ft_print_nbr.c

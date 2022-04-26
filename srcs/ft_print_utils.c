@@ -12,12 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_percent(void)
-{
-	ft_print_char('%');
-	return (1);
-}
-
 int	ft_print_char(int c)
 {
 	write(1, &c, 1);
@@ -39,4 +33,20 @@ int	ft_putnstr(char const *s, int n)
 		}
 	}
 	return (i);
+}
+
+void	is_it_double_specifier(char *str, t_parameter p, char *tmp, int i)
+{
+	if (str[i] == 'l' && str[i + 1] == 'l')
+	{
+		i++;
+		p.format++;
+		tmp[i] = str[i];
+	}
+	if (str[i] == 'h' && str[i + 1] == 'h')
+	{
+		i++;
+		p.format++;
+		tmp[i] = str[i];
+	}
 }

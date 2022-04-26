@@ -46,6 +46,8 @@ int	conversion_type(t_parameter p, va_list args)
 	int	return_value;
 
 	return_value = 0;
+
+	parameter_print(p);
 	if (p.specifier == 'c')
 		return_value += ft_print_c(args);
 	else if (p.specifier == 's')
@@ -60,7 +62,7 @@ int	conversion_type(t_parameter p, va_list args)
 	else if (p.specifier == 'd' || p.specifier == 'i' || p.specifier == 'u')
 		return_value += ft_print_nbr(p, args);
 	else if (p.specifier == '%')
-		return_value += ft_print_percent();
+		return_value += ft_print_percent(p, args);
 	free(p.length);
 	return (return_value);
 }

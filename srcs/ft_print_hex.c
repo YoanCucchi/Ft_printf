@@ -128,6 +128,8 @@ int	ft_print_p(t_parameter p, va_list args)
 	return_value = 0;
 	n = va_arg(args, unsigned long);
 	len = ft_nbrlen(n, 16);
+	printf("len : %d\n", len);
+	printf("p.precision : %d\n", p.precision);
 	if (!p.precision)
 		p.precision = len;
 	if (p.sharp == 1)
@@ -145,7 +147,7 @@ int	ft_print_p(t_parameter p, va_list args)
 			return_value += ft_print_char('0');
 		}
 	}
-	if (!p.zero && p.sharp == 1)
+	if ((!p.zero && p.sharp == 1) || p.specifier == 'p')
 		return_value += ft_putnstr("0x", 2);
 	while (p.precision-- - len > 0)
 		return_value += ft_print_char('0');
