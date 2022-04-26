@@ -44,6 +44,6 @@ t_parameter	ft_all_to_0(void)
 	newparameter.precision = 0;
 	newparameter.specifier = 0;
 	newparameter.format = NULL;
-	newparameter.length = malloc(sizeof(char) * 100);
+	newparameter.length = NULL;
 	return (newparameter);
 }

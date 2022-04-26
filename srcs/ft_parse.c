@@ -37,7 +37,7 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 	int	checked;
 
 	checked = 0;
-	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
+	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str) && *str != '.')
 	{
 		if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
 			p.zero = 1;
@@ -85,17 +85,29 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 {
 	int		i;
 	char	*tmp;
-	tmp = ft_memalloc(50);
-//	tmp = malloc(sizeof(char) * ft_strlen(str));
+
+	tmp = malloc(sizeof(char) * ft_strlen(str));
 	i = 0;
-	while (str[i] != 'c' && str[i] != 's' && str[i] != 'p' && str[i] != 'd' && \
-	str[i] != 'i' && str[i] != 'o' && str[i] != 'u' && str[i] != 'x' && \
-	str[i] != 'X')
+	while (!ft_strchr(SPECIFIERS, str[i]))
 	{
-		tmp[i] = str[i];
+		if (ft_strchr(LENGTH, str[i]))
+		{
+			tmp[i] = str[i];
+			if (str[i] == 'l' && str[i + 1] == 'l')
+			{
+				i++;
+				tmp[i] = str[i];
+			}
+			if (str[i] == 'h' && str[i + 1] == 'h')
+			{
+				i++;
+				tmp[i] = str[i];
+			}
+		}
 		i++;
 		p.format++;
 	}
+	p.specifier = str[i];
 	p.length = ft_strdup(tmp);
 	free(tmp);
 	return (p);
@@ -112,10 +124,17 @@ int	ft_parse(char *str, va_list args)
 
 	p = ft_all_to_0();
 	p.format = str;
+//	printf("p.format before parse flag : %s\n", p.format);
 	p = ft_parse_flags(p.format, p);
+//	printf("p.format after parse flag : %s\n", p.format);
 	p = ft_parse_width(p.format, args, p);
+//	printf("p.format after parse width : %s\n", p.format);
 	p = ft_parse_precision(p.format, args, p);
+//	printf("p.format after parse precision : %s\n", p.format);
 	p = ft_parse_length(p.format, p);
-	p.specifier = *p.format;
+//	printf("p.format after parse length : %s\n", p.format);
+//	printf("p.length after parse length : %s\n", p.length);
+//	p.specifier = *p.format;
+	parameter_print(p);
 	return (conversion_type(p, args));
 }

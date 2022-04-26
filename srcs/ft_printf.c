@@ -61,5 +61,6 @@ int	conversion_type(t_parameter p, va_list args)
 		return_value += ft_print_nbr(p, args);
 	else if (p.specifier == '%')
 		return_value += ft_print_percent();
+	free(p.length);
 	return (return_value);
 }
