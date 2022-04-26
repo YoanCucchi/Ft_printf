@@ -128,8 +128,6 @@ int	ft_print_p(t_parameter p, va_list args)
 	return_value = 0;
 	n = va_arg(args, unsigned long);
 	len = ft_nbrlen(n, 16);
-	printf("len : %d\n", len);
-	printf("p.precision : %d\n", p.precision);
 	if (!p.precision)
 		p.precision = len;
 	if (p.sharp == 1)

@@ -41,7 +41,7 @@ int	ft_print_c(va_list args)
 	return (return_value);
 }
 
-int	ft_print_percent(t_parameter p, va_list args)
+int	ft_print_percent(t_parameter p)
 {
 	int		return_value;
 

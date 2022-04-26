@@ -74,7 +74,7 @@ void		is_it_double_specifier(char *str, t_parameter p, char *tmp, int i);
 
 int			ft_print_str(t_parameter p, va_list args);
 int			ft_print_c(va_list args);
-int			ft_print_percent(t_parameter p, va_list args);
+int			ft_print_percent(t_parameter p);
 
 /*
 ** ft_print_nbr.c

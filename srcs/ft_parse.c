@@ -98,7 +98,6 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 		i++;
 		p.format++;
 	}
-//	p.specifier = str[i];
 	p.length = ft_strdup(tmp);
 	free(tmp);
 	return (p);
@@ -113,8 +112,7 @@ int	ft_parse(char *str, va_list args)
 {
 	t_parameter	p;
 
-	if (p.specifier != '%')
-		p = ft_all_to_0();
+	p = ft_all_to_0();
 	p.format = str;
 //	printf("p.format before parse flag : %s\n", p.format);
 	p = ft_parse_flags(p.format, p);
