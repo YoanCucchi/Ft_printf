@@ -313,8 +313,8 @@ int main(void)
 	//float_test();
 //	pointer_test();
 int ret1, ret2;
-	ret1 = printf("norm:%5%.8p\n", 42);
-	ret2 = ft_printf("mine:%5%.8p\n", 42);
+	ret1 = printf("norm:%6%.8p\n", 42);
+	ret2 = ft_printf("mine:%6%.8p\n", 42);
 	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 //	system("leaks ft_printf");
