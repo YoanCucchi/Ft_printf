@@ -32,7 +32,7 @@ static t_parameter	ft_parse_flags(char *str, t_parameter p)
 	return (p);
 }
 
-static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
+static t_parameter	ft_parse_width(char *str, t_parameter p)
 {
 	int	checked;
 
@@ -41,21 +41,21 @@ static t_parameter	ft_parse_width(char *str, va_list args, t_parameter p)
 	{
 		if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
 			p.zero = 1;
-		else if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
-		{
-			if (*str == '*')
-				p.width = va_arg(args, int);
-			else
+//		else if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
+//		{
+//			if (*str == '*')
+//				p.width = va_arg(*args, int);
+//			else
 				p.width = ft_atoi(str);
 			checked = 1;
-		}
+//		}
 		str++;
 		p.format++;
 	}	
 	return (p);
 }
 
-static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
+static t_parameter	ft_parse_precision(char *str, t_parameter p)
 {
 	int	checked;
 
@@ -69,9 +69,9 @@ static t_parameter	ft_parse_precision(char *str, va_list args, t_parameter p)
 	{
 		if ((ft_isdigit(*str) || *str == '*') && !checked)
 		{
-			if (*str == '*')
-				p.precision = va_arg(args, int);
-			else
+	//		if (*str == '*')
+	//			p.precision = va_arg(*args, int);
+	//		else
 				p.precision = ft_atoi(str);
 			checked = 1;
 		}
@@ -108,22 +108,16 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 ** all our parameters and return the proper conversion type and format
 ** %[Flags][Width].[Precision][Length]
 */
-int	ft_parse(char *str, va_list args)
+int	ft_parse(char *str, va_list *ap)
 {
 	t_parameter	p;
 
 	p = ft_all_to_0();
 	p.format = str;
-//	printf("p.format before parse flag : %s\n", p.format);
 	p = ft_parse_flags(p.format, p);
-//	printf("p.format after parse flag : %s\n", p.format);
-	p = ft_parse_width(p.format, args, p);
-//	printf("p.format after parse width : %s\n", p.format);
-	p = ft_parse_precision(p.format, args, p);
-//	printf("p.format after parse precision : %s\n", p.format);
+	p = ft_parse_width(p.format, p);
+	p = ft_parse_precision(p.format, p);
 	p = ft_parse_length(p.format, p);
-//	printf("p.format after parse length : %s\n", p.format);
-//	printf("p.length after parse length : %s\n", p.length);
 	p.specifier = *p.format;
-	return (conversion_type(p, args));
+	return (conversion_type(p, ap));
 }

@@ -57,8 +57,8 @@ typedef struct s_parameter
 ** main.c
 */
 
-int			ft_printf(const char *format, ...);
-int			conversion_type(t_parameter p, va_list args);
+int			ft_printf(const char *str, ...);
+int			conversion_type(t_parameter p, va_list *ap);
 
 /*
 ** ft_print_utils.c
@@ -72,29 +72,29 @@ void		is_it_double_specifier(char *str, t_parameter p, char *tmp, int i);
 ** ft_print_str.c
 */
 
-int			ft_print_str(t_parameter p, va_list args);
-int			ft_print_c(va_list args);
+int			ft_print_str(t_parameter p, va_list *ap);
+int			ft_print_c(va_list *ap);
 int			ft_print_percent(t_parameter p);
 
 /*
 ** ft_print_nbr.c
 */
 
-int			ft_print_nbr(t_parameter p, va_list args);
+int			ft_print_nbr(t_parameter p, va_list *ap);
 
 /*
 ** ft_print_hex.c
 */
 
-int			ft_print_hex(t_parameter p, va_list args);
-int			ft_print_hex_hh(t_parameter p, va_list args);
-int			ft_print_p(t_parameter p, va_list args);
+int			ft_print_hex(t_parameter p, va_list *ap);
+int			ft_print_hex_hh(t_parameter p, va_list *ap);
+int			ft_print_p(t_parameter p, va_list *ap);
 
 /*
 ** ft_parse.c
 */
 
-int			ft_parse(char *str, va_list args);
+int			ft_parse(char *str, va_list *ap);
 
 /*
 ** ft_initialize_parameter.c

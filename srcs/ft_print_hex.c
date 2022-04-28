@@ -51,14 +51,14 @@ static int	ft_recursive_hex(t_parameter p, size_t n, size_t iteration)
 	return (return_value);
 }
 
-int	ft_print_hex(t_parameter p, va_list args)
+int	ft_print_hex(t_parameter p, va_list *ap)
 {
 	int		return_value;
 	int		n;
 	int		len;
 
 	return_value = 0;
-	n = va_arg(args, int);
+	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
 	if (!p.precision)
 		p.precision = len;
@@ -85,14 +85,14 @@ int	ft_print_hex(t_parameter p, va_list args)
 	return (return_value);
 }
 
-int	ft_print_hex_hh(t_parameter p, va_list args)
+int	ft_print_hex_hh(t_parameter p, va_list *ap)
 {
 	int				return_value;
 	unsigned char	n;
 	int				len;
 
 	return_value = 0;
-	n = va_arg(args, int);
+	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
 	if (!p.precision)
 		p.precision = len;
@@ -119,14 +119,14 @@ int	ft_print_hex_hh(t_parameter p, va_list args)
 	return (return_value);
 }
 
-int	ft_print_p(t_parameter p, va_list args)
+int	ft_print_p(t_parameter p, va_list *ap)
 {
 	int				return_value;
 	unsigned long	n;
 	int				len;
 
 	return_value = 0;
-	n = va_arg(args, unsigned long);
+	n = va_arg(*ap, unsigned long);
 	len = ft_nbrlen(n, 16);
 	if (!p.precision)
 		p.precision = len;

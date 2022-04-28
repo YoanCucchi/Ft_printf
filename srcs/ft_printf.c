@@ -12,54 +12,54 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list	args;
+	va_list	ap;
 	int		return_value;
 	char	*first;
 
-	va_start(args, format);
+	va_start(ap, str);
 	return_value = 0;
-	while (*format)
+	while (*str)
 	{
-		if (*format == '%')
+		if (*str == '%')
 		{
-			first = (char *)format;
-			if (*(++format))
-				return_value += ft_parse((char *)format, args);
-			while (*format && !ft_strchr(SPECIFIERS, *format))
-				format++;
-			if (!(*format))
-				format = first;
+			first = (char *)str;
+			if (*(++str))
+				return_value += ft_parse((char *)str, &ap);
+			while (*str && !ft_strchr(SPECIFIERS, *str))
+				str++;
+			if (!(*str))
+				str = first;
 		}
 		else
-			return_value += ft_print_char(*format);
-		if (*format)
-			format++;
+			return_value += ft_print_char(*str);
+		if (*str)
+			str++;
 	}
-	va_end(args);
+	va_end(ap);
 	return (return_value);
 }
 
-int	conversion_type(t_parameter p, va_list args)
+int	conversion_type(t_parameter p, va_list *ap)
 {
 	int	return_value;
 
 	return_value = 0;
 
 	if (p.specifier == 'c')
-		return_value += ft_print_c(args);
+		return_value += ft_print_c(ap);
 	else if (p.specifier == 's')
-		return_value += ft_print_str(p, args);
+		return_value += ft_print_str(p, ap);
 	else if (p.specifier == 'x' || p.specifier == 'X')
 		if (!ft_strcmp(p.length, "hh"))
-			return_value += ft_print_hex_hh(p, args);
+			return_value += ft_print_hex_hh(p, ap);
 		else
-			return_value += ft_print_hex(p, args);
+			return_value += ft_print_hex(p, ap);
 	else if (p.specifier == 'p')
-		return_value += ft_print_p(p, args);
+		return_value += ft_print_p(p, ap);
 	else if (p.specifier == 'd' || p.specifier == 'i' || p.specifier == 'u')
-		return_value += ft_print_nbr(p, args);
+		return_value += ft_print_nbr(p, ap);
 	else if (p.specifier == '%')
 		return_value += ft_print_percent(p);
 	free(p.length);

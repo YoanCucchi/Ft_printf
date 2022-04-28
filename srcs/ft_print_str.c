@@ -12,12 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_str(t_parameter p, va_list args)
+int	ft_print_str(t_parameter p, va_list *ap)
 {
 	char	*string;
 	int		return_value;
 
-	string = va_arg(args, char *);
+	string = va_arg(*ap, char *);
 	if (!string)
 		string = "(null)";
 	return_value = 0;
@@ -30,12 +30,12 @@ int	ft_print_str(t_parameter p, va_list args)
 	return (return_value);
 }
 
-int	ft_print_c(va_list args)
+int	ft_print_c(va_list *ap)
 {
 	char	c;
 	int		return_value;
 
-	c = va_arg(args, int);
+	c = va_arg(*ap, int);
 	return_value = 0;
 	return_value += ft_print_char(c);
 	return (return_value);

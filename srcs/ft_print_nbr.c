@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_nbr(t_parameter p, va_list args)
+int	ft_print_nbr(t_parameter p, va_list *ap)
 {
 	int		n;
 	int		len;
@@ -20,7 +20,7 @@ int	ft_print_nbr(t_parameter p, va_list args)
 	int		return_value;
 
 	return_value = 0;
-	n = va_arg(args, int);
+	n = va_arg(*ap, int);
 	if (p.plus == 1 && p.specifier != 'u')
 		return_value += ft_print_char('+');
 	if (p.minus == 1 && p.specifier != 'u')
