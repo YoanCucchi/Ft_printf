@@ -315,8 +315,8 @@ int main(void)
 	char *a = "hello";
 	char *b = "world";
 	int ret1, ret2;;
-	ret1 = printf("printing two chars: %s %s\n", a, b);
-	ret2 = ft_printf("printing two chars: %s %s\n", a, b);
+	ret1 = printf("printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
+	ret2 = ft_printf("printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
 	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 //	system("leaks ft_printf");
