@@ -60,8 +60,6 @@ int	ft_print_hex(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (!p.precision)
-		p.precision = len;
 	if (p.sharp == 1)
 	{
 		p.width -= 2;
@@ -94,8 +92,6 @@ int	ft_print_hex_hh(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (!p.precision)
-		p.precision = len;
 	if (p.sharp == 1)
 	{
 		p.width -= 2;
@@ -128,8 +124,6 @@ int	ft_print_p(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, unsigned long);
 	len = ft_nbrlen(n, 16);
-	if (!p.precision)
-		p.precision = len;
 	if (p.sharp == 1)
 	{
 		p.width -= 2;

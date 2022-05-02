@@ -18,24 +18,24 @@ static void string_test()
 {
 	char *str1 = "vaapukka";
 	char *str2 = "mehu";
-	int ret1, ret2;
-	ret1 = printf("printing a string from pointer: %s\n", str1);
-	ret2 = ft_printf("printing a string from pointer: %s\n", str1);
+	 int ret1, ret2;
+	ret1 = printf("norm:printing a string from pointer: %s\n", str1);
+	ret2 = ft_printf("mine:printing a string from pointer: %s\n", str1);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("printing null: %s\n", NULL);
-	ret2 = ft_printf("printing null: %s\n", NULL);
+	ret1 = printf("norm:printing null: %s\n", NULL);
+	ret2 = ft_printf("mine:printing null: %s\n", NULL);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("printing two strings: %s%s\n", str1, str2);
-	ret2 = ft_printf("printing two strings: %s%s\n", str1, str2);
+	ret1 = printf("norm:printing two strings: %s%s\n", str1, str2);
+	ret2 = ft_printf("mine:printing two strings: %s%s\n", str1, str2);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.2s is a string\n", "this");
-	ret2 = ft_printf("%.2s is a string\n", "this");
+	ret1 = printf("norm:%.2s is a string\n", "this");
+	ret2 = ft_printf("mine:%.2s is a string\n", "this");
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.2s is a string\n", "");
-	ret2 = ft_printf("%.2s is a string\n", "");
+	ret1 = printf("norm:%.2s is a string\n", "");
+	ret2 = ft_printf("mine:%.2s is a string\n", "");
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%-.2s is a string\n", "this");
-	ret2 = ft_printf("%-.2s is a string\n", "this");
+	ret1 = printf("norm:%-.2s is a string\n", "this");
+	ret2 = ft_printf("mine:%-.2s is a string\n", "this");
 	printf("%d %d\n", ret1, ret2);
 }
 static void char_test()
@@ -43,11 +43,11 @@ static void char_test()
 	char a = 'a';
 	char b = 'b';
 	int ret1, ret2;
-	ret1 = printf("%c\n", a);
-	ret2 = ft_printf("%c\n", a);
+	ret1 = printf("norm:%c\n", a);
+	ret2 = ft_printf("mine:%c\n", a);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("printing two chars: %c %c\n", a, b);
-	ret2 = ft_printf("printing two chars: %c %c\n", a, b);
+	ret1 = printf("norm:printing two chars: %c %c\n", a, b);
+	ret2 = ft_printf("mine:printing two chars: %c %c\n", a, b);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -56,26 +56,26 @@ static void d_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	ret1 = printf("%d\n", n);
-	ret2 = ft_printf("%d\n", n);
+	ret1 = printf("norm:%d\n", n);
+	ret2 = ft_printf("mine:%d\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%d %d %d\n", 42242, -2442424, 0);
-	ret2 = printf("%d %d %d\n", 42242, -2442424, 0);
+	ret1 = printf("norm:%d %d %d\n", 42242, -2442424, 0);
+	ret2 = ft_printf("mine:%d %d %d\n", 42242, -2442424, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%0+5d\n", 42);
-	ret2 = ft_printf("%0+5d\n", 42);
+	ret1 = printf("norm:%#08d\n", -42);
+	ret2 = ft_printf("mine:%#08d\n", -42);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%5d\n", -42);
-	ret2 = ft_printf("%5d\n", -42);
+	ret1 = printf("norm:%5d\n", -42);
+	ret2 = ft_printf("mine:%5d\n", -42);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%0+5d\n", -42);
-	ret2 = ft_printf("%0+5d\n", -42);
+	ret1 = printf("norm:%0+5d\n", -42);
+	ret2 = ft_printf("mine:%0+5d\n", -42);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%03.2d\n", 0);
-	ret2 = ft_printf("%03.2d\n", 0);
+	ret1 = printf("norm:%03.1d\n", 1);
+	ret2 = ft_printf("mine:%03.1d\n", 1);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("{%0-3d}\n", 0);
-	ret2 = ft_printf("{%0-3d}\n", 0);
+	ret1 = printf("norm:%03d\n", -0);
+	ret2 = ft_printf("mine:%03d\n", -0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -84,10 +84,10 @@ static void i_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	ret1 = printf("%i\n", n);
-	ret2 = ft_printf("%i\n", n);
+	ret1 = printf("norm:%i\n", n);
+	ret2 = ft_printf("mine:%i\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%i %i %i\n", 42242, -2442424, 0);
+	ret1 = printf("norm:%i %i %i\n", 42242, -2442424, 0);
 	ret2 = printf("%i %i %i\n", 42242, -2442424, 0);
 	printf("%d %d\n", ret1, ret2);
 }
@@ -95,8 +95,8 @@ static void i_test()
 static void u_test()
 {
 	int ret1, ret2;
-	ret1 = printf("% u\n", 4294967295);
-	ret2 = ft_printf("% u\n", 4294967295);
+	ret1 = printf("norm:% u\n", 4294967295);
+	ret2 = ft_printf("mine:% u\n", 4294967295);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -105,11 +105,11 @@ static void o_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	ret1 = printf("%o\n", n);
-	ret2 = ft_printf("%o\n", n);
+	ret1 = printf("norm:%o\n", n);
+	ret2 = ft_printf("mine:%o\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%-#6o\n", 2500);
-	ret2 = ft_printf("%-#6o\n", 2500);
+	ret1 = printf("norm:%-#6o\n", 2500);
+	ret2 = ft_printf("mine:%-#6o\n", 2500);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -118,14 +118,14 @@ static void x_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	ret1 = printf("%x\n", n);
-	ret2 = ft_printf("%x\n", n);
+	ret1 = printf("norm:%x\n", n);
+	ret2 = ft_printf("mine:%x\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%x\n", 4294967296);
-	ret2 = ft_printf("%x\n", 4294967296);
+	ret1 = printf("norm:%x\n", 4294967296);
+	ret2 = ft_printf("mine:%x\n", 4294967296);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%10x\n", 42);
-	ret2 = ft_printf("%10x\n", 42);
+	ret1 = printf("norm:%10x\n", 42);
+	ret2 = ft_printf("mine:%10x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 	
 }
@@ -133,43 +133,43 @@ static void x_test()
 static void o_hash_test()
 {
 	int ret1, ret2;
-	ret1 = printf("@moulitest: %#x %#o\n", 0, 0);
-	ret2 = ft_printf("@moulitest: %#x %#o\n", 0, 0);
+	ret1 = printf("norm:@moulitest: %#x %#o\n", 0, 0);
+	ret2 = ft_printf("mine:@moulitest: %#x %#o\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("@moulitest: %#.o %#.0o\n", 0, 0);
-	ret2 = ft_printf("@moulitest: %#.o %#.0o\n", 0, 0);
+	ret1 = printf("norm:@moulitest: %#.o %#.0o\n", 0, 0);
+	ret2 = ft_printf("mine:@moulitest: %#.o %#.0o\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%#x\n", 0);
+	ret1 = printf("norm:%#x\n", 0);
 	ret2  = ft_printf("%#x\n", 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("@moulitest: %#.x %#.0x|\n", 0, 0);
-	ret2 = ft_printf("@moulitest: %#.x %#.0x|\n", 0, 0);
+	ret1 = printf("norm:@moulitest: %#.x %#.0x|\n", 0, 0);
+	ret2 = ft_printf("mine:@moulitest: %#.x %#.0x|\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 }
 
 static void xX_hash_test()
 {
 	int ret1, ret2;
-	ret1 = printf("%#x\n", 0);
-	ret2 = ft_printf("%#x\n", 0);
+	ret1 = printf("norm:%#x\n", 0);
+	ret2 = ft_printf("mine:%#x\n", 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%#8x\n", 42);
-	ret2 = ft_printf("%#8x\n", 42);
+	ret1 = printf("norm:%#8x\n", 42);
+	ret2 = ft_printf("mine:%#8x\n", 42);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("@moulitest: %#.x %#.0x\n", 0, 0);
-	ret2 = ft_printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	ret1 = printf("norm:@moulitest: %#.x %#.0x\n", 0, 0);
+	ret2 = ft_printf("mine:@moulitest: %#.x %#.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("@moulitest: %.x %.0x\n", 0, 0);
-	ret2 = ft_printf("@moulitest: %.x %.0x\n", 0, 0);
+	ret1 = printf("norm:@moulitest: %.x %.0x\n", 0, 0);
+	ret2 = ft_printf("mine:@moulitest: %.x %.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("@moulitest: %5.x %5.0x\n", 0, 0);
-	ret2 = ft_printf("@moulitest: %5.x %5.0x\n", 0, 0);
+	ret1 = printf("norm:@moulitest: %5.x %5.0x\n", 0, 0);
+	ret2 = ft_printf("mine:@moulitest: %5.x %5.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%#08x\n", 42);
-	ret2 = ft_printf("%#08x\n", 42);
+	ret1 = printf("norm:%#08x\n", 42);
+	ret2 = ft_printf("mine:%#08x\n", 42);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%#-08x\n", 42);
-	ret2 = ft_printf("%#-08x\n", 42);
+	ret1 = printf("norm:%#-08x\n", 42);
+	ret2 = ft_printf("mine:%#-08x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -178,108 +178,108 @@ static void X_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	ret1 = printf("%X\n", n);
-	ret2 = ft_printf("%X\n", n);
+	ret1 = printf("norm:%X\n", n);
+	ret2 = ft_printf("mine:%X\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%X %X %X\n", 42242, -2442424, 0);
+	ret1 = printf("norm:%X %X %X\n", 42242, -2442424, 0);
 	ret2 = printf("%X %X %X\n", 42242, -2442424, 0);
 	printf("%d %d\n", ret1, ret2);
 }
 static void percent_test()
 {
 	int ret1, ret2;
-	ret1 = printf("%%\n");
-	ret2 = ft_printf("%%\n");
+	ret1 = printf("norm:%%\n");
+	ret2 = ft_printf("mine:%%\n");
 	printf("%d %d\n", ret1, ret2);
 }
 static void ellas_tests()
 {
 	int ret1,ret2;
 
-	ret1 = printf("%ld\n", 922337203685477580);
-	ret2 = ft_printf("%ld\n", 922337203685477580);
+	ret1 = printf("norm:%ld\n", 922337203685477580);
+	ret2 = ft_printf("mine:%ld\n", 922337203685477580);
 	printf("%d %d\n", ret1, ret2);
 	
-	ret1 = printf("%lld\n", -922337203685477580);
-	ret2 = ft_printf("%lld\n", -922337203685477580);
+	ret1 = printf("norm:%lld\n", -922337203685477580);
+	ret2 = ft_printf("mine:%lld\n", -922337203685477580);
 	printf("%d %d\n", ret1, ret2);
 	
-	ret1 = printf("%-015.8d\n", 1000000);
-	ret2 = ft_printf("%-015.8d\n", 1000000);
+	ret1 = printf("norm:%-015.8d\n", 1000000);
+	ret2 = ft_printf("mine:%-015.8d\n", 1000000);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.d %.0d\n", 42, 43);
-	ret2 = ft_printf("%.d %.0d\n", 42, 43);
+	ret1 = printf("norm:%.d %.0d\n", 42, 43);
+	ret2 = ft_printf("mine:%.d %.0d\n", 42, 43);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.d %.0d\n", 0, 0);
-	ret2 = ft_printf("%.d %.0d\n", 0, 0);
+	ret1 = printf("norm:%.d %.0d\n", 0, 0);
+	ret2 = ft_printf("mine:%.d %.0d\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 
 	printf("mainostauko 1\n");
-	ret1 = printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
-	ret2 = ft_printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
+	ret1 = printf("norm:'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
+	ret2 = ft_printf("mine:'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
-	ret2 = ft_printf("'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
+	ret1 = printf("norm:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
+	ret2 = ft_printf("mine:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
-	ret2 = ft_printf("'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
+	ret1 = printf("norm:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
+	ret2 = ft_printf("mine:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
 
 	
-	ret1 = printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
-	ret2 = ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
+	ret1 = printf("norm:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
+	ret2 = ft_printf("mine:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
 	printf("%d %d\n", ret1, ret2);
 	printf("mainostauko 3\n");
-	ret1 = printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
-	ret2 = ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
+	ret1 = printf("norm:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
+	ret2 = ft_printf("mine:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%5.x %5.0x\n", 0, 0);
-	ret2 = ft_printf("%5.x %5.0x\n", 0, 0);
+	ret1 = printf("norm:%5.x %5.0x\n", 0, 0);
+	ret2 = ft_printf("mine:%5.x %5.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.x %.0x\n", 0, 0);
-	ret2 = ft_printf("%.x %.0x\n", 0, 0);
+	ret1 = printf("norm:%.x %.0x\n", 0, 0);
+	ret2 = ft_printf("mine:%.x %.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 	ft_printf("%5.x %5.0x\n", 0, 0);
-	ret1 = printf("%\n");
-	ret2 = ft_printf("%\n");
+	ret1 = printf("norm:%\n");
+	ret2 = ft_printf("mine:%\n");
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%%\n");
-	ret2 = ft_printf("%%\n");
+	ret1 = printf("norm:%%\n");
+	ret2 = ft_printf("mine:%%\n");
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%sjeccu\n", NULL);
-	ret2 = ft_printf("%sjeccu\n", NULL);
+	ret1 = printf("norm:%sjeccu\n", NULL);
+	ret2 = ft_printf("mine:%sjeccu\n", NULL);
 	printf("%d %d\n", ret1, ret2);
 	ft_printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.5s\n", NULL);
-	ret2 = ft_printf("%.5s\n", NULL);
+	ret1 = printf("norm:%.5s\n", NULL);
+	ret2 = ft_printf("mine:%.5s\n", NULL);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%s\n", NULL);
-	ret2 = ft_printf("%s\n", NULL);
+	ret1 = printf("norm:%s\n", NULL);
+	ret2 = ft_printf("mine:%s\n", NULL);
 	printf("%d %d\n", ret1, ret2);
 }
 void	float_test()
 {
 	int ret1, ret2;
-	ret1 = printf("%f\n", 3.5);
-	ret2 = ft_printf("%f\n", 3.5);
+	ret1 = printf("norm:%f\n", 3.5);
+	ret2 = ft_printf("mine:%f\n", 3.5);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.0f\n", 3.5);
-	ret2 = ft_printf("%.0f\n", 3.5);
+	ret1 = printf("norm:%.0f\n", 3.5);
+	ret2 = ft_printf("mine:%.0f\n", 3.5);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.0f\n", 2.5);
-	ret2 = ft_printf("%.0f\n", 2.5);
+	ret1 = printf("norm:%.0f\n", 2.5);
+	ret2 = ft_printf("mine:%.0f\n", 2.5);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.2f\n", 2.56);
-	ret2 = ft_printf("%.2f\n", 2.56);
+	ret1 = printf("norm:%.2f\n", 2.56);
+	ret2 = ft_printf("mine:%.2f\n", 2.56);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.4f\n", 2.56);
-	ret2 = ft_printf("%.4f\n", 2.56);
+	ret1 = printf("norm:%.4f\n", 2.56);
+	ret2 = ft_printf("mine:%.4f\n", 2.56);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
-	ret2 = ft_printf("{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	ret1 = printf("norm:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	ret2 = ft_printf("mine:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
 	printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%8.4f\n", 2.56);
-	// ret2 = ft_printf("%8.4f\n", 2.56);
+	// ret1 = printf("norm:%8.4f\n", 2.56);
+	// ret2 = ft_printf("mine:%8.4f\n", 2.56);
 	// printf("%d %d\n", ret1, ret2);
 	//ft_printf("%.15f\n", 3.141593);
 	//ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
@@ -291,8 +291,8 @@ void	pointer_test()
 	int *i = &a;
 	char *s = "abcde";
 	int ret1, ret2;
-	ret1 = printf("%#2.9x\n", 1234);
-	ret2 = ft_printf("%#2.9x\n", 1234);
+	ret1 = printf("norm:%#5.2x\n", 123456789);
+	ret2 = ft_printf("mine:%#5.2x\n", 123456789);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -300,7 +300,7 @@ int main(void)
 {
 	//string_test();
 	//char_test();
-	//d_test();
+	d_test();
 	//i_test();
 //	o_test();
 //	u_test();
@@ -312,12 +312,12 @@ int main(void)
 	//ellas_tests();
 	//float_test();
 	//pointer_test();
-	char *a = "hello";
-	char *b = "world";
-	int ret1, ret2;;
-	ret1 = printf("printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
-	ret2 = ft_printf("printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
-	printf("%d %d\n", ret1, ret2);
+	// char *a = "hello";
+	// char *b = "world";
+	// int ret1, ret2;;
+	// ret1 = printf("norm:printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
+	// ret2 = ft_printf("mine:printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
+	// printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 //	system("leaks ft_printf");
 	return (0);
