@@ -14,10 +14,10 @@
 
 int	ft_print_nbr(t_parameter p, va_list *ap)
 {
-	int		n;
-	int		len;
-	char	*nbr;
-	int		return_value;
+	unsigned int	n;
+	int				len;
+	char			*nbr;
+	int				return_value;
 
 	return_value = 0;
 	n = va_arg(*ap, int);
@@ -40,5 +40,31 @@ int	ft_print_nbr(t_parameter p, va_list *ap)
 		return_value += write(1, ++nbr, --len);
 	else
 		return_value += write(1, nbr, len);
+	return (return_value);
+}
+
+int	ft_print_unsigned_nbr(t_parameter p, va_list *ap)
+{
+	int				return_value;
+	unsigned int	n;
+	int				len;
+	char			*nbr;
+
+	return_value = 0;
+	n = va_arg(*ap, unsigned int);
+	nbr = ft_itoa_unsigned(n);
+	len = ft_strlen(nbr);
+	if (!p.precision)
+		p.precision = p.width;
+	if (p.plus && nbr[0] != '-' && p.specifier != 'u')
+		return_value += ft_print_char('+');
+	while (p.width-- - len > 0)
+	{
+		if (!p.zero || p.precision <= len)
+			return_value += ft_print_char(' ');
+		else
+			return_value += ft_print_char('0');
+	}
+	return_value += write(1, nbr, len);
 	return (return_value);
 }

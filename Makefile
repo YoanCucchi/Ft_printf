@@ -20,7 +20,7 @@ OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra #-Werror 
+FLAGS = -Wall -Wextra #-fsanitize=address #-Werror 
 CC = gcc
 
 DEFAULT = \033[0;39m

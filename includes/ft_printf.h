@@ -81,6 +81,7 @@ int			ft_print_percent(t_parameter p);
 */
 
 int			ft_print_nbr(t_parameter p, va_list *ap);
+int			ft_print_unsigned_nbr(t_parameter p, va_list *ap);
 
 /*
 ** ft_print_hex.c

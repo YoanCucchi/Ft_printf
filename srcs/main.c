@@ -81,22 +81,25 @@ static void d_test()
 
 static void i_test()
 {
-	int n = 42;
+	int n = 4294967295;
 	int m = -42;
 	int ret1, ret2;
 	ret1 = printf("norm:%i\n", n);
 	ret2 = ft_printf("mine:%i\n", n);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:%i %i %i\n", 42242, -2442424, 0);
-	ret2 = printf("%i %i %i\n", 42242, -2442424, 0);
+	ret2 = ft_printf("mine:%i %i %i\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%#08i\n", -42);
+	ret2 = ft_printf("mine:%#08i\n", -42);
 	printf("%d %d\n", ret1, ret2);
 }
 
 static void u_test()
 {
 	int ret1, ret2;
-	ret1 = printf("norm:% u\n", 4294967295);
-	ret2 = ft_printf("mine:% u\n", 4294967295);
+	ret1 = printf("norm:%u\n", 4294967295);
+	ret2 = ft_printf("mine:%u\n", 4294967295);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -300,10 +303,10 @@ int main(void)
 {
 	//string_test();
 	//char_test();
-	d_test();
+	//d_test();
 	//i_test();
 //	o_test();
-//	u_test();
+	u_test();
 //	 x_test();
 	// X_test();
 	//o_hash_test();
@@ -312,13 +315,11 @@ int main(void)
 	//ellas_tests();
 	//float_test();
 	//pointer_test();
-	// char *a = "hello";
-	// char *b = "world";
 	// int ret1, ret2;;
-	// ret1 = printf("norm:printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
-	// ret2 = ft_printf("mine:printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
+	// ret1 = printf("norm:%\n",42);
+	// ret2 = ft_printf("mine:%\n",42);
 	// printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
-	system("leaks ft_printf");
+//	system("leaks ft_printf");
 	return (0);
 }
