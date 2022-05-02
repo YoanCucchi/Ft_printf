@@ -319,6 +319,6 @@ int main(void)
 	// ret2 = ft_printf("mine:printing two chars: %*.*s %*.*s\n", 4, 4, a, 4, 4, b);
 	// printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
-//	system("leaks ft_printf");
+	system("leaks ft_printf");
 	return (0);
 }
