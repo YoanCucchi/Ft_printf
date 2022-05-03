@@ -60,14 +60,30 @@ int	ft_print_hex(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (p.sharp)
+	if (n == 0 && !p.width && p.precision <= 0 && !p.sharp)
+		return (return_value);
+	if (p.sharp && n != 0)
 		p.width -= 2;
-	while (p.width-- - p.precision > 0)
-		return_value += ft_print_char(' ');
-	if (p.sharp == 1)
+	if (!p.precision)
+		p.precision = p.width;
+	if (p.precision > len)
+		while (p.width-- - p.precision > 0)
+			return_value += ft_print_char(' ');
+	if (p.sharp && n != 0 && p.zero)
 			return_value += ft_putnstr("0x", 2);
 	while (p.precision-- - len > 0)
-		return_value += ft_print_char('0');
+	{
+		if (p.zero && n != 0)
+			return_value += ft_print_char('0');
+		else
+		return_value += ft_print_char(' ');
+	}
+	if (p.sharp && n != 0 && !p.zero)
+		return_value += ft_putnstr("0x", 2);
+	if (n == 0 && !p.precision)
+		return_value += ft_print_char(' ');
+	if (p.dot && p.precision <= 0)
+		return (return_value);
 	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);
 }
@@ -81,14 +97,17 @@ int	ft_print_hex_hh(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (p.sharp)
+	if (p.sharp && n != 0)
 		p.width -= 2;
-	while (p.width-- - p.precision > 0)
-		return_value += ft_print_char(' ');
-	if (p.sharp == 1)
-			return_value += ft_putnstr("0x", 2);
+	if (!p.precision)
+		p.precision = p.width;
+	if (p.precision > len)
+		while (p.width-- - p.precision > 0)
+			return_value += ft_print_char(' ');
 	while (p.precision-- - len > 0)
-		return_value += ft_print_char('0');
+		return_value += ft_print_char(' ');
+	if (p.sharp && n != 0)
+			return_value += ft_putnstr("0x", 2);
 	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);
 }
@@ -103,8 +122,9 @@ int	ft_print_p(t_parameter p, va_list *ap)
 	n = va_arg(*ap, unsigned long);
 	len = ft_nbrlen(n, 16);
 	p.width -= 2;
-	while (p.width-- - p.precision > 0)
-		return_value += ft_print_char(' ');
+	if (p.precision > len)
+		while (p.width-- - p.precision > 0)
+			return_value += ft_print_char(' ');
 	return_value += ft_putnstr("0x", 2);
 	while (p.precision-- - len > 0)
 		return_value += ft_print_char('0');
