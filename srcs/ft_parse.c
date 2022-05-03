@@ -39,9 +39,9 @@ static t_parameter	ft_parse_width(char *str, va_list *ap, t_parameter p)
 	checked = 0;
 	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str) && *str != '.')
 	{
-		if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
-			p.zero = 1;
-		else if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
+	//	if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
+	//		p.zero = 1;
+		if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
 				p.width = va_arg(*ap, int);
@@ -99,6 +99,10 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 		p.format++;
 	}
 	p.length = ft_strdup(tmp);
+	if (ft_strcmp("ll", p.length) && ft_strcmp("l", p.length) && \
+	ft_strcmp("h", p.length) && ft_strcmp("hh", p.length) && \
+	ft_strcmp("L", p.length))
+		p.length = NULL;
 	free(tmp);
 	return (p);
 }

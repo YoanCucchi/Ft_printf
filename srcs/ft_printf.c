@@ -47,17 +47,16 @@ int	conversion_type(t_parameter p, va_list *ap)
 	int	return_value;
 
 	return_value = 0;
-	if (p.specifier == 'c')
+	if (p.length && (ft_strchr(LENGTH_DISPATCH, *p.format)))
+		return_value += ft_length_flags(p, ap);
+	else if (p.length && (ft_strchr("f", *p.format)))
+		return_value += ft_length_flags(p, ap);
+	else if (p.specifier == 'c')
 		return_value += ft_print_c(ap);
 	else if (p.specifier == 's')
 		return_value += ft_print_str(p, ap);
 	else if (p.specifier == 'x' || p.specifier == 'X')
-	{
-		if (!ft_strcmp(p.length, "hh"))
-			return_value += ft_print_hex_hh(p, ap);
-		else
 			return_value += ft_print_hex(p, ap);
-	}
 	else if (p.specifier == 'p')
 		return_value += ft_print_p(p, ap);
 	else if (p.specifier == 'd' || p.specifier == 'i')

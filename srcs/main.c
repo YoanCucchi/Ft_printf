@@ -306,7 +306,7 @@ int main(void)
 	//d_test();
 	//i_test();
 //	o_test();
-	u_test();
+	//u_test();
 //	 x_test();
 	// X_test();
 	//o_hash_test();
@@ -315,11 +315,17 @@ int main(void)
 	//ellas_tests();
 	//float_test();
 	//pointer_test();
-	// int ret1, ret2;;
-	// ret1 = printf("norm:%\n",42);
-	// ret2 = ft_printf("mine:%\n",42);
-	// printf("%d %d\n", ret1, ret2);
+//	int ret1, ret2;;
+//	ret1 = printf("norm:%hu\n", -32768);
+//	ret2 = ft_printf("mine:%hu\n", -32768);
+//	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 //	system("leaks ft_printf");
+    int nb = 42;
+	int ret1;
+	int ret2;
+    ret2 = printf("norm:%1p\n", 42);
+    ret1 = ft_printf("mine:%1p\n", 42);
+	printf("%d|%d\n", ret1, ret2);
 	return (0);
 }

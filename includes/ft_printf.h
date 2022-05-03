@@ -17,6 +17,7 @@
 # define FLAGS "#0-+ "
 # define WIDTH "0123456789"
 # define LENGTH "hlL"
+# define LENGTH_DISPATCH "diouxX"
 # define HEXALOWCASE "0123456789abcdef"
 # define HEXAUPCASE "0123456789ABCDEF"
 
@@ -90,6 +91,7 @@ int			ft_print_unsigned_nbr(t_parameter p, va_list *ap);
 int			ft_print_hex(t_parameter p, va_list *ap);
 int			ft_print_hex_hh(t_parameter p, va_list *ap);
 int			ft_print_p(t_parameter p, va_list *ap);
+int			ft_print_short_nbr(t_parameter p, va_list *ap);
 
 /*
 ** ft_parse.c
@@ -103,6 +105,12 @@ int			ft_parse(char *str, va_list *ap);
 
 void		parameter_print(t_parameter p); // A VIRER !!!
 t_parameter	ft_all_to_0(void);
+
+/*
+** ft_length_flags.c
+*/
+
+int			ft_length_flags (t_parameter p, va_list *ap);
 
 /*
 ** colors.c

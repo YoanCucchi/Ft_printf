@@ -5,17 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/04/21 15:01:57 by ycucchi          ###   ########.fr        #
+#    Created: 2022/05/03 11:14:06 by ycucchi           #+#    #+#              #
+#    Updated: 2022/05/03 11:14:13 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf
 SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_print_utils.c \
 ./srcs/ft_parse.c ./srcs/ft_initialize_parameter.c ./srcs/ft_print_str.c \
-./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c
+./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c ./srcs/ft_length_flags.c
 OBJ = ft_printf.o main.o ft_print_utils.o ft_parse.o \
-ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o ft_print_hex.o
+ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o ft_print_hex.o \
+ft_length_flags.o
 OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
