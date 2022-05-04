@@ -35,33 +35,33 @@ int	ft_putnstr(char const *s, int n)
 	return (i);
 }
 
-void	is_it_double_specifier(char *str, t_parameter p, char *tmp, int i)
+void	is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i)
 {
 	if (str[i] == 'l' && str[i + 1] == 'l')
 	{
 		i++;
-		p.format++;
+		p->format++;
 		tmp[i] = str[i];
 	}
 	if (str[i] == 'h' && str[i + 1] == 'h')
 	{
 		i++;
-		p.format++;
+		p->format++;
 		tmp[i] = str[i];
 	}
 }
-
-void	param_free(t_parameter p)
+// ZFEIFPZEJFFEZJ EFJP EZJPOEFJ PEOJF PJOZEFJO PZEJOE JOPFZ
+void	param_free(t_parameter *p)
 {
-	p.sharp = 0;
-	p.zero = 0;
-	p.minus = 0;
-	p.plus = 0;
-	p.space = 0;
-	p.width = 0;
-	p.dot = 0;
-	p.precision = 0;
-	p.specifier = 0;
-	free(p.format);
-	free(p.length);
+	p->sharp = 0;
+	p->zero = 0;
+	p->minus = 0;
+	p->plus = 0;
+	p->space = 0;
+	p->width = 0;
+	p->dot = 0;
+	p->precision = 0;
+	p->specifier = 0;
+	free(p->format);
+	free(p->length);
 }

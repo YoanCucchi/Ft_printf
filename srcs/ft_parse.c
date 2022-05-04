@@ -12,27 +12,26 @@
 
 #include "../includes/ft_printf.h"
 
-static t_parameter	ft_parse_flags(char *str, t_parameter p)
+static void	ft_parse_flags(char *str, t_parameter *p)
 {
 	while (ft_strchr(FLAGS, *str) && *str != '.')
 	{
 		if (*str == '#')
-			p.sharp = 1;
+			p->sharp = 1;
 		if (*str == '0')
-			p.zero = 1;
+			p->zero = 1;
 		if (*str == '-')
-			p.minus = 1;
+			p->minus = 1;
 		if (*str == '+')
-			p.plus = 1;
+			p->plus = 1;
 		if (*str == ' ')
-			p.space = 1;
+			p->space = 1;
 		str++;
-		p.format++;
+		p->format++;
 	}
-	return (p);
 }
 
-static t_parameter	ft_parse_width(char *str, va_list *ap, t_parameter p)
+static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 {
 	int	checked;
 
@@ -40,53 +39,51 @@ static t_parameter	ft_parse_width(char *str, va_list *ap, t_parameter p)
 	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str) && *str != '.')
 	{
 	//	if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
-	//		p.zero = 1;
+	//		p->zero = 1;
 		if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
-				p.width = va_arg(*ap, int);
+				p->width = va_arg(*ap, int);
 			else
-				p.width = ft_atoi(str);
+				p->width = ft_atoi(str);
 			checked = 1;
 		}
 		str++;
-		p.format++;
+		p->format++;
 	}	
-	return (p);
 }
 
-static t_parameter	ft_parse_precision(char *str, va_list *ap, t_parameter p)
+static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
 {
 	int	checked;
 
 	checked = 0;
 	if (*str != '.')
-		return (p);
-	p.dot = 1;
+		return ;
+	p->dot = 1;
 	str++;
-	p.format++;
+	p->format++;
 	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str))
 	{
 		if ((ft_isdigit(*str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
-				p.precision = va_arg(*ap, int);
+				p->precision = va_arg(*ap, int);
 			else
-				p.precision = ft_atoi(str);
+				p->precision = ft_atoi(str);
 			checked = 1;
 		}
 		str++;
-		p.format++;
+		p->format++;
 	}
-	return (p);
 }
 
-static t_parameter	ft_parse_length(char *str, t_parameter p)
+static void	ft_parse_length(char *str, t_parameter *p)
 {
 	int		i;
 	char	*tmp;
 
-	tmp = malloc(sizeof(char) * ft_strlen(str));
+	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
 	i = 0;
 	while (!ft_strchr(SPECIFIERS, str[i]))
 	{
@@ -96,15 +93,14 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 			is_it_double_specifier(str, p, tmp, i);
 		}
 		i++;
-		p.format++;
+		p->format++;
 	}
-	p.length = ft_strdup(tmp);
-	if (ft_strcmp("ll", p.length) && ft_strcmp("l", p.length) && \
-	ft_strcmp("h", p.length) && ft_strcmp("hh", p.length) && \
-	ft_strcmp("L", p.length))
-		p.length = NULL;
+	p->length = ft_strdup(tmp);
+	if (ft_strcmp("ll", p->length) && ft_strcmp("l", p->length) && \
+	ft_strcmp("h", p->length) && ft_strcmp("hh", p->length) && \
+	ft_strcmp("L", p->length))
+		p->length = NULL;
 	free(tmp);
-	return (p);
 }
 
 /*
@@ -112,17 +108,17 @@ static t_parameter	ft_parse_length(char *str, t_parameter p)
 ** all our parameters and return the proper conversion type and format
 ** %[Flags][Width].[Precision][Length]
 */
-int	ft_parse(char *str, va_list *ap)
+int	ft_parse(char *str, va_list *ap, t_parameter *p)
 {
-	t_parameter	p;
+	int	return_value;
 
-	p = ft_all_to_0();
-	p.format = str;
-	p = ft_parse_flags(p.format, p);
-	p = ft_parse_width(p.format, ap, p);
-	p = ft_parse_precision(p.format, ap, p);
-	p = ft_parse_length(p.format, p);
-	p.specifier = *p.format;
-	parameter_print(p);
-	return (conversion_type(p, ap));
+	return_value = 0;
+	p->format = str;
+	ft_parse_flags(p->format, p);
+	ft_parse_width(p->format, ap, p);
+	ft_parse_precision(p->format, ap, p);
+//	ft_parse_length(p->format, p);
+	p->specifier = *p->format;
+	return_value += conversion_type(p, ap);
+	return(return_value);
 }

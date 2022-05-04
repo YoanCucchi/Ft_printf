@@ -29,17 +29,17 @@ static int	ft_nbrlen(unsigned long n, int base)
 	return (len);
 }
 
-static int	ft_recursive_hex(t_parameter p, size_t n, size_t iteration)
+static int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 {
 	int		return_value;
 	int		remainder;
 	char	character;
 
 	return_value = 0;
-	if (n > 0 || (!iteration && (p.specifier != 'p' || !p.dot)))
+	if (n > 0 || (!iteration && (p->specifier != 'p' || !p->dot)))
 	{
 		remainder = n % 16;
-		if (p.specifier != 'X')
+		if (p->specifier != 'X')
 			character = HEXALOWCASE[remainder];
 		else
 			character = HEXAUPCASE[remainder];
@@ -51,7 +51,7 @@ static int	ft_recursive_hex(t_parameter p, size_t n, size_t iteration)
 	return (return_value);
 }
 
-int	ft_print_hex(t_parameter p, va_list *ap)
+int	ft_print_hex(t_parameter *p, va_list *ap)
 {
 	int		return_value;
 	int		n;
@@ -60,35 +60,35 @@ int	ft_print_hex(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (n == 0 && !p.width && p.precision <= 0 && !p.sharp)
+	if (n == 0 && !p->width && p->precision <= 0 && !p->sharp)
 		return (return_value);
-	if (p.sharp && n != 0)
-		p.width -= 2;
-	if (!p.precision)
-		p.precision = p.width;
-	if (p.precision > len)
-		while (p.width-- - p.precision > 0)
+	if (p->sharp && n != 0)
+		p->width -= 2;
+	if (!p->precision)
+		p->precision = p->width;
+	if (p->precision > len)
+		while (p->width-- - p->precision > 0)
 			return_value += ft_print_char(' ');
-	if (p.sharp && n != 0 && p.zero)
+	if (p->sharp && n != 0 && p->zero)
 			return_value += ft_putnstr("0x", 2);
-	while (p.precision-- - len > 0)
+	while (p->precision-- - len > 0)
 	{
-		if (p.zero && n != 0)
+		if (p->zero && n != 0)
 			return_value += ft_print_char('0');
 		else
 		return_value += ft_print_char(' ');
 	}
-	if (p.sharp && n != 0 && !p.zero)
+	if (p->sharp && n != 0 && !p->zero)
 		return_value += ft_putnstr("0x", 2);
-	if (n == 0 && !p.precision)
+	if (n == 0 && !p->precision)
 		return_value += ft_print_char(' ');
-	if (p.dot && p.precision <= 0)
+	if (p->dot && p->precision <= 0)
 		return (return_value);
 	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);
 }
 
-int	ft_print_hex_hh(t_parameter p, va_list *ap)
+int	ft_print_hex_hh(t_parameter *p, va_list *ap)
 {
 	int		return_value;
 	int		n;
@@ -97,22 +97,22 @@ int	ft_print_hex_hh(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (p.sharp && n != 0)
-		p.width -= 2;
-	if (!p.precision)
-		p.precision = p.width;
-	if (p.precision > len)
-		while (p.width-- - p.precision > 0)
+	if (p->sharp && n != 0)
+		p->width -= 2;
+	if (!p->precision)
+		p->precision = p->width;
+	if (p->precision > len)
+		while (p->width-- - p->precision > 0)
 			return_value += ft_print_char(' ');
-	while (p.precision-- - len > 0)
+	while (p->precision-- - len > 0)
 		return_value += ft_print_char(' ');
-	if (p.sharp && n != 0)
+	if (p->sharp && n != 0)
 			return_value += ft_putnstr("0x", 2);
 	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);
 }
 
-int	ft_print_p(t_parameter p, va_list *ap)
+int	ft_print_p(t_parameter *p, va_list *ap)
 {
 	int				return_value;
 	unsigned long	n;
@@ -121,12 +121,12 @@ int	ft_print_p(t_parameter p, va_list *ap)
 	return_value = 0;
 	n = va_arg(*ap, unsigned long);
 	len = ft_nbrlen(n, 16);
-	p.width -= 2;
-	if (p.precision > len)
-		while (p.width-- - p.precision > 0)
+	p->width -= 2;
+	if (p->precision > len)
+		while (p->width-- - p->precision > 0)
 			return_value += ft_print_char(' ');
 	return_value += ft_putnstr("0x", 2);
-	while (p.precision-- - len > 0)
+	while (p->precision-- - len > 0)
 		return_value += ft_print_char('0');
 	return_value += ft_recursive_hex(p, n, n);
 	return (return_value);

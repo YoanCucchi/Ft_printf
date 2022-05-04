@@ -34,32 +34,12 @@ static char	*ft_strduprev(const char *s1)
 	return (dup);
 }
 
-static int	ft_len(unsigned int n)
-{
-	int	count;
-
-	count = 0;
-	if (n <= 0)
-		count++;
-	while (n != 0)
-	{
-		n = n / 10;
-		count++;
-	}
-	return (count);
-}
-
 char	*ft_itoa_unsigned(unsigned int n)
 {
-	char	*arr;
-	int		count;
+	char	arr[11];
 	int		i;
 
 	i = 0;
-	count = ft_len(n);
-	arr = (char *)malloc(sizeof(char) * (count + 1));
-	if (arr == NULL)
-		return (NULL);
 	arr[i] = n % 10 + '0';
 	i++;
 	while (n / 10 > 0)

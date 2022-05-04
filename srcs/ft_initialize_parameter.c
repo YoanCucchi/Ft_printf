@@ -13,37 +13,36 @@
 #include "../includes/ft_printf.h"
 
 // A VIRER !!!
-void	parameter_print(t_parameter p)
+void	parameter_print(t_parameter *p)
 {
 	printf("---------------------------------------------------------------\n");
-	printf("sharp = %d\n", p.sharp);
-	printf("zero = %d\n", p.zero);
-	printf("minus = %d\n", p.minus);
-	printf("plus = %d\n", p.plus);
-	printf("space = %d\n", p.space);
-	printf("width = %d\n", p.width);
-	printf("dot = %d\n", p.dot);
-	printf("precision = %d\n", p.precision);
-	printf("format = %s\n", p.format);
-	printf("length = %s\n", p.length);
-	printf("specifier = %c\n", p.specifier);
+	printf("sharp = %d\n", p->sharp);
+	printf("zero = %d\n", p->zero);
+	printf("minus = %d\n", p->minus);
+	printf("plus = %d\n", p->plus);
+	printf("space = %d\n", p->space);
+	printf("width = %d\n", p->width);
+	printf("dot = %d\n", p->dot);
+	printf("precision = %d\n", p->precision);
+	printf("format = %s\n", p->format);
+	printf("length = %s\n", p->length);
+	printf("tmp = %s\n", p->tmp);
+	printf("specifier = %c\n", p->specifier);
 	printf("---------------------------------------------------------------\n");
 }
 
-t_parameter	ft_all_to_0(void)
+void	ft_all_to_0(t_parameter *p)
 {
-	t_parameter	newparameter;
-
-	newparameter.sharp = 0;
-	newparameter.zero = 0;
-	newparameter.minus = 0;
-	newparameter.plus = 0;
-	newparameter.space = 0;
-	newparameter.width = 0;
-	newparameter.dot = 0;
-	newparameter.precision = 0;
-	newparameter.specifier = 0;
-	newparameter.format = NULL;
-	newparameter.length = NULL;
-	return (newparameter);
+	p->sharp = 0;
+	p->zero = 0;
+	p->minus = 0;
+	p->plus = 0;
+	p->space = 0;
+	p->width = 0;
+	p->dot = 0;
+	p->precision = 0;
+	p->specifier = 0;
+	p->format = NULL;
+	p->length = NULL;
+	p->tmp = NULL;
 }
