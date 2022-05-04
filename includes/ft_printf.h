@@ -68,6 +68,7 @@ int			conversion_type(t_parameter p, va_list *ap);
 int			ft_print_char(int c);
 int			ft_putnstr(char const *s, int n);
 void		is_it_double_specifier(char *str, t_parameter p, char *tmp, int i);
+void		param_free(t_parameter p);
 
 /*
 ** ft_print_str.c
@@ -83,6 +84,8 @@ int			ft_print_percent(t_parameter p);
 
 int			ft_print_nbr(t_parameter p, va_list *ap);
 int			ft_print_unsigned_nbr(t_parameter p, va_list *ap);
+int			ft_print_long_nbr(t_parameter p, va_list *ap);
+int			ft_print_long_unsigned_nbr(t_parameter p, va_list *ap);
 
 /*
 ** ft_print_hex.c

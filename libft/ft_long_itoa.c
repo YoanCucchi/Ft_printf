@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 15:17:17 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/01/07 15:17:19 by ycucchi          ###   ########.fr       */
+/*   Created: 2021/11/22 13:43:48 by ycucchi           #+#    #+#             */
+/*   Updated: 2021/11/22 19:03:42 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strduprev(const char *s1)
-{
-	char	*dup;
-	int		len;
-	int		i;
-
-	i = 0;
-	len = ft_strlen(s1);
-	dup = (char *)ft_memalloc(sizeof(char) * (len + 1));
-	if (dup == NULL)
-		return (NULL);
-	len--;
-	while (len >= 0)
-	{
-		dup[i] = s1[len];
-		len--;
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
-static int	ft_len(unsigned int n)
+static long long	ft_len(long long n)
 {
 	int	count;
 
@@ -49,24 +27,36 @@ static int	ft_len(unsigned int n)
 	return (count);
 }
 
-char	*ft_itoa_unsigned(unsigned int n)
+static void	ft_fill_str(int count, int offset, long long n, char *str)
 {
-	char	*arr;
-	int		count;
-	int		i;
-
-	i = 0;
-	count = ft_len(n);
-	arr = (char *)malloc(sizeof(char) * (count + 1));
-	if (arr == NULL)
-		return (NULL);
-	arr[i] = n % 10 + '0';
-	i++;
-	while (n / 10 > 0)
+	while (count > offset)
 	{
+		str[count - 1] = n % 10 + '0';
 		n = n / 10;
-		arr[i] = (n % 10 + '0');
-		i++;
+		count--;
 	}
-	return (ft_strduprev(arr));
+}
+
+char	*ft_long_itoa(long long n)
+{
+	char	*str;
+	int		count;
+	int		offset;
+
+	offset = 0;
+	count = ft_len(n);
+	str = (char *)malloc(sizeof(char) * (count + 1));
+	if (str == NULL)
+		return (NULL);
+	if (n < -9223372036854775807)
+		return (ft_strdup("-9223372036854775808"));
+	if (n < 0)
+	{
+		str[0] = '-';
+		offset = 1;
+		n = -n;
+	}
+	ft_fill_str(count, offset, n, str);
+	str[count] = '\0';
+	return (str);
 }

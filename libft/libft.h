@@ -69,5 +69,7 @@ void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa_unsigned(unsigned int n);
+char	*ft_long_itoa(long long n);
+char	*ft_unsigned_long_itoa(unsigned long long n);
 
 #endif

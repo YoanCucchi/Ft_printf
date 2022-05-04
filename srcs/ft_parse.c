@@ -123,5 +123,6 @@ int	ft_parse(char *str, va_list *ap)
 	p = ft_parse_precision(p.format, ap, p);
 	p = ft_parse_length(p.format, p);
 	p.specifier = *p.format;
+	parameter_print(p);
 	return (conversion_type(p, ap));
 }
