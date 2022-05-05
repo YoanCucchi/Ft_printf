@@ -59,7 +59,7 @@ int	conversion_type(t_parameter *p, va_list *ap)
 	else if (p->specifier == 's')
 		p->return_value += ft_print_str(p, ap);
 	else if (p->specifier == 'x' || p->specifier == 'X')
-			p->return_value += ft_print_hex(p, ap);
+		p->return_value += ft_print_hex(p, ap);
 	else if (p->specifier == 'p')
 		p->return_value += ft_print_p(p, ap);
 	else if (p->specifier == 'd' || p->specifier == 'i')

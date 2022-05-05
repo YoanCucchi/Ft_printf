@@ -44,7 +44,7 @@ static int	ft_parse_hh(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_length_flags (t_parameter *p, va_list *ap)
+int	ft_length_flags(t_parameter *p, va_list *ap)
 {
 	if (!ft_strcmp("l", p->length))
 		p->return_value += ft_parse_l(p, ap);

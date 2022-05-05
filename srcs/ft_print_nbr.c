@@ -48,7 +48,6 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	int				len;
 	char			*nbr;
 
-	printf("test");
 	n = va_arg(*ap, unsigned int);
 	nbr = ft_itoa_unsigned(n);
 	len = ft_strlen(nbr);

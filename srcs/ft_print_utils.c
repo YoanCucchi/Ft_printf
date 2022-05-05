@@ -50,7 +50,7 @@ void	is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i)
 		tmp[i] = str[i];
 	}
 }
-// ZFEIFPZEJFFEZJ EFJP EZJPOEFJ PEOJF PJOZEFJO PZEJOE JOPFZ
+
 void	param_free(t_parameter *p)
 {
 	p->sharp = 0;

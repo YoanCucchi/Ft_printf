@@ -66,13 +66,13 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 		while (p->width-- - p->precision > 0)
 			p->return_value += ft_print_char(' ');
 	if (p->sharp && n != 0 && p->zero)
-			p->return_value += ft_putnstr("0x", 2);
+		p->return_value += ft_putnstr("0x", 2);
 	while (p->precision-- - len > 0)
 	{
 		if (p->zero && n != 0)
 			p->return_value += ft_print_char('0');
 		else
-		p->return_value += ft_print_char(' ');
+			p->return_value += ft_print_char(' ');
 	}
 	if (p->sharp && n != 0 && !p->zero)
 		p->return_value += ft_putnstr("0x", 2);
@@ -101,7 +101,7 @@ int	ft_print_hex_hh(t_parameter *p, va_list *ap)
 	while (p->precision-- - len > 0)
 		p->return_value += ft_print_char(' ');
 	if (p->sharp && n != 0)
-			p->return_value += ft_putnstr("0x", 2);
+		p->return_value += ft_putnstr("0x", 2);
 	p->return_value += ft_recursive_hex(p, n, n);
 	return (0);
 }
