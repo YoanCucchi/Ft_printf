@@ -85,15 +85,16 @@ int		ft_print_percent(t_parameter *p);
 
 int		ft_print_nbr(t_parameter *p, va_list *ap);
 int		ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
-int		ft_print_long_nbr(t_parameter *p, va_list *ap);
-int		ft_print_long_unsigned_nbr(t_parameter *p, va_list *ap);
+int		ft_print_long_nbr(t_parameter *p, va_list *ap, long n);
+int		ft_print_long_long_nbr(t_parameter *p, va_list *ap, long long n);
+int		ft_print_ulong_nbr(t_parameter *p, va_list *ap, long long n);
 
 /*
 ** ft_print_hex.c
 */
 
 int		ft_print_hex(t_parameter *p, va_list *ap);
-int		ft_print_hex_hh(t_parameter *p, va_list *ap);
+int		ft_print_uchar_hex(t_parameter *p, va_list *ap);
 int		ft_print_p(t_parameter *p, va_list *ap);
 int		ft_print_short_nbr(t_parameter *p, va_list *ap);
 

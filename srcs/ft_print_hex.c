@@ -84,7 +84,7 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_hex_hh(t_parameter *p, va_list *ap)
+int	ft_print_uchar_hex(t_parameter *p, va_list *ap)
 {
 	int		n;
 	int		len;

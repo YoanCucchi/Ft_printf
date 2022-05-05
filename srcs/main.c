@@ -387,15 +387,11 @@ int main(void)
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// printf("%d %d\n", ret1, ret2);
-	// int ret1,ret2;
+	long ret1,ret2;
 
-	// ret1 = printf("norm:%s\n", "hello there");
-	// ret2 = ft_printf("mine:%s\n", "hello there");
-	// printf("%d %d\n", ret1, ret2);
-
-	// ret1 = printf("norm:%d\n", -429495429495);
-	// ret2 = ft_printf("mine:%d\n", -429495429495);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%llu\n", -92233720368547758);
+	ret2 = ft_printf("mine:%llu\n", -92233720368547758);
+	printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 	
 	return (0);
