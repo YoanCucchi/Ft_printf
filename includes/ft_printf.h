@@ -52,6 +52,7 @@ typedef struct s_parameter
 	int		sharp;
 	char	*format;
 	char	*length;
+	int		return_value;
 }			t_parameter;
 
 /*
@@ -75,7 +76,7 @@ void		param_free(t_parameter *p);
 */
 
 int			ft_print_str(t_parameter *p, va_list *ap);
-int			ft_print_c(va_list *ap);
+int			ft_print_c(t_parameter *p, va_list *ap);
 int			ft_print_percent(t_parameter *p);
 
 /*
