@@ -23,7 +23,7 @@ static int	ft_parse_l(t_parameter *p, va_list *ap)
 		n = (long)va_arg(*ap, long);
 		p->return_value += ft_print_long_nbr(p, ap, n);
 	}
-	// if (p->specifier == 'o')
+	// else if (p->specifier == 'o')
 	// 	p->return_value += ft_print_ulong_octal(p, ap);
 	else if (p->specifier == 'u')
 	{
@@ -92,11 +92,11 @@ int	ft_length_flags(t_parameter *p, va_list *ap)
 	printf("inside length flags\n");
 	if (!ft_strcmp("l", p->length))
 		p->return_value += ft_parse_l(p, ap);
-	if (!ft_strcmp("ll", p->length))
+	else if (!ft_strcmp("ll", p->length))
 		p->return_value += ft_parse_ll(p, ap);
-	if (!ft_strcmp("h", p->length))
+	else if (!ft_strcmp("h", p->length))
 		p->return_value += ft_parse_h(p, ap);
-	if (!ft_strcmp("hh", p->length))
+	else if (!ft_strcmp("hh", p->length))
 		p->return_value += ft_parse_hh(p, ap);
 	return (0);
 }

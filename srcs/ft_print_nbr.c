@@ -12,6 +12,31 @@
 
 #include "../includes/ft_printf.h"
 
+void	ft_len_zero_handling(t_parameter *p, long long n, int len)
+{
+	int	helper;
+
+	helper = 0;
+	if (len >= p->precision)
+		helper = len;
+	if (p->precision > len)
+		helper = p->precision;
+	if (len >= p->precision)
+	{
+		while (p->width-- - helper > 0)
+		{
+			if (!p->zero)
+				p->return_value += ft_print_char(' ');
+			else
+				p->return_value += ft_print_char('0');
+		}
+	if (p->precision > len)
+		while (p->precision-- > len)
+			p->return_value += ft_print_char('0');
+	}
+}
+
+
 int	ft_print_nbr(t_parameter *p, va_list *ap)
 {
 	int		n;
@@ -21,19 +46,11 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
-	if (!p->precision)
-		p->precision = p->width;
 	if (p->plus && nbr[0] != '-')
 		p->return_value += ft_print_char('+');
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += ft_print_char('-');
-	while (p->width-- - len > 0)
-	{
-		if (!p->zero || p->precision <= len)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
+	ft_len_zero_handling(p, n, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -51,15 +68,7 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, unsigned int);
 	nbr = ft_itoa_unsigned(n);
 	len = ft_strlen(nbr);
-	if (!p->precision)
-		p->precision = p->width;
-	while (p->width-- - len > 0)
-	{
-		if (!p->zero || p->precision <= len)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
+	ft_len_zero_handling(p, n, len);
 	p->return_value += write(1, nbr, len);
 	free(nbr);
 	return (0);
@@ -74,19 +83,7 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	n = (short int)va_arg(*ap, int);
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
-	if (!p->precision)
-		p->precision = p->width;
-	if (p->plus && nbr[0] != '-' && p->specifier != 'u')
-		p->return_value += ft_print_char('+');
-	if (nbr[0] == '-' && p->zero && p->specifier != 'u')
-		p->return_value += ft_print_char('-');
-	while (p->width-- - len > 0)
-	{
-		if (!p->zero || p->precision <= len)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
+	ft_len_zero_handling(p, n, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -100,22 +97,9 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap, long n)
 	int			len;
 	char		*nbr;
 
-//	n = va_arg(*ap, long);
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
-	if (!p->precision)
-		p->precision = p->width;
-	if (p->plus && nbr[0] != '-' && p->specifier != 'u')
-		p->return_value += ft_print_char('+');
-	if (nbr[0] == '-' && p->zero && p->specifier != 'u')
-		p->return_value += ft_print_char('-');
-	while (p->width-- - len > 0)
-	{
-		if (!p->zero || p->precision <= len)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
+	ft_len_zero_handling(p, n, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -129,22 +113,9 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap, long long n)
 	int			len;
 	char		*nbr;
 
-//	n = va_arg(*ap, long);
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
-	if (!p->precision)
-		p->precision = p->width;
-	if (p->plus && nbr[0] != '-' && p->specifier != 'u')
-		p->return_value += ft_print_char('+');
-	if (nbr[0] == '-' && p->zero && p->specifier != 'u')
-		p->return_value += ft_print_char('-');
-	while (p->width-- - len > 0)
-	{
-		if (!p->zero || p->precision <= len)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
+	ft_len_zero_handling(p, n, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -158,24 +129,10 @@ int	ft_print_ulong_nbr(t_parameter *p, va_list *ap, long long n)
 	int					len;
 	char				*nbr;
 
-//	n = va_arg(*ap, unsigned long long);
-	printf("n = %llu\n", n);
 	nbr = ft_unsigned_long_itoa(n);
 	len = ft_strlen(nbr);
-	// printf("len : %d\n", len);
-	if (!p->precision)
-		p->precision = p->width;
-	while (p->width-- - len > 0)
-	{
-		if (!p->zero || p->precision <= len)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
-	if (nbr[0] == '-' && p->zero)
-		p->return_value += write(1, nbr + 1, --len);
-	else
-		p->return_value += write(1, nbr, len);
+	ft_len_zero_handling(p, n, len);
+	p->return_value += write(1, nbr, len);
 	free(nbr);
 	return (0);
 }

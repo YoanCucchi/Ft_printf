@@ -56,12 +56,8 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 
 	n = (unsigned int)va_arg(*ap, unsigned int);
 	len = ft_nbrlen(n, 16);
-//	if (n == 0 && !p->width && p->precision <= 0 && !p->sharp)
-//		return (0);
 	if (p->sharp && n != 0)
 		p->width -= 2;
-	if (!p->precision)
-		p->precision = p->width;
 	if (p->precision > len)
 		while (p->width-- - p->precision > 0)
 			p->return_value += ft_print_char(' ');
@@ -69,7 +65,7 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 		p->return_value += ft_putnstr("0x", 2);
 	while (p->precision-- - len > 0)
 	{
-		if (p->zero && n != 0)
+		if (p->precision - len >= 0)
 			p->return_value += ft_print_char('0');
 		else
 			p->return_value += ft_print_char(' ');

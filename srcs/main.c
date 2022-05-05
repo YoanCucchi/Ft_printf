@@ -331,13 +331,11 @@ int main(void)
 //	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 	
-	// ret1 = printf("norm:%lld\n", -922337203685477580);
-	// ret2 = ft_printf("mine:%lld\n", -922337203685477580);
-	// printf("%d %d\n", ret1, ret2);
-	
-	// ret1 = printf("norm:%-015.8d\n", 1000000);
-	// ret2 = ft_printf("mine:%-015.8d\n", 1000000);
-	// printf("%d %d\n", ret1, ret2);
+	int ret1, ret2;;
+
+	ret1 = printf("norm:%3x\n", 0);
+	ret2 = ft_printf("mine:%3x\n", 0);
+	printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%.d %.0d\n", 42, 43);
 	// ret2 = ft_printf("mine:%.d %.0d\n", 42, 43);
 	// printf("%d %d\n", ret1, ret2);
@@ -387,11 +385,6 @@ int main(void)
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// printf("%d %d\n", ret1, ret2);
-	long ret1,ret2;
-
-	ret1 = printf("norm:%llu\n", -92233720368547758);
-	ret2 = ft_printf("mine:%llu\n", -92233720368547758);
-	printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 	
 	return (0);

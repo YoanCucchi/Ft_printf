@@ -88,6 +88,7 @@ int		ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
 int		ft_print_long_nbr(t_parameter *p, va_list *ap, long n);
 int		ft_print_long_long_nbr(t_parameter *p, va_list *ap, long long n);
 int		ft_print_ulong_nbr(t_parameter *p, va_list *ap, long long n);
+void	ft_len_zero_handling(t_parameter *p, long long n, int len);
 
 /*
 ** ft_print_hex.c

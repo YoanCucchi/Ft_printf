@@ -50,9 +50,9 @@ int	ft_printf(const char *str, ...)
 
 int	conversion_type(t_parameter *p, va_list *ap)
 {
-	if (p->length && (ft_strchr(LENGTH_DISPATCH, *p->format)))
+	if (p->length && (ft_strchr(LENGTH_DISPATCH, p->specifier)))
 		p->return_value += ft_length_flags(p, ap);
-	else if (p->length && (ft_strchr("f", *p->format)))
+	else if (p->length && (ft_strchr("f", p->specifier)))
 		p->return_value += ft_length_flags(p, ap);
 	else if (p->specifier == 'c')
 		p->return_value += ft_print_c(p, ap);
