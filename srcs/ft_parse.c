@@ -93,13 +93,18 @@ static void	ft_parse_length(char *str, t_parameter *p)
 			is_it_double_specifier(str, p, tmp, i);
 		}
 		i++;
+		printf("p->format = %s\n", p->format);
 		p->format++;
 	}
 	p->length = ft_strdup(tmp);
 	if (ft_strcmp("ll", p->length) && ft_strcmp("l", p->length) && \
 	ft_strcmp("h", p->length) && ft_strcmp("hh", p->length) && \
 	ft_strcmp("L", p->length))
+	{
+		free(p->length);
 		p->length = NULL;
+	}
+//	free(p->length);
 	free(tmp);
 }
 
@@ -117,8 +122,9 @@ int	ft_parse(char *str, va_list *ap, t_parameter *p)
 	ft_parse_flags(p->format, p);
 	ft_parse_width(p->format, ap, p);
 	ft_parse_precision(p->format, ap, p);
-//	ft_parse_length(p->format, p);
+	ft_parse_length(p->format, p);
 	p->specifier = *p->format;
+	parameter_print(p);
 	return_value += conversion_type(p, ap);
 	return(return_value);
 }

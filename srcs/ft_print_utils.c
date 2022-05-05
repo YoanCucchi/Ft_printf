@@ -62,6 +62,5 @@ void	param_free(t_parameter *p)
 	p->dot = 0;
 	p->precision = 0;
 	p->specifier = 0;
-	free(p->format);
 	free(p->length);
 }

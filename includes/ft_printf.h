@@ -52,7 +52,6 @@ typedef struct s_parameter
 	int		sharp;
 	char	*format;
 	char	*length;
-	char	*tmp;
 }			t_parameter;
 
 /*

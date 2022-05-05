@@ -46,6 +46,7 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(ap);
 	free(p);
+	param_free(p);
 	return (return_value);
 }
 

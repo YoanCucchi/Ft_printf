@@ -26,7 +26,6 @@ void	parameter_print(t_parameter *p)
 	printf("precision = %d\n", p->precision);
 	printf("format = %s\n", p->format);
 	printf("length = %s\n", p->length);
-	printf("tmp = %s\n", p->tmp);
 	printf("specifier = %c\n", p->specifier);
 	printf("---------------------------------------------------------------\n");
 }
@@ -44,5 +43,4 @@ void	ft_all_to_0(t_parameter *p)
 	p->specifier = 0;
 	p->format = NULL;
 	p->length = NULL;
-	p->tmp = NULL;
 }

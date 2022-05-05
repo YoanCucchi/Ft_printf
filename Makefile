@@ -56,12 +56,17 @@ git:
 	git commit -m "$m"
 	git push
 
+debug:
+	gcc -g $(FLAGS) -I . libftprintf.a $(SRCS) -o debug
+
 clean:
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GRAY)$(OBJ) cleaned!$(DEFAULT)"
 	@rm -rf $(LIBFT_PRINTF)
 	@echo "$(GRAY)$(LIBFT_PRINTF) cleaned!$(DEFAULT)"
 	@make clean -C libft/
+	rm -rf debug.dSYM
+	rm -rf debug
 
 fclean: clean
 	@rm -rf $(NAME)

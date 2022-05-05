@@ -40,6 +40,7 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 		return_value += write(1, ++nbr, --len);
 	else
 		return_value += write(1, nbr, len);
+	free(nbr);
 	return (return_value);
 }
 
@@ -129,6 +130,7 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 		return_value += write(1, ++nbr, --len);
 	else
 		return_value += write(1, nbr, len);
+	free(nbr);
 	return (return_value);
 }
 
@@ -160,5 +162,6 @@ int	ft_print_long_unsigned_nbr(t_parameter *p, va_list *ap)
 		return_value += write(1, ++nbr, --len);
 	else
 		return_value += write(1, nbr, len);
+	free(nbr);
 	return (return_value);
 }
