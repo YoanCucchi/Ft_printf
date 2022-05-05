@@ -119,6 +119,6 @@ int	ft_parse(char *str, va_list *ap, t_parameter *p)
 	ft_parse_precision(p->format, ap, p);
 	ft_parse_length(p->format, p);
 	p->specifier = *p->format;
-	p->return_value += conversion_type(p, ap);
+	conversion_type(p, ap);
 	return (0);
 }

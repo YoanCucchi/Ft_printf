@@ -48,13 +48,12 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	int				len;
 	char			*nbr;
 
+	printf("test");
 	n = va_arg(*ap, unsigned int);
 	nbr = ft_itoa_unsigned(n);
 	len = ft_strlen(nbr);
 	if (!p->precision)
 		p->precision = p->width;
-	if (p->plus && nbr[0] != '-' && p->specifier != 'u')
-		p->return_value += ft_print_char('+');
 	while (p->width-- - len > 0)
 	{
 		if (!p->zero || p->precision <= len)

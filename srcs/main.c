@@ -393,9 +393,9 @@ int main(void)
 	// ret2 = ft_printf("mine:%s\n", "hello there");
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:%X\n", 429495);
-	ret2 = ft_printf("mine:%X\n", 429495);
+	ret1 = printf("%d\n", -429495429495);
+	ret2 = ft_printf("%d\n", -429495429495);
 	printf("%d %d\n", ret1, ret2);
-	system("leaks ft_printf");
+	//system("leaks ft_printf");
 	return (0);
 }
