@@ -31,7 +31,7 @@ void	parameter_print(t_parameter *p)
 	printf("---------------------------------------------------------------\n");
 }
 
-void	ft_all_to_0(t_parameter *p)
+void	ft_init_params(t_parameter *p)
 {
 	p->sharp = 0;
 	p->zero = 0;
@@ -43,6 +43,21 @@ void	ft_all_to_0(t_parameter *p)
 	p->precision = 0;
 	p->specifier = 0;
 	p->return_value = 0;
+	p->format = NULL;
+	p->length = NULL;
+}
+
+void	ft_reset_params(t_parameter *p)
+{
+	p->sharp = 0;
+	p->zero = 0;
+	p->minus = 0;
+	p->plus = 0;
+	p->space = 0;
+	p->width = 0;
+	p->dot = 0;
+	p->precision = 0;
+	p->specifier = 0;
 	p->format = NULL;
 	p->length = NULL;
 }

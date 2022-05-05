@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static int	ft_nbrlen(unsigned long n, int base)
+static int	ft_nbrlen(unsigned int n, int base)
 {
 	int	len;
 
@@ -54,10 +54,10 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 	unsigned int	n;
 	int				len;
 
-	n = va_arg(*ap, unsigned int);
+	n = (unsigned int)va_arg(*ap, unsigned int);
 	len = ft_nbrlen(n, 16);
-	if (n == 0 && !p->width && p->precision <= 0 && !p->sharp)
-		return (p->return_value);
+//	if (n == 0 && !p->width && p->precision <= 0 && !p->sharp)
+//		return (0);
 	if (p->sharp && n != 0)
 		p->width -= 2;
 	if (!p->precision)

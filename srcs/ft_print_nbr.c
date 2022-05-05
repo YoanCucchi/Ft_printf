@@ -23,9 +23,9 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	if (!p->precision)
 		p->precision = p->width;
-	if (p->plus && nbr[0] != '-' && p->specifier != 'u')
+	if (p->plus && nbr[0] != '-')
 		p->return_value += ft_print_char('+');
-	if (nbr[0] == '-' && p->zero && p->specifier != 'u')
+	if (nbr[0] == '-' && p->zero)
 		p->return_value += ft_print_char('-');
 	while (p->width-- - len > 0)
 	{
@@ -35,7 +35,7 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 			p->return_value += ft_print_char('0');
 	}
 	if (nbr[0] == '-' && p->zero)
-		p->return_value += write(1, ++nbr, --len);
+		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);
@@ -89,9 +89,10 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 			p->return_value += ft_print_char('0');
 	}
 	if (nbr[0] == '-' && p->zero)
-		p->return_value += write(1, ++nbr, --len);
+		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
+	free(nbr);
 	return (0);
 }
 
@@ -118,7 +119,7 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 			p->return_value += ft_print_char('0');
 	}
 	if (nbr[0] == '-' && p->zero)
-		p->return_value += write(1, ++nbr, --len);
+		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);
@@ -148,7 +149,7 @@ int	ft_print_long_unsigned_nbr(t_parameter *p, va_list *ap)
 			p->return_value += ft_print_char('0');
 	}
 	if (nbr[0] == '-' && p->zero)
-		p->return_value += write(1, ++nbr, --len);
+		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);

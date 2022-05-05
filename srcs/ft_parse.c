@@ -36,10 +36,10 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 	int	checked;
 
 	checked = 0;
-	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str) && *str != '.')
+	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str))
 	{
-	//	if (*str == '0' && (ft_strchr(WIDTH, *(str - 1))))
-	//		p->zero = 1;
+		if (*str == '.')
+			return ;
 		if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
@@ -50,7 +50,7 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 		}
 		str++;
 		p->format++;
-	}	
+	}
 }
 
 static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)

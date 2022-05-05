@@ -59,66 +59,66 @@ typedef struct s_parameter
 ** main.c
 */
 
-int			ft_printf(const char *str, ...);
-int			conversion_type(t_parameter *p, va_list *ap);
+int		ft_printf(const char *str, ...);
+int		conversion_type(t_parameter *p, va_list *ap);
 
 /*
 ** ft_print_utils.c
 */
 
-int			ft_print_char(int c);
-int			ft_putnstr(char const *s, int n);
-void		is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i);
-void		param_free(t_parameter *p);
+int		ft_print_char(int c);
+int		ft_putnstr(char const *s, int n);
+void	is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i);
+void	param_free(t_parameter *p);
 
 /*
 ** ft_print_str.c
 */
 
-int			ft_print_str(t_parameter *p, va_list *ap);
-int			ft_print_c(t_parameter *p, va_list *ap);
-int			ft_print_percent(t_parameter *p);
+int		ft_print_str(t_parameter *p, va_list *ap);
+int		ft_print_c(t_parameter *p, va_list *ap);
+int		ft_print_percent(t_parameter *p);
 
 /*
 ** ft_print_nbr.c
 */
 
-int			ft_print_nbr(t_parameter *p, va_list *ap);
-int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
-int			ft_print_long_nbr(t_parameter *p, va_list *ap);
-int			ft_print_long_unsigned_nbr(t_parameter *p, va_list *ap);
+int		ft_print_nbr(t_parameter *p, va_list *ap);
+int		ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
+int		ft_print_long_nbr(t_parameter *p, va_list *ap);
+int		ft_print_long_unsigned_nbr(t_parameter *p, va_list *ap);
 
 /*
 ** ft_print_hex.c
 */
 
-int			ft_print_hex(t_parameter *p, va_list *ap);
-int			ft_print_hex_hh(t_parameter *p, va_list *ap);
-int			ft_print_p(t_parameter *p, va_list *ap);
-int			ft_print_short_nbr(t_parameter *p, va_list *ap);
+int		ft_print_hex(t_parameter *p, va_list *ap);
+int		ft_print_hex_hh(t_parameter *p, va_list *ap);
+int		ft_print_p(t_parameter *p, va_list *ap);
+int		ft_print_short_nbr(t_parameter *p, va_list *ap);
 
 /*
 ** ft_parse.c
 */
 
-int			ft_parse(char *str, va_list *ap, t_parameter *p);
+int		ft_parse(char *str, va_list *ap, t_parameter *p);
 
 /*
 ** ft_initialize_parameter.c
 */
 
-void		parameter_print(t_parameter *p); // A VIRER !!!
-void		ft_all_to_0(t_parameter *p);
+void	parameter_print(t_parameter *p); // A VIRER !!!
+void	ft_init_params(t_parameter *p);
+void	ft_reset_params(t_parameter *p);
 
 /*
 ** ft_length_flags.c
 */
 
-int			ft_length_flags (t_parameter *p, va_list *ap);
+int		ft_length_flags(t_parameter *p, va_list *ap);
 
 /*
 ** colors.c
 */
-
 
 #endif

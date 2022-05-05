@@ -22,12 +22,13 @@ int	ft_printf(const char *str, ...)
 	p = (t_parameter *)malloc(sizeof(t_parameter));
 	if (!p)
 		return(-1);
+	ft_init_params(p);
 	first = NULL;
 	while (*str)
 	{
 		if (*str == '%')
 		{
-			ft_all_to_0(p);
+			ft_reset_params(p);
 			first = (char *)str;
 			if (*(++str))
 				p->return_value += ft_parse((char *)str, &ap, p);

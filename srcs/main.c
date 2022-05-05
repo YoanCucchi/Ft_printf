@@ -310,20 +310,20 @@ void	pointer_test()
 
 int main(void)
 {
-	//string_test();
-	//char_test();
-	//d_test();
-	//i_test();
-	//u_test();
-	//x_test();
-	//X_test();
-	//percent_test();
-	//xX_hash_test();
-	//pointer_test();
+	// string_test();
+	// char_test();
+	// d_test();
+	// i_test();
+	// u_test();
+	// x_test();
+	// X_test();
+	// percent_test();
+	// xX_hash_test();
+	// pointer_test();
 
 	//o_test();
 	//o_hash_test();
-	//ellas_tests();
+	// ellas_tests();
 	//float_test();
 //	int ret1, ret2;;
 //	ret1 = printf("norm:%hu\n", -32768);
@@ -387,15 +387,16 @@ int main(void)
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// printf("%d %d\n", ret1, ret2);
-	int ret1,ret2;
+	// int ret1,ret2;
 
 	// ret1 = printf("norm:%s\n", "hello there");
 	// ret2 = ft_printf("mine:%s\n", "hello there");
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("%d\n", -429495429495);
-	ret2 = ft_printf("%d\n", -429495429495);
-	printf("%d %d\n", ret1, ret2);
-	//system("leaks ft_printf");
+	// ret1 = printf("norm:%d\n", -429495429495);
+	// ret2 = ft_printf("mine:%d\n", -429495429495);
+	// printf("%d %d\n", ret1, ret2);
+	// system("leaks ft_printf");
+	
 	return (0);
 }
