@@ -31,9 +31,8 @@ void	parameter_print(t_parameter *p)
 	printf("---------------------------------------------------------------\n");
 }
 
-t_parameter *memalloc_struct(t_parameter *p)
+t_parameter	*memalloc_struct(t_parameter *p)
 {
-
 	p = (t_parameter *)malloc(sizeof(t_parameter));
 	if (!p)
 		exit(EXIT_FAILURE);

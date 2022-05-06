@@ -324,10 +324,10 @@ int main(void)
 {
 	// string_test();
 	// char_test();
-	// d_test();
+	d_test();
 	// i_test();
 	// u_test();
-	x_test();
+	// x_test();
 	// X_test();
 	// percent_test();
 	// xX_hash_test();
