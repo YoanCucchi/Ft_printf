@@ -14,7 +14,7 @@
 
 static int	ft_parse_l(t_parameter *p, va_list *ap)
 {
-	long n;
+	long	n;
 
 	n = 0;
 	printf("inside parse_l\n");
@@ -37,7 +37,7 @@ static int	ft_parse_l(t_parameter *p, va_list *ap)
 
 static int	ft_parse_ll(t_parameter *p, va_list *ap)
 {
-	unsigned long long n;
+	unsigned long long	n;
 
 	n = 0;
 	printf("inside parse_ll\n");

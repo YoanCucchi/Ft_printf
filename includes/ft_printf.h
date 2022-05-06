@@ -33,12 +33,6 @@
 ** Prototypes
 */
 
-// #0-+ and space
-// minimum field-width
-// precision
-// f with the following flags: l and L.
-// diouxX with following flags: hh, h, l and ll.
-
 typedef struct s_parameter
 {
 	int		minus;
@@ -59,65 +53,72 @@ typedef struct s_parameter
 ** main.c
 */
 
-int		ft_printf(const char *str, ...);
-int		conversion_type(t_parameter *p, va_list *ap);
+int			ft_printf(const char *str, ...);
+int			conversion_type(t_parameter *p, va_list *ap);
 
 /*
 ** ft_print_utils.c
 */
 
-int		ft_print_char(int c);
-int		ft_putnstr(char const *s, int n);
-void	is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i);
-void	param_free(t_parameter *p);
+void		is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i);
+void		param_free(t_parameter *p);
+int			who_is_biggest_of_2(int a, int b);
+int			who_is_biggest_of_3(int a, int b, int c);
+void		ft_len_zero_handling(t_parameter *p, long long n, int len);
 
 /*
 ** ft_print_str.c
 */
 
-int		ft_print_str(t_parameter *p, va_list *ap);
-int		ft_print_c(t_parameter *p, va_list *ap);
-int		ft_print_percent(t_parameter *p);
+int			ft_print_str(t_parameter *p, va_list *ap);
+int			ft_print_c(t_parameter *p, va_list *ap);
+int			ft_print_percent(t_parameter *p);
 
 /*
 ** ft_print_nbr.c
 */
 
-int		ft_print_nbr(t_parameter *p, va_list *ap);
-int		ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
-int		ft_print_long_nbr(t_parameter *p, va_list *ap, long n);
-int		ft_print_long_long_nbr(t_parameter *p, va_list *ap, long long n);
-int		ft_print_ulong_nbr(t_parameter *p, va_list *ap, long long n);
-void	ft_len_zero_handling(t_parameter *p, long long n, int len);
+int			ft_print_nbr(t_parameter *p, va_list *ap);
+int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
+int			ft_print_long_nbr(t_parameter *p, va_list *ap, long n);
+int			ft_print_long_long_nbr(t_parameter *p, va_list *ap, long long n);
+int			ft_print_ulong_nbr(t_parameter *p, va_list *ap, long long n);
 
 /*
 ** ft_print_hex.c
 */
 
-int		ft_print_hex(t_parameter *p, va_list *ap);
-int		ft_print_uchar_hex(t_parameter *p, va_list *ap);
-int		ft_print_p(t_parameter *p, va_list *ap);
-int		ft_print_short_nbr(t_parameter *p, va_list *ap);
+int			ft_print_hex(t_parameter *p, va_list *ap);
+int			ft_print_short_nbr(t_parameter *p, va_list *ap);
+void		ft_len_zero_handling_hex(t_parameter *p, long long n, int len);
+
+/*
+** ft_print_uhex.c
+*/
+
+int			ft_print_p(t_parameter *p, va_list *ap);
+int			ft_print_uchar_hex(t_parameter *p, va_list *ap);
 
 /*
 ** ft_parse.c
 */
 
-int		ft_parse(char *str, va_list *ap, t_parameter *p);
+int			ft_parse(char *str, va_list *ap, t_parameter *p);
 
 /*
 ** ft_initialize_parameter.c
 */
 
-void	parameter_print(t_parameter *p); // A VIRER !!!
-void	ft_init_params(t_parameter *p);
-void	ft_reset_params(t_parameter *p);
+void		parameter_print(t_parameter *p); // A VIRER !!!
+void		ft_init_params(t_parameter *p);
+void		ft_reset_params(t_parameter *p);
+t_parameter	*memalloc_struct(t_parameter *p);
 
 /*
 ** ft_length_flags.c
 */
 
-int		ft_length_flags(t_parameter *p, va_list *ap);
+int			ft_length_flags(t_parameter *p, va_list *ap);
 
 /*
 ** colors.c

@@ -13,10 +13,11 @@
 NAME = ft_printf
 SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_print_utils.c \
 ./srcs/ft_parse.c ./srcs/ft_initialize_parameter.c ./srcs/ft_print_str.c \
-./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c ./srcs/ft_length_flags.c
+./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c ./srcs/ft_length_flags.c \
+./srcs/ft_print_uhex.c
 OBJ = ft_printf.o main.o ft_print_utils.o ft_parse.o \
 ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o ft_print_hex.o \
-ft_length_flags.o
+ft_length_flags.o ft_print_uhex.o
 OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
@@ -56,17 +57,12 @@ git:
 	git commit -m "$m"
 	git push
 
-debug:
-	gcc -g $(FLAGS) -I . libftprintf.a $(SRCS) -o debug
-
 clean:
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GRAY)$(OBJ) cleaned!$(DEFAULT)"
 	@rm -rf $(LIBFT_PRINTF)
 	@echo "$(GRAY)$(LIBFT_PRINTF) cleaned!$(DEFAULT)"
 	@make clean -C libft/
-	rm -rf debug.dSYM
-	rm -rf debug
 
 fclean: clean
 	@rm -rf $(NAME)

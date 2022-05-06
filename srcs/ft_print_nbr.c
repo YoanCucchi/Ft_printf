@@ -12,31 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_len_zero_handling(t_parameter *p, long long n, int len)
-{
-	int	helper;
-
-	helper = 0;
-	if (len >= p->precision)
-		helper = len;
-	if (p->precision > len)
-		helper = p->precision;
-	if (len >= p->precision)
-	{
-		while (p->width-- - helper > 0)
-		{
-			if (!p->zero)
-				p->return_value += ft_print_char(' ');
-			else
-				p->return_value += ft_print_char('0');
-		}
-	if (p->precision > len)
-		while (p->precision-- > len)
-			p->return_value += ft_print_char('0');
-	}
-}
-
-
 int	ft_print_nbr(t_parameter *p, va_list *ap)
 {
 	int		n;

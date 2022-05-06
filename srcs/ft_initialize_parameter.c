@@ -31,6 +31,16 @@ void	parameter_print(t_parameter *p)
 	printf("---------------------------------------------------------------\n");
 }
 
+t_parameter *memalloc_struct(t_parameter *p)
+{
+
+	p = (t_parameter *)malloc(sizeof(t_parameter));
+	if (!p)
+		exit(EXIT_FAILURE);
+	ft_init_params(p);
+	return (p);
+}
+
 void	ft_init_params(t_parameter *p)
 {
 	p->sharp = 0;

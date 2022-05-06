@@ -19,10 +19,7 @@ int	ft_printf(const char *str, ...)
 	char		*first;
 
 	va_start(ap, str);
-	p = (t_parameter *)malloc(sizeof(t_parameter));
-	if (!p)
-		return(-1);
-	ft_init_params(p);
+	p = memalloc_struct(p);
 	first = NULL;
 	while (*str)
 	{

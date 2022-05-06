@@ -12,27 +12,25 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_char(int c)
+void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 {
-	write(1, &c, 1);
-	return (1);
-}
+	int	highest_value;
 
-int	ft_putnstr(char const *s, int n)
-{
-	size_t	i;
-
-	i = 0;
-	if (s)
+	highest_value = 0;
+	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	if (p->width - p->precision > 0)
 	{
-		while (s[i] != '\0' && n > 0)
+		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
-			ft_putchar(s[i]);
-			i++;
-			n--;
+			if (p->zero && (p->precision > len || !p->precision))
+				p->return_value += ft_print_char('0');
+			else
+				p->return_value += ft_print_char(' ');
 		}
 	}
-	return (i);
+	if (p->precision > len)
+		while (p->precision-- > len)
+			p->return_value += ft_print_char('0');
 }
 
 void	is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i)
@@ -61,4 +59,22 @@ void	param_free(t_parameter *p)
 	p->precision = 0;
 	p->specifier = 0;
 	free(p->length);
+}
+
+int	who_is_biggest_of_2(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+int	who_is_biggest_of_3(int a, int b, int c)
+{
+	if (a > b && a > c)
+		return (a);
+	else if (b > a && b > c)
+		return (b);
+	else
+		return (c);
 }
