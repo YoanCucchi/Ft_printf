@@ -28,6 +28,8 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
+	else if (!ft_strcmp(nbr, "	0") && p->precision <= 0)
+		return (0);
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);

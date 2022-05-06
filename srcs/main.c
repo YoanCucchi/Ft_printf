@@ -81,7 +81,7 @@ static void d_test()
 
 static void i_test()
 {
-	int n = 4294967295;
+	int n = 42;
 	int m = -42;
 	int ret1, ret2;
 	ret1 = printf("norm:%i\n", n);
@@ -90,8 +90,20 @@ static void i_test()
 	ret1 = printf("norm:%i %i %i\n", 42242, -2442424, 0);
 	ret2 = ft_printf("mine:%i %i %i\n", 42242, -2442424, 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%#08i\n", -42);
-	ret2 = ft_printf("mine:%#08i\n", -42);
+	ret1 = printf("norm:%8i\n", -42);
+	ret2 = ft_printf("mine:%8i\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%5i\n", -42);
+	ret2 = ft_printf("mine:%5i\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%0+5i\n", -42);
+	ret2 = ft_printf("mine:%0+5i\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%03.1i\n", 1);
+	ret2 = ft_printf("mine:%03.1i\n", 1);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%3i\n", -0);
+	ret2 = ft_printf("mine:%3i\n", -0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -100,6 +112,24 @@ static void u_test()
 	int ret1, ret2;
 	ret1 = printf("norm:%u\n", 4294967295);
 	ret2 = ft_printf("mine:%u\n", 4294967295);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%u\n", -4294967295);
+	ret2 = ft_printf("mine:%u\n", -4294967295);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%8u\n", -42);
+	ret2 = ft_printf("mine:%8u\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%5u\n", -42);
+	ret2 = ft_printf("mine:%5u\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%0+5u\n", -42);
+	ret2 = ft_printf("mine:%0+5u\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%03.1u\n", 1);
+	ret2 = ft_printf("mine:%03.1u\n", 1);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%3u\n", -0);
+	ret2 = ft_printf("mine:%3u\n", -0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -314,6 +344,14 @@ void	pointer_test()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:%4.4x\n", 123456789);
 	ret2 = ft_printf("mine:%4.4x\n", 123456789);
+	ret1 = printf("norm:%2.5x\n", 0);
+	ret2 = ft_printf("mine:%2.5x\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%5.2x\n", 0);
+	ret2 = ft_printf("mine:%5.2x\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%4.4x\n", 0);
+	ret2 = ft_printf("mine:%4.4x\n", 0);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:%5x\n", 1);
 	ret2 = ft_printf("mine:%5x\n", 1);
@@ -324,7 +362,7 @@ int main(void)
 {
 	// string_test();
 	// char_test();
-	d_test();
+	// d_test();
 	// i_test();
 	// u_test();
 	// x_test();
@@ -343,15 +381,18 @@ int main(void)
 //	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 	
-	// int ret1, ret2;
-	// ret1 = printf("norm:%19.6d\n", 555);
-	// ret2 = ft_printf("mine:%19.6d\n", 555);
+	int ret1, ret2;
+	// ret1 = printf("norm:%30.6ld\n", -4455555554444444445);
+	// ret2 = ft_printf("mine:%30.6ld\n", -4455555554444444445);
 	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%2.3d\n", 2);
 	// ret2 = ft_printf("mine:%2.3d\n", 2);
 	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%.d %.0d\n", 42, 43);
 	// ret2 = ft_printf("mine:%.d %.0d\n", 42, 43);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.0d\n", 0);
+	// ret2 = ft_printf("mine:%.0d\n", 0);
 	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%.d %.0d\n", 0, 0);
 	// ret2 = ft_printf("mine:%.d %.0d\n", 0, 0);
