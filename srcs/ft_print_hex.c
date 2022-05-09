@@ -40,11 +40,12 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if (p->sharp && n != 0)
 		highest_value -= 2;
+	// parameter_print(p);
 	if (p->width - p->precision > 0)
 	{
 		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
-			if (p->zero && (p->precision > len || !p->precision))
+			if (p->zero && (p->precision > len || !p->precision) && n != 0)
 				p->return_value += ft_print_char('0');
 			else
 				p->return_value += ft_print_char(' ');
@@ -64,8 +65,8 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 	n = (unsigned int)va_arg(*ap, unsigned int);
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n, len);
-	if (n == 0 && p->precision <= 0)
-		p->return_value += ft_print_char(' ');
+	if (n == 0 && p->dot && p->precision <= 0)
+		return(0);
 	else
 		p->return_value += ft_recursive_hex(p, n, n);
 	return (0);

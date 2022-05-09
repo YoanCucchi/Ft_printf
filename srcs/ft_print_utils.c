@@ -18,6 +18,9 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 
 	highest_value = 0;
 	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	if (p->sharp && p->specifier == 'o' && n!= 0 && \
+	(p->width >= p->precision || !p->precision))
+		highest_value--;
 	if (p->width - p->precision > 0)
 	{
 		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
@@ -28,6 +31,10 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 				p->return_value += ft_print_char(' ');
 		}
 	}
+	if (p->specifier == 'o' && p->sharp && n != 0 && highest_value < len)
+		p->return_value += ft_print_char('0');
+	else if (p->specifier == 'o' && p->sharp && n != 0 && highest_value - len >= 0)
+		p->return_value += ft_print_char(' ');
 	if (p->precision > len)
 		while (p->precision-- > len)
 			p->return_value += ft_print_char('0');

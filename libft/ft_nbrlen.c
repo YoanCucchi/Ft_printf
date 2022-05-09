@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_nbrlen(unsigned int n, int base)
 {
 	int	len;

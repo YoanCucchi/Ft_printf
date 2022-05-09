@@ -31,12 +31,69 @@ static int	ft_recursive_octal(t_parameter *p, size_t n, size_t iteration)
 
 int	ft_print_octal(t_parameter *p, va_list *ap)
 {
-	int	n;
+	unsigned int	n;
 	int				len;
 
-	n = va_arg(*ap, int);
+	n = va_arg(*ap, unsigned int);
 	len = ft_nbrlen(n, 8);
 	ft_len_zero_handling(p, n, len);
-	p->return_value += ft_recursive_octal(p, n, n);
+	if (n == 0 && p->precision <= 0 && !p->sharp)
+		p->return_value += ft_print_char(' ');
+	else
+		p->return_value += ft_recursive_octal(p, n, n);
+	return (0);
+}
+
+int	ft_print_long_o(t_parameter *p, va_list *ap, unsigned long n)
+{
+	int	len;
+
+	len = ft_nbrlen(n, 8);
+	ft_len_zero_handling(p, n, len);
+	if (n == 0 && p->precision <= 0 && !p->sharp)
+		p->return_value += ft_print_char(' ');
+	else
+		p->return_value += ft_recursive_octal(p, n, n);
+	return (0);
+}
+
+int	ft_print_llong_o(t_parameter *p, va_list *ap, unsigned long long n)
+{
+	int	len;
+
+	len = ft_nbrlen(n, 8);
+	ft_len_zero_handling(p, n, len);
+	if (n == 0 && p->precision <= 0 && !p->sharp)
+		p->return_value += ft_print_char(' ');
+	else
+		p->return_value += ft_recursive_octal(p, n, n);
+	return (0);
+}
+
+int	ft_print_short_o(t_parameter *p, va_list *ap, unsigned short n)
+{
+	int	len;
+
+	len = ft_nbrlen(n, 8);
+	ft_len_zero_handling(p, n, len);
+	if (n == 0 && p->precision <= 0 && !p->sharp)
+		p->return_value += ft_print_char(' ');
+	else
+		p->return_value += ft_recursive_octal(p, n, n);
+	return (0);
+}
+
+int	ft_print_char_octal(t_parameter *p, va_list *ap, unsigned short n)
+{
+	int	len;
+
+	len = ft_nbrlen(n, 8);
+	ft_len_zero_handling(p, n, len);
+	if (n != 0 && p->precision <= 0 && !p->sharp)
+		p->return_value += ft_recursive_octal(p, n, n);
+	else if (n != 0 && p->precision < 0 && p->sharp)
+		p->return_value += ft_print_char(' ');
+	else
+		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
 }

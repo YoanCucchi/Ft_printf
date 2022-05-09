@@ -17,14 +17,17 @@ static int	ft_parse_l(t_parameter *p, va_list *ap)
 	long	n;
 
 	n = 0;
-	printf("inside parse_l\n");
+	// printf("inside parse_l\n");
 	if (p->specifier == 'd' || p->specifier == 'i')
 	{
 		n = (long)va_arg(*ap, long);
 		p->return_value += ft_print_long_nbr(p, ap, n);
 	}
-	// else if (p->specifier == 'o')
-	// 	p->return_value += ft_print_ulong_octal(p, ap);
+	else if (p->specifier == 'o')
+	{
+		n = (unsigned long long)va_arg(*ap, unsigned long long);
+		p->return_value += ft_print_long_o(p, ap, n);
+	}
 	else if (p->specifier == 'u')
 	{
 		n = (unsigned long)va_arg(*ap, unsigned long);
@@ -40,20 +43,23 @@ static int	ft_parse_ll(t_parameter *p, va_list *ap)
 	unsigned long long	n;
 
 	n = 0;
-	printf("inside parse_ll\n");
+	// printf("inside parse_ll\n");
 	if (p->specifier == 'd' || p->specifier == 'i')
 	{
 		n = (long long)va_arg(*ap, long long);
 		p->return_value += ft_print_long_nbr(p, ap, n);
 	}
-	// if (p->specifier == 'o')
-	// 	p->return_value += ft_print_ulong_long_octal(p, ap);
+	else if (p->specifier == 'o')
+	{
+		n = (unsigned long long)va_arg(*ap, unsigned long long);
+		p->return_value += ft_print_llong_o(p, ap, n);
+	}
 	else if (p->specifier == 'u')
 	{
 		n = (unsigned long long)va_arg(*ap, unsigned long long);
 		p->return_value += ft_print_ulong_nbr(p, ap, n);
 	}
-	//  if (p->specifier == 'x' || p->specifier == 'X')
+	// else if (p->specifier == 'x' || p->specifier == 'X')
 	// 	p->return_value += ft_print_ulong_long_hex(p, ap);
 	return (0);
 }
@@ -65,8 +71,12 @@ static int	ft_parse_h(t_parameter *p, va_list *ap)
 	n = 0;
 	// if (p->specifier == 'd' || p->specifier == 'i')
 	// 	p->return_value += ft_print_short_nbr(p, ap);
-	// if (p->specifier == 'o')
-	// 	p->return_value += ft_print_ushort_octal(p, ap);
+	if (p->specifier == 'o')
+	{
+		n = (unsigned long long)va_arg(*ap, unsigned long long);
+		p->return_value += ft_print_short_o(p, ap, n);
+	}
+
 	// if (p->specifier == 'u')
 	// 	p->return_value += ft_print_ushort_nbr(p, ap);
 	//  if (p->specifier == 'x' || p->specifier == 'X')
@@ -76,10 +86,15 @@ static int	ft_parse_h(t_parameter *p, va_list *ap)
 
 static int	ft_parse_hh(t_parameter *p, va_list *ap)
 {
+	unsigned char n;
 	// if (p->specifier == 'd' || p->specifier == 'i')
 	// 	p->return_value += ft_print_char_nbr(p, ap);
-	// if (p->specifier == 'o')
-	// 	p->return_value += ft_print_uchar_octal(p, ap);
+	if (p->specifier == 'o')
+	{
+		n = (unsigned char)va_arg(*ap, unsigned char);
+		p->return_value += ft_print_char_octal(p, ap, n);
+	}
+
 	// if (p->specifier == 'u')
 	// 	p->return_value += ft_print_uchar_nbr(p, ap);
 	// if (p->specifier == 'x' || p->specifier == 'X')
@@ -89,7 +104,7 @@ static int	ft_parse_hh(t_parameter *p, va_list *ap)
 
 int	ft_length_flags(t_parameter *p, va_list *ap)
 {
-	printf("inside length flags\n");
+	// printf("inside length flags\n");
 	if (!ft_strcmp("l", p->length))
 		p->return_value += ft_parse_l(p, ap);
 	else if (!ft_strcmp("ll", p->length))

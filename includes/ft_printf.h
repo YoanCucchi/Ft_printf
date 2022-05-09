@@ -125,7 +125,11 @@ int			ft_length_flags(t_parameter *p, va_list *ap);
 ** ft_print_octal.c
 */
 
-int	ft_print_octal(t_parameter *p, va_list *ap);
+int			ft_print_octal(t_parameter *p, va_list *ap);
+int			ft_print_long_o(t_parameter *p, va_list *ap, unsigned long n);
+int			ft_print_llong_o(t_parameter *p, va_list *ap, unsigned long long n);
+int			ft_print_short_o(t_parameter *p, va_list *ap, unsigned short n);
+int			ft_print_char_octal(t_parameter *p, va_list *ap, unsigned short n);
 
 /*
 ** colors.c

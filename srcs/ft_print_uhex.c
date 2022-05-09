@@ -32,6 +32,28 @@ static int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 	return (0);
 }
 
+static void	ft_len_zero_handling_p(t_parameter *p, long long n, int len)
+{
+	int	highest_value;
+
+	highest_value = 0;
+	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	highest_value -= 2;
+	if (p->width - p->precision > 0)
+	{
+		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
+		{
+			if (p->zero && (p->precision > len || !p->precision) && n != 0)
+				p->return_value += ft_print_char('0');
+			else
+				p->return_value += ft_print_char(' ');
+		}
+	}
+	p->return_value += ft_putnstr("0x", 2);
+	while (p->precision-- - len > 0)
+		p->return_value += ft_print_char('0');
+}
+
 int	ft_print_uchar_hex(t_parameter *p, va_list *ap)
 {
 	int		n;
@@ -39,17 +61,7 @@ int	ft_print_uchar_hex(t_parameter *p, va_list *ap)
 
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
-	if (p->sharp && n != 0)
-		p->width -= 2;
-	if (!p->precision)
-		p->precision = p->width;
-	if (p->precision > len)
-		while (p->width-- - p->precision > 0)
-			p->return_value += ft_print_char(' ');
-	while (p->precision-- - len > 0)
-		p->return_value += ft_print_char(' ');
-	if (p->sharp && n != 0)
-		p->return_value += ft_putnstr("0x", 2);
+	ft_len_zero_handling_hex(p, n, len);
 	p->return_value += ft_recursive_hex(p, n, n);
 	return (0);
 }
@@ -61,13 +73,10 @@ int	ft_print_p(t_parameter *p, va_list *ap)
 
 	n = va_arg(*ap, unsigned long);
 	len = ft_nbrlen(n, 16);
-	p->width -= 2;
-	if (p->precision > len)
-		while (p->width-- - p->precision > 0)
-			p->return_value += ft_print_char(' ');
-	p->return_value += ft_putnstr("0x", 2);
-	while (p->precision-- - len > 0)
+	ft_len_zero_handling_p(p, n, len);
+	if (n == 0)
 		p->return_value += ft_print_char('0');
-	p->return_value += ft_recursive_hex(p, n, n);
+	else
+		p->return_value += ft_recursive_hex(p, n, n);
 	return (0);
 }
