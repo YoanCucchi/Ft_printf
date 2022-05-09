@@ -20,6 +20,7 @@
 # define LENGTH_DISPATCH "diouxX"
 # define HEXALOWCASE "0123456789abcdef"
 # define HEXAUPCASE "0123456789ABCDEF"
+# define OCTAL "012345678"
 
 /*
 ** Headers
@@ -119,6 +120,12 @@ t_parameter	*memalloc_struct(t_parameter *p);
 */
 
 int			ft_length_flags(t_parameter *p, va_list *ap);
+
+/*
+** ft_print_octal.c
+*/
+
+int	ft_print_octal(t_parameter *p, va_list *ap);
 
 /*
 ** colors.c

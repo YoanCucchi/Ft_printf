@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 18:00:48 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/12 11:35:25 by ycucchi          ###   ########.fr       */
+/*   Created: 2022/05/09 10:13:51 by ycucchi           #+#    #+#             */
+/*   Updated: 2022/05/09 10:13:54 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_printf(const char *str, ...)
 	t_parameter	*p;
 	char		*first;
 
+	p = NULL;
 	va_start(ap, str);
 	p = memalloc_struct(p);
 	first = NULL;
@@ -63,6 +64,8 @@ int	conversion_type(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_nbr(p, ap);
 	else if (p->specifier == 'u')
 		p->return_value += ft_print_unsigned_nbr(p, ap);
+	else if (p->specifier == 'o')
+		p->return_value += ft_print_octal(p, ap);
 	else if (p->specifier == '%')
 		p->return_value += ft_print_percent(p);
 	return (p->return_value);
