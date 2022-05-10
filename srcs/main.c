@@ -138,12 +138,12 @@ static void o_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	ret1 = printf("norm:%o\n", n);
-	ret2 = ft_printf("mine:%o\n", n);
-	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%5o\n", 2500);
-	ret2 = ft_printf("mine:%5o\n", 2500);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%o\n", n);
+	// ret2 = ft_printf("mine:%o\n", n);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%5o\n", 2500);
+	// ret2 = ft_printf("mine:%5o\n", 2500);
+	// printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:%2.5o\n", 0);
 	ret2 = ft_printf("mine:%2.5o\n", 0);
 	printf("%d %d\n", ret1, ret2);

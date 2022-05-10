@@ -65,7 +65,7 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n, len);
 	if (n == 0 && p->dot && p->precision <= 0)
-		return(0);
+		return (0);
 	else
 		p->return_value += ft_recursive_hex(p, n, n);
 	return (0);

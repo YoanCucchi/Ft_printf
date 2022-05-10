@@ -37,12 +37,7 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if (p->sharp && p->specifier == 'o' && n != 0 && \
 	(p->width >= p->precision || !p->precision || highest_value < len))
-	{
 		highest_value--;
-	}
-	// parameter_print(p);
-	// printf("highest value = %d\n", highest_value);
-	// printf("len = %d\n", len);
 	if (p->width - p->precision > 0)
 	{
 		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
@@ -50,7 +45,7 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 				p->return_value += ft_print_char(' ');
 	}
 	if (p->precision > len)
-		while (p->precision-- > len)
+		while (p->precision > len++)
 			p->return_value += ft_print_char('0');
 	else if (p->precision < len && p->sharp && n != 0)
 		p->return_value += ft_print_char('0');
@@ -63,12 +58,12 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 
 	n = va_arg(*ap, unsigned int);
 	len = ft_nbrlen(n, 8);
-	if (p->dot && !p->precision && n == 0 && !p->sharp)
-		return (0);
 	ft_len_zero_handling_octal(p, n, len);
 	if (n != 0 && p->precision <= 0 && !p->sharp)
 		p->return_value += ft_recursive_octal(p, n, n);
 	else if (n != 0 && p->precision < 0 && p->sharp)
+		p->return_value += ft_print_char(' ');
+	else if (p->dot && !p->precision && n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
@@ -80,12 +75,12 @@ int	ft_print_long_o(t_parameter *p, va_list *ap, unsigned long n)
 	int	len;
 
 	len = ft_nbrlen(n, 8);
-	if (p->dot && !p->precision && n == 0 && !p->sharp)
-		return (0);
 	ft_len_zero_handling_octal(p, n, len);
 	if (n != 0 && p->precision <= 0 && !p->sharp)
 		p->return_value += ft_recursive_octal(p, n, n);
 	else if (n != 0 && p->precision < 0 && p->sharp)
+		p->return_value += ft_print_char(' ');
+	else if (p->dot && !p->precision && n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
@@ -104,6 +99,8 @@ int	ft_print_llong_o(t_parameter *p, va_list *ap, unsigned long long n)
 		p->return_value += ft_recursive_octal(p, n, n);
 	else if (n != 0 && p->precision < 0 && p->sharp)
 		p->return_value += ft_print_char(' ');
+	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
@@ -121,6 +118,8 @@ int	ft_print_short_o(t_parameter *p, va_list *ap, unsigned short n)
 		p->return_value += ft_recursive_octal(p, n, n);
 	else if (n != 0 && p->precision < 0 && p->sharp)
 		p->return_value += ft_print_char(' ');
+	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
@@ -137,6 +136,8 @@ int	ft_print_char_octal(t_parameter *p, va_list *ap, unsigned short n)
 	if (n != 0 && p->precision <= 0 && !p->sharp)
 		p->return_value += ft_recursive_octal(p, n, n);
 	else if (n != 0 && p->precision < 0 && p->sharp)
+		p->return_value += ft_print_char(' ');
+	else if (p->dot && !p->precision && n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
