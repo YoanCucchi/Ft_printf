@@ -40,7 +40,6 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if (p->sharp && n != 0)
 		highest_value -= 2;
-	// parameter_print(p);
 	if (p->width - p->precision > 0)
 	{
 		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
@@ -53,7 +52,7 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 	}
 	if (p->sharp && n != 0)
 		p->return_value += ft_putnstr("0x", 2);
-	while (p->precision-- - len > 0)
+	while (p->precision-- - len >= 0)
 		p->return_value += ft_print_char('0');
 }
 

@@ -130,6 +130,7 @@ int			ft_print_long_o(t_parameter *p, va_list *ap, unsigned long n);
 int			ft_print_llong_o(t_parameter *p, va_list *ap, unsigned long long n);
 int			ft_print_short_o(t_parameter *p, va_list *ap, unsigned short n);
 int			ft_print_char_octal(t_parameter *p, va_list *ap, unsigned short n);
+void		ft_len_zero_handling_octal(t_parameter *p, long long n, int len);
 
 /*
 ** colors.c

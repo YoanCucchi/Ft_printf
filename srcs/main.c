@@ -141,8 +141,41 @@ static void o_test()
 	ret1 = printf("norm:%o\n", n);
 	ret2 = ft_printf("mine:%o\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%#5o\n", 2500);
-	ret2 = ft_printf("mine:%#5o\n", 2500);
+	ret1 = printf("norm:%5o\n", 2500);
+	ret2 = ft_printf("mine:%5o\n", 2500);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%2.5o\n", 0);
+	ret2 = ft_printf("mine:%2.5o\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%o\n", n);
+	ret2 = ft_printf("mine:%o\n", n);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%o\n", 4294967296);
+	ret2 = ft_printf("mine:%o\n", 4294967296);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%10o\n", 42);
+	ret2 = ft_printf("mine:%10o\n", 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%0#12.12o\n", 2323232);
+	ret2 = ft_printf("mine:%0#12.12o\n", 2323232);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%4.5o\n", 343434);
+	ret2 = ft_printf("mine:%4.5o\n", 343434);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%0#10.3o\n", 2323232);
+	ret2 = ft_printf("mine:%0#10.3o\n", 2323232);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%3.10o\n", 2323232);
+	ret2 = ft_printf("mine:%3.10o\n", 2323232);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%0#10.3o\n", 0);
+	ret2 = ft_printf("mine:%0#10.3o\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%3o\n", 0);
+	ret2 = ft_printf("mine:%3o\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%o\n", 0);
+	ret2 = ft_printf("mine:%o\n", 0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -184,7 +217,6 @@ static void x_test()
 	ret1 = printf("norm:%x\n", 0);
 	ret2 = ft_printf("mine:%x\n", 0);
 	printf("%d %d\n", ret1, ret2);
-	
 }
 
 static void o_hash_test()
@@ -197,7 +229,7 @@ static void o_hash_test()
 	ret2 = ft_printf("mine:@moulitest: %#.o %#.0o\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:%#x\n", 0);
-	ret2  = ft_printf("%#x\n", 0);
+	ret2  = ft_printf("mine:%#x\n", 0);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:@moulitest: %#.x %#.0x|\n", 0, 0);
 	ret2 = ft_printf("mine:@moulitest: %#.x %#.0x|\n", 0, 0);
@@ -383,8 +415,8 @@ int main(void)
 	// xX_hash_test();
 	// pointer_test();
 
-	// o_test();
-	//o_hash_test();
+	o_test();
+	// o_hash_test();
 	// ellas_tests();
 	//float_test();
 //	int ret1, ret2;;
