@@ -150,8 +150,8 @@ static void o_test()
 	ret1 = printf("norm:%o\n", n);
 	ret2 = ft_printf("mine:%o\n", n);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%o\n", 4294967296);
-	ret2 = ft_printf("mine:%o\n", 4294967296);
+	ret1 = printf("norm:%o\n", 214748364793324242);
+	ret2 = ft_printf("mine:%o\n", 214748364793324242);
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("norm:%10o\n", 42);
 	ret2 = ft_printf("mine:%10o\n", 42);
@@ -414,9 +414,9 @@ int main(void)
 	// percent_test();
 	// xX_hash_test();
 	// pointer_test();
-
-	o_test();
+	// o_test();
 	// o_hash_test();
+
 	// ellas_tests();
 	//float_test();
 //	int ret1, ret2;;
@@ -483,7 +483,7 @@ int main(void)
 	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
-	// printf("%d %d\n", ret1, ret2);
+	// // printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 	return (0);
 }
