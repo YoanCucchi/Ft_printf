@@ -90,7 +90,7 @@ static void	ft_parse_length(char *str, t_parameter *p)
 		if (ft_strchr(LENGTH, str[i]))
 		{
 			tmp[i] = str[i];
-			is_it_double_specifier(str, p, tmp, i);
+			is_it_double_specifier(str, tmp, i);
 		}
 		i++;
 		p->format++;

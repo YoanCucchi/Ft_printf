@@ -71,7 +71,7 @@ int	ft_print_p(t_parameter *p, va_list *ap)
 	unsigned long	n;
 	int				len;
 
-	n = va_arg(*ap, unsigned long);
+	n = va_arg(*ap, long);
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_p(p, n, len);
 	if (n == 0)

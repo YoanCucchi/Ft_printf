@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_len_zero_handling(t_parameter *p, long long n, int len)
+void	ft_len_zero_handling(t_parameter *p, int len)
 {
 	int	highest_value;
 
@@ -33,7 +33,7 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 			p->return_value += ft_print_char('0');
 }
 
-void	is_it_double_specifier(char *str, t_parameter *p, char *tmp, int i)
+void	is_it_double_specifier(char *str, char *tmp, int i)
 {
 	if (str[i] == 'l' && str[i + 1] == 'l')
 	{
