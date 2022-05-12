@@ -21,8 +21,7 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
-	if (p->dot && !p->precision && n == 0)
-		return (0);
+	parameter_print(p);
 	if (p->plus && nbr[0] != '-')
 		p->return_value += ft_print_char('+');
 	if (nbr[0] == '-' && p->zero)
@@ -30,6 +29,8 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
+	else if (p->dot && !p->precision && n == 0)
+		return (0);
 	else if (n == 0 && p->precision <= 0)
 		p->return_value += ft_print_char('0');
 	else
@@ -47,10 +48,13 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	nbr = ft_itoa_unsigned(n);
 	len = ft_strlen(nbr);
+	ft_len_zero_handling(p, len);
 	if (p->dot && !p->precision && n == 0)
 		return (0);
-	ft_len_zero_handling(p, len);
-	p->return_value += write(1, nbr, len);
+	else if (n == 0 && p->precision <= 0)
+		p->return_value += ft_print_char('0');
+	else
+		p->return_value += write(1, nbr, len);
 	free(nbr);
 	return (0);
 }
@@ -64,8 +68,6 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
-	if (p->dot && !p->precision && n == 0)
-		return (0);
 	if (p->plus && nbr[0] != '-')
 		p->return_value += ft_print_char('+');
 	if (nbr[0] == '-' && p->zero)
@@ -73,6 +75,10 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
+	else if (p->dot && !p->precision && n == 0)
+		return (0);
+	else if (n == 0 && p->precision <= 0)
+		p->return_value += ft_print_char('0');
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);
@@ -88,8 +94,6 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, long);
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
-	if (p->dot && !p->precision && n == 0)
-		return (0);
 	if (p->plus && nbr[0] != '-')
 		p->return_value += ft_print_char('+');
 	if (nbr[0] == '-' && p->zero)
@@ -97,6 +101,10 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
+	else if (p->dot && !p->precision && n == 0)
+		return (0);
+	else if (n == 0 && p->precision <= 0)
+		p->return_value += ft_print_char('0');
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);
@@ -112,8 +120,6 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, long long);
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
-	if (p->dot && !p->precision && n == 0)
-		return (0);
 	if (p->plus && nbr[0] != '-')
 		p->return_value += ft_print_char('+');
 	if (nbr[0] == '-' && p->zero)
@@ -121,6 +127,10 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, len);
 	if (nbr[0] == '-' && p->zero)
 		p->return_value += write(1, nbr + 1, --len);
+	else if (p->dot && !p->precision && n == 0)
+		return (0);
+	else if (n == 0 && p->precision <= 0)
+		p->return_value += ft_print_char('0');
 	else
 		p->return_value += write(1, nbr, len);
 	free(nbr);
@@ -136,10 +146,13 @@ int	ft_print_ulong_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, long);
 	nbr = ft_unsigned_long_itoa(n);
 	len = ft_strlen(nbr);
+	ft_len_zero_handling(p, len);
 	if (p->dot && !p->precision && n == 0)
 		return (0);
-	ft_len_zero_handling(p, len);
-	p->return_value += write(1, nbr, len);
+	else if (n == 0 && p->precision <= 0)
+		p->return_value += ft_print_char('0');
+	else
+		p->return_value += write(1, nbr, len);
 	free(nbr);
 	return (0);
 }

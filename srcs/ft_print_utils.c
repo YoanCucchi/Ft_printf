@@ -22,7 +22,7 @@ void	ft_len_zero_handling(t_parameter *p, int len)
 	{
 		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
-			if (p->zero && (p->precision > len || !p->precision))
+			if (p->zero && (p->precision > p->width))
 				p->return_value += ft_print_char('0');
 			else
 				p->return_value += ft_print_char(' ');

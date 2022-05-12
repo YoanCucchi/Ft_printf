@@ -168,27 +168,27 @@ static void dhh_test()
 	int n = 42;
 	int m = -42;
 	int ret1, ret2;
-	// ret1 = printf("norm:%hhd\n", m);
-	// ret2 = ft_printf("mine:%hhd\n", m);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%hhd %.0hhd %.hhd\n", 0, -0, 0);
-	// ret2 = ft_printf("mine:%hhd %.0hhd %.hhd\n", 0, -0, 0);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%8hhd\n", -42);
-	// ret2 = ft_printf("mine:%8hhd\n", -42);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%5hhd\n", 1212121121221);
-	// ret2 = ft_printf("mine:%5hhd\n", 1212121121221);
-	// printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%.0hhd\n", 0);
-	ret2 = ft_printf("mine:%.0hhd\n", 0);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%03.1hhd\n", 1);
-	// ret2 = ft_printf("mine:%03.1hhd\n", 1);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%3hhd\n", -0);
-	// ret2 = ft_printf("mine:%3hhd\n", -0);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%hhd\n", m);
+	ret2 = ft_printf("mine:%hhd\n", m);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%hhd %.0hhd %.hhd\n", 0, -0, 0);
+	ret2 = ft_printf("mine:%hhd %.0hhd %.hhd\n", 0, -0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%8hhd\n", -42);
+	ret2 = ft_printf("mine:%8hhd\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%5hhd\n", 1212121121221);
+	ret2 = ft_printf("mine:%5hhd\n", 1212121121221);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%.hhd\n", -1212121121221);
+	ret2 = ft_printf("mine:%.hhd\n", -1212121121221);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%03.1hhd\n", 1);
+	ret2 = ft_printf("mine:%03.1hhd\n", 1);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%3hhd\n", -0);
+	ret2 = ft_printf("mine:%3hhd\n", -0);
+	printf("%d %d\n", ret1, ret2);
 }
 
 static void i_test()
@@ -568,7 +568,7 @@ int main(void)
 	// dl_test();
 	// dll_test();
 	// dh_test();
-	dhh_test();
+	// dhh_test();
 	// i_test();
 	// u_test();
 	// x_test();
@@ -645,5 +645,9 @@ int main(void)
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// // printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
+
+	ret1 = printf("norm:%.lu\n", 0);
+	ret2 = ft_printf("mine:%.lu\n", 0);
+	printf("%d %d\n", ret1, ret2);
 	return (0);
 }
