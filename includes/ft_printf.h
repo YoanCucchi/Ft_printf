@@ -82,24 +82,28 @@ int			ft_print_percent(t_parameter *p);
 int			ft_print_nbr(t_parameter *p, va_list *ap);
 int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
 int			ft_print_short_nbr(t_parameter *p, va_list *ap);
+int			ft_print_ushort_nbr(t_parameter *p, va_list *ap);
 int			ft_print_long_nbr(t_parameter *p, va_list *ap);
 int			ft_print_long_long_nbr(t_parameter *p, va_list *ap);
 int			ft_print_ulong_nbr(t_parameter *p, va_list *ap);
 int			ft_print_char_nbr(t_parameter *p, va_list *ap);
+int			ft_print_uchar_nbr(t_parameter *p, va_list *ap);
 
 /*
 ** ft_print_hex.c
 */
 
 int			ft_print_hex(t_parameter *p, va_list *ap);
-void		ft_len_zero_handling_hex(t_parameter *p, long long n, int len);
+int			ft_print_p(t_parameter *p, va_list *ap);
 
 /*
-** ft_print_uhex.c
+** ft_print_flag_hex.c
 */
 
-int			ft_print_p(t_parameter *p, va_list *ap);
-int			ft_print_uchar_hex(t_parameter *p, va_list *ap);
+int			ft_print_char_hex(t_parameter *p, va_list *ap);
+int			ft_print_short_hex(t_parameter *p, va_list *ap);
+int			ft_print_long_hex(t_parameter *p, va_list *ap);
+int			ft_print_long_long_hex(t_parameter *p, va_list *ap);
 
 /*
 ** ft_parse.c
@@ -138,6 +142,13 @@ int			ft_print_char_octal(t_parameter *p, va_list *ap);
 
 int			ft_recursive_octal(t_parameter *p, size_t n, size_t iteration);
 void		ft_len_zero_handling_octal(t_parameter *p, long long n, int len);
+
+/*
+** ft_hex_helper.c
+*/
+
+int			ft_recursive_hex(t_parameter *p, size_t n, size_t iteration);
+void		ft_len_zero_handling_hex(t_parameter *p, long long n, int len);
 
 /*
 ** colors.c

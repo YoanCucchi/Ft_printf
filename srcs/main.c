@@ -646,8 +646,11 @@ int main(void)
 	// // printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 
-	ret1 = printf("norm:%.lu\n", 0);
-	ret2 = ft_printf("mine:%.lu\n", 0);
+	ret1 = printf("norm:%5.5p\n", 121212);
+	ret2 = ft_printf("mine:%5.5p\n", 121212);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%.p\n", 43434);
+	ret2 = ft_printf("mine:%.p\n", 43434);
 	printf("%d %d\n", ret1, ret2);
 	return (0);
 }

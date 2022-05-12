@@ -20,22 +20,21 @@ static int	ft_parse_l(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_long_o(p, ap);
 	else if (p->specifier == 'u')
 		p->return_value += ft_print_ulong_nbr(p, ap);
-	//  if (p->specifier == 'x' || p->specifier == 'X')
-	// 	p->return_value += ft_print_ulong_hex(p, ap);
+	else if (p->specifier == 'x' || p->specifier == 'X')
+		p->return_value += ft_print_long_hex(p, ap);
 	return (0);
 }
 
 static int	ft_parse_ll(t_parameter *p, va_list *ap)
 {
-	// printf("inside parse_ll\n");
 	if (p->specifier == 'd' || p->specifier == 'i')
 		p->return_value += ft_print_long_long_nbr(p, ap);
 	else if (p->specifier == 'o')
 		p->return_value += ft_print_llong_o(p, ap);
 	else if (p->specifier == 'u')
 		p->return_value += ft_print_ulong_nbr(p, ap);
-	// else if (p->specifier == 'x' || p->specifier == 'X')
-	// 	p->return_value += ft_print_ulong_long_hex(p, ap);
+	else if (p->specifier == 'x' || p->specifier == 'X')
+		p->return_value += ft_print_long_long_hex(p, ap);
 	return (0);
 }
 
@@ -45,10 +44,10 @@ static int	ft_parse_h(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_short_nbr(p, ap);
 	else if (p->specifier == 'o')
 		p->return_value += ft_print_short_o(p, ap);
-	// if (p->specifier == 'u')
-	// 	p->return_value += ft_print_ushort_nbr(p, ap);
-	//  if (p->specifier == 'x' || p->specifier == 'X')
-	// 	p->return_value += ft_print_ushort_hex(p, ap);
+	else if (p->specifier == 'u')
+		p->return_value += ft_print_ushort_nbr(p, ap);
+	else if (p->specifier == 'x' || p->specifier == 'X')
+		p->return_value += ft_print_short_hex(p, ap);
 	return (0);
 }
 
@@ -58,16 +57,15 @@ static int	ft_parse_hh(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char_nbr(p, ap);
 	else if (p->specifier == 'o')
 		p->return_value += ft_print_char_octal(p, ap);
-	// if (p->specifier == 'u')
-	// 	p->return_value += ft_print_uchar_nbr(p, ap);
-	// if (p->specifier == 'x' || p->specifier == 'X')
-	// 	p->return_value += ft_print_uchar_hex(p, ap);
+	else if (p->specifier == 'u')
+		p->return_value += ft_print_uchar_nbr(p, ap);
+	else if (p->specifier == 'x' || p->specifier == 'X')
+		p->return_value += ft_print_char_hex(p, ap);
 	return (0);
 }
 
 int	ft_length_flags(t_parameter *p, va_list *ap)
 {
-	// printf("inside length flags\n");
 	if (!ft_strcmp("l", p->length))
 		p->return_value += ft_parse_l(p, ap);
 	else if (!ft_strcmp("ll", p->length))
