@@ -20,11 +20,9 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 8);
 	ft_len_zero_handling_octal(p, n, len);
-	if (n != 0 && p->precision <= 0 && !p->sharp)
-		p->return_value += ft_recursive_octal(p, n, n);
-	else if (n != 0 && p->precision < 0 && p->sharp)
-		p->return_value += ft_print_char(' ');
-	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+	if (!p->precision && n == 0 && !p->sharp)
+		return (0);
+	else if (n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
@@ -33,17 +31,15 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 
 int	ft_print_long_o(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int				len;
 	unsigned long	n;
 
 	n = va_arg(*ap, long);
 	len = ft_nbrlen(n, 8);
 	ft_len_zero_handling_octal(p, n, len);
-	if (n != 0 && p->precision <= 0 && !p->sharp)
-		p->return_value += ft_recursive_octal(p, n, n);
-	else if (n != 0 && p->precision < 0 && p->sharp)
-		p->return_value += ft_print_char(' ');
-	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+	if (!p->precision && n == 0 && !p->sharp)
+		return (0);
+	else if (n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
@@ -52,18 +48,16 @@ int	ft_print_long_o(t_parameter *p, va_list *ap)
 
 int	ft_print_llong_o(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int					len;
 	unsigned long long	n;
 
 
 	n = va_arg(*ap, long long);
 	len = ft_nbrlen(n, 8);
 	ft_len_zero_handling_octal(p, n, len);
-	if (n != 0 && p->precision <= 0 && !p->sharp)
-		p->return_value += ft_recursive_octal(p, n, n);
-	else if (n != 0 && p->precision < 0 && p->sharp)
-		p->return_value += ft_print_char(' ');
-	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+	if (!p->precision && n == 0 && !p->sharp)
+		return (0);
+	else if (n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
@@ -72,17 +66,15 @@ int	ft_print_llong_o(t_parameter *p, va_list *ap)
 
 int	ft_print_short_o(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int				len;
 	unsigned short	n;
 
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 8);
 	ft_len_zero_handling_octal(p, n, len);
-	if (n != 0 && p->precision <= 0 && !p->sharp)
-		p->return_value += ft_recursive_octal(p, n, n);
-	else if (n != 0 && p->precision < 0 && p->sharp)
-		p->return_value += ft_print_char(' ');
-	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+	if (!p->precision && n == 0 && !p->sharp)
+		return (0);
+	else if (n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
@@ -91,17 +83,15 @@ int	ft_print_short_o(t_parameter *p, va_list *ap)
 
 int	ft_print_char_octal(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int				len;
 	unsigned char	n;
 
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 8);
 	ft_len_zero_handling_octal(p, n, len);
-	if (n != 0 && p->precision <= 0 && !p->sharp)
-		p->return_value += ft_recursive_octal(p, n, n);
-	else if (n != 0 && p->precision < 0 && p->sharp)
-		p->return_value += ft_print_char(' ');
-	else if (p->dot && !p->precision && n == 0 && !p->sharp)
+	if (!p->precision && n == 0 && !p->sharp)
+		return (0);
+	else if (n == 0 && !p->sharp)
 		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);

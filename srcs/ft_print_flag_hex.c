@@ -21,7 +21,7 @@ int	ft_print_char_hex(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	nbr = ft_long_itoa(n);
 	len = ft_nbrlen(n, 16);
-	if (p->dot && !p->precision && n == 0)
+	if (!p->precision && n == 0)
 		return (0);
 	ft_len_zero_handling_hex(p, n, len);
 	p->return_value += write(1, nbr, len);
@@ -31,13 +31,13 @@ int	ft_print_char_hex(t_parameter *p, va_list *ap)
 
 int	ft_print_short_hex(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int				len;
 	unsigned short	n;
 
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n, len);
-	if (p->dot && !p->precision && n == 0)
+	if (!p->precision && n == 0)
 		return (0);
 	if (n == 0)
 		p->return_value += ft_print_char('0');
@@ -48,13 +48,13 @@ int	ft_print_short_hex(t_parameter *p, va_list *ap)
 
 int	ft_print_long_hex(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int				len;
 	unsigned long	n;
 
 	n = va_arg(*ap, long);
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n, len);
-	if (p->dot && !p->precision && n == 0)
+	if (!p->precision && n == 0)
 		return (0);
 	if (n == 0)
 		p->return_value += ft_print_char('0');
@@ -65,13 +65,13 @@ int	ft_print_long_hex(t_parameter *p, va_list *ap)
 
 int	ft_print_long_long_hex(t_parameter *p, va_list *ap)
 {
-	int	len;
+	int					len;
 	unsigned long long	n;
 
 	n = va_arg(*ap, long long);
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n, len);
-	if (p->dot && !p->precision && n == 0)
+	if (!p->precision && n == 0)
 		return (0);
 	if (n == 0)
 		p->return_value += ft_print_char('0');

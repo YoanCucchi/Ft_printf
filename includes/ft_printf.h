@@ -48,6 +48,7 @@ typedef struct s_parameter
 	char	*format;
 	char	*length;
 	int		return_value;
+	int		highest_value;
 }			t_parameter;
 
 /*
@@ -65,7 +66,7 @@ void		is_it_double_specifier(char *str, char *tmp, int i);
 void		param_free(t_parameter *p);
 int			who_is_biggest_of_2(int a, int b);
 int			who_is_biggest_of_3(int a, int b, int c);
-void		ft_len_zero_handling(t_parameter *p, int len);
+void		ft_len_zero_handling(t_parameter *p, int n, int len);
 
 /*
 ** ft_print_str.c
@@ -80,13 +81,18 @@ int			ft_print_percent(t_parameter *p);
 */
 
 int			ft_print_nbr(t_parameter *p, va_list *ap);
-int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
 int			ft_print_short_nbr(t_parameter *p, va_list *ap);
-int			ft_print_ushort_nbr(t_parameter *p, va_list *ap);
 int			ft_print_long_nbr(t_parameter *p, va_list *ap);
 int			ft_print_long_long_nbr(t_parameter *p, va_list *ap);
-int			ft_print_ulong_nbr(t_parameter *p, va_list *ap);
 int			ft_print_char_nbr(t_parameter *p, va_list *ap);
+
+/*
+** ft_print_unbr.c
+*/
+
+int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
+int			ft_print_ushort_nbr(t_parameter *p, va_list *ap);
+int			ft_print_ulong_nbr(t_parameter *p, va_list *ap);
 int			ft_print_uchar_nbr(t_parameter *p, va_list *ap);
 
 /*

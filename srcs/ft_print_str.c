@@ -17,9 +17,10 @@ int	ft_print_str(t_parameter *p, va_list *ap)
 	char	*string;
 
 	string = va_arg(*ap, char *);
+	parameter_print(p);
 	if (!string)
 		string = "(null)";
-	if (!p->dot || p->precision > (int)ft_strlen(string) || p->precision < 0)
+	if (p->precision > (int)ft_strlen(string) || p->precision < 0)
 		p->precision = ft_strlen(string);
 	if (p->width - p->precision > 0)
 		while (p->width-- - p->precision > 0)

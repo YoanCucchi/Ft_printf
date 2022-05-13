@@ -570,7 +570,7 @@ int main(void)
 	// dh_test();
 	// dhh_test();
 	// i_test();
-	// u_test();
+	u_test();
 	// x_test();
 	// X_test();
 	// percent_test();
@@ -644,13 +644,17 @@ int main(void)
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// // printf("%d %d\n", ret1, ret2);
-	// system("leaks ft_printf");
 
-	ret1 = printf("norm:%5.5p\n", 121212);
-	ret2 = ft_printf("mine:%5.5p\n", 121212);
-	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%.p\n", 43434);
-	ret2 = ft_printf("mine:%.p\n", 43434);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%5.5p\n", 121212);
+	// ret2 = ft_printf("mine:%5.5p\n", 121212);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.p\n", 43434);
+	// ret2 = ft_printf("mine:%.p\n", 43434);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:|%18.10d|\n", -0);
+	// ret2 = ft_printf("mine:|%18.10d|\n", -0);
+	// printf("%d %d\n", ret1, ret2);
+
+	// system("leaks ft_printf");
 	return (0);
 }

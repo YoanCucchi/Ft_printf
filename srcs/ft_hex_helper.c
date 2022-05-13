@@ -17,7 +17,7 @@ int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 	int		remainder;
 	char	character;
 
-	if (n > 0 || (!iteration && (p->specifier != 'p' || !p->dot)))
+	if (n > 0 || !iteration)
 	{
 		remainder = n % 16;
 		if (p->specifier != 'X')
@@ -34,15 +34,12 @@ int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 
 void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 {
-	int	highest_value;
-
-	highest_value = 0;
-	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if (p->specifier == 'p' || (p->sharp && n != 0))
-		highest_value -= 2;
+		p->highest_value -= 2;
 	if (p->width - p->precision > 0)
 	{
-		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
 			if (p->zero && (p->precision > len || !p->precision) && n != 0)
 				p->return_value += ft_print_char('0');

@@ -12,21 +12,28 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_len_zero_handling(t_parameter *p, int len)
+void	ft_len_zero_handling(t_parameter *p, int n, int len)
 {
-	int	highest_value;
-
-	highest_value = 0;
-	highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	if ((n < 0 || p->plus) && (p->specifier == 'd' || p->specifier == 'i') \
+	&& p->width && (p->width < len && p->width > p->precision))
+		p->highest_value--;
 	if (p->width - p->precision > 0)
 	{
-		while (highest_value-- > who_is_biggest_of_2(p->precision, len))
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
 			if (p->zero && (p->precision > p->width))
 				p->return_value += ft_print_char('0');
 			else
 				p->return_value += ft_print_char(' ');
 		}
+	}
+	if (p->plus && n >= 0 && (p->specifier == 'd' || p->specifier == 'i'))
+		p->return_value += ft_print_char('+');
+	else if (n < 0 && (p->specifier == 'd' || p->specifier == 'i'))
+	{
+		p->return_value += ft_print_char('-');
+		len--;
 	}
 	if (p->precision > len)
 		while (p->precision > len++)
@@ -55,9 +62,9 @@ void	param_free(t_parameter *p)
 	p->plus = 0;
 	p->space = 0;
 	p->width = 0;
-	p->dot = 0;
 	p->precision = 0;
 	p->specifier = 0;
+	p->highest_value = 0;
 	free(p->length);
 }
 
