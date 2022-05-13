@@ -17,7 +17,6 @@ int	ft_print_str(t_parameter *p, va_list *ap)
 	char	*string;
 
 	string = va_arg(*ap, char *);
-	parameter_print(p);
 	if (!string)
 		string = "(null)";
 	if (p->precision > (int)ft_strlen(string) || p->precision < 0)

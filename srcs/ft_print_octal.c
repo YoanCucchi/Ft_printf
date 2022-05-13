@@ -16,9 +16,11 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 {
 	unsigned int	n;
 	int				len;
+	char			*nbr;
 
 	n = va_arg(*ap, int);
-	len = ft_nbrlen(n, 8);
+	nbr = ft_octal_itoa(n);
+	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
 	if (!p->precision && n == 0 && !p->sharp)
 		return (0);
@@ -33,9 +35,11 @@ int	ft_print_long_o(t_parameter *p, va_list *ap)
 {
 	int				len;
 	unsigned long	n;
+	char			*nbr;
 
 	n = va_arg(*ap, long);
-	len = ft_nbrlen(n, 8);
+	nbr = ft_octal_itoa(n);
+	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
 	if (!p->precision && n == 0 && !p->sharp)
 		return (0);
@@ -50,10 +54,11 @@ int	ft_print_llong_o(t_parameter *p, va_list *ap)
 {
 	int					len;
 	unsigned long long	n;
-
+	char				*nbr;
 
 	n = va_arg(*ap, long long);
-	len = ft_nbrlen(n, 8);
+	nbr = ft_octal_itoa(n);
+	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
 	if (!p->precision && n == 0 && !p->sharp)
 		return (0);
@@ -68,9 +73,11 @@ int	ft_print_short_o(t_parameter *p, va_list *ap)
 {
 	int				len;
 	unsigned short	n;
+	char			*nbr;
 
 	n = va_arg(*ap, int);
-	len = ft_nbrlen(n, 8);
+	nbr = ft_octal_itoa(n);
+	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
 	if (!p->precision && n == 0 && !p->sharp)
 		return (0);
@@ -85,9 +92,11 @@ int	ft_print_char_octal(t_parameter *p, va_list *ap)
 {
 	int				len;
 	unsigned char	n;
+	char			*nbr;
 
 	n = va_arg(*ap, int);
-	len = ft_nbrlen(n, 8);
+	nbr = ft_octal_itoa(n);
+	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
 	if (!p->precision && n == 0 && !p->sharp)
 		return (0);
