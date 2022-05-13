@@ -30,11 +30,11 @@ void	ft_len_zero_handling(t_parameter *p, int n, int len)
 	}
 	if (p->plus && n >= 0 && (p->specifier == 'd' || p->specifier == 'i'))
 		p->return_value += ft_print_char('+');
-	else if (n < 0 && (p->specifier == 'd' || p->specifier == 'i'))
-	{
-		p->return_value += ft_print_char('-');
-		len--;
-	}
+	// else if (n < 0 && (p->specifier == 'd' || p->specifier == 'i'))
+	// {
+	// 	p->return_value += ft_print_char('-');
+	// 	len--;
+	// }
 	if (p->precision > len)
 		while (p->precision > len++)
 			p->return_value += ft_print_char('0');

@@ -454,56 +454,68 @@ static void ellas_tests()
 	ret1 = printf("norm:%-015.8d\n", 1000000);
 	ret2 = ft_printf("mine:%-015.8d\n", 1000000);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%.d %.0d\n", 42, 43);
 	ret2 = ft_printf("mine:%.d %.0d\n", 42, 43);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%.d %.0d\n", 0, 0);
 	ret2 = ft_printf("mine:%.d %.0d\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 
-	printf("mainostauko 1\n");
 	ret1 = printf("norm:'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
 	ret2 = ft_printf("mine:'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
 	ret2 = ft_printf("mine:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
 	ret2 = ft_printf("mine:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
-
 	
 	ret1 = printf("norm:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
 	ret2 = ft_printf("mine:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	printf("mainostauko 3\n");
+	
 	ret1 = printf("norm:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
 	ret2 = ft_printf("mine:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%5.x %5.0x\n", 0, 0);
 	ret2 = ft_printf("mine:%5.x %5.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%.x %.0x\n", 0, 0);
 	ret2 = ft_printf("mine:%.x %.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
-	ft_printf("%5.x %5.0x\n", 0, 0);
+
+	ret1 = printf("norm:%5.x %5.0x\n", 0, 0);
+	ret2 = ft_printf("mine:%5.x %5.0x\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%\n");
 	ret2 = ft_printf("mine:%\n");
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%%\n");
 	ret2 = ft_printf("mine:%%\n");
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%sjeccu\n", NULL);
-	ret2 = ft_printf("mine:%sjeccu\n", NULL);
+
+	ret1 = printf("norm:%stest\n", NULL);
+	ret2 = ft_printf("mine:%stest\n", NULL);
 	printf("%d %d\n", ret1, ret2);
-	ft_printf("%d %d\n", ret1, ret2);
+	
 	ret1 = printf("norm:%.5s\n", NULL);
 	ret2 = ft_printf("mine:%.5s\n", NULL);
 	printf("%d %d\n", ret1, ret2);
+
 	ret1 = printf("norm:%s\n", NULL);
 	ret2 = ft_printf("mine:%s\n", NULL);
 	printf("%d %d\n", ret1, ret2);
 }
+
 void	float_test()
 {
 	int ret1, ret2;
@@ -558,6 +570,9 @@ void	pointer_test()
 	ret1 = printf("norm:%5p\n", 1);
 	ret2 = ft_printf("mine:%5p\n", 1);
 	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%.p\n", 0);
+	ret2 = ft_printf("mine:%.p\n", 0);
+	printf("%d %d\n", ret1, ret2);
 }
 
 int main(void)
@@ -576,84 +591,17 @@ int main(void)
 	// percent_test();
 	// xX_hash_test();
 	// pointer_test();
-	o_test();
+	// o_test();
 	// ohh_test();
 	// o_hash_test();
 
 	// ellas_tests();
 	//float_test();
 
-
-	
 	int ret1, ret2;
-	// ret1 = printf("norm:%12.6lo\n", -4294967295);
-	// ret2 = ft_printf("mine:%12.6lo\n", -4294967295);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%12.6o\n", -4294967295);
-	// ret2 = ft_printf("mine:%12.6o\n", -4294967295);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%2.3d\n", 2);
-	// ret2 = ft_printf("mine:%2.3d\n", 2);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.d %.0d\n", 42, 43);
-	// ret2 = ft_printf("mine:%.d %.0d\n", 42, 43);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.0d\n", 0);
-	// ret2 = ft_printf("mine:%.0d\n", 0);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.d %.0d\n", 0, 0);
-	// ret2 = ft_printf("mine:%.d %.0d\n", 0, 0);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
-	// ret2 = ft_printf("mine:'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
-	// ret2 = ft_printf("mine:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-17.11x' '%#-17.11X'\n", 392082, 392082, 392082, 392082);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
-	// ret2 = ft_printf("mine:'%%#-10.10' '%#-17.17o' '%-17.17u' '%#-11.17x' '%#-11.17X'\n", 392082, 392082, 392082, 392082);
-	// printf("%d %d\n", ret1, ret2);	
-	// ret1 = printf("norm:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
-	// ret2 = ft_printf("mine:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
-	// printf("%d %d\n", ret1, ret2);
-	// printf("mainostauko 3\n");
-	// ret1 = printf("norm:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
-	// ret2 = ft_printf("mine:'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%5.x %5.0x\n", 0, 0);
-	// ret2 = ft_printf("mine:%5.x %5.0x\n", 0, 0);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.x %.0x\n", 0, 0);
-	// ret2 = ft_printf("mine:%.x %.0x\n", 0, 0);
-	// printf("%d %d\n", ret1, ret2);
-	// ft_printf("%5.x %5.0x\n", 0, 0);
-	// ret1 = printf("norm:%\n");
-	// ret2 = ft_printf("mine:%\n");
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%%\n");
-	// ret2 = ft_printf("mine:%%\n");
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%sjeccu\n", NULL);
-	// ret2 = ft_printf("mine:%sjeccu\n", NULL);
-	// printf("%d %d\n", ret1, ret2);
-	// ft_printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.5s\n", NULL);
-	// ret2 = ft_printf("mine:%.5s\n", NULL);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%s\n", NULL);
-	// ret2 = ft_printf("mine:%s\n", NULL);
-	// // printf("%d %d\n", ret1, ret2);
-
-	// ret1 = printf("norm:%5.5p\n", 121212);
-	// ret2 = ft_printf("mine:%5.5p\n", 121212);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.p\n", 43434);
-	// ret2 = ft_printf("mine:%.p\n", 43434);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:|%.o|\n", 0);
-	// ret2 = ft_printf("mine:|%.o|\n", 0);
-	// printf("%d %d\n", ret1, ret2);
-
+	ret1 = printf("mine:%-8d\n", -42);
+	ret2 = ft_printf("mine:%-8d\n", -42);
+	printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 	return (0);
 }

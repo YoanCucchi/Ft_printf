@@ -24,7 +24,6 @@ int	ft_nbrlen(unsigned int n, int base)
 		return (1);
 	while (n != 0)
 	{
-		printf("y");
 		len++;
 		n /= base;
 	}

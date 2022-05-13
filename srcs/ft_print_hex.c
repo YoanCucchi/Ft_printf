@@ -20,8 +20,10 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n, len);
-	if (n == 0 && p->precision <= 0)
+	if (n == 0 && !p->precision && p->dot && !p->width)
 		return (0);
+	else if (n == 0 && !p->precision && p->dot)
+		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_hex(p, n, n);
 	return (0);
