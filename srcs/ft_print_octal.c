@@ -22,10 +22,8 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 	nbr = ft_octal_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
-	if (!p->precision && n == 0 && !p->sharp)
+	if (!p->precision && !p->width && n == 0 && !p->sharp)
 		return (0);
-	else if (n == 0 && !p->sharp)
-		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
@@ -41,10 +39,8 @@ int	ft_print_long_o(t_parameter *p, va_list *ap)
 	nbr = ft_octal_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
-	if (!p->precision && n == 0 && !p->sharp)
+	if (!p->precision && !p->width && n == 0 && !p->sharp)
 		return (0);
-	else if (n == 0 && !p->sharp)
-		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
@@ -60,10 +56,8 @@ int	ft_print_llong_o(t_parameter *p, va_list *ap)
 	nbr = ft_octal_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
-	if (!p->precision && n == 0 && !p->sharp)
+	if (!p->precision && !p->width && n == 0 && !p->sharp)
 		return (0);
-	else if (n == 0 && !p->sharp)
-		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
@@ -79,10 +73,8 @@ int	ft_print_short_o(t_parameter *p, va_list *ap)
 	nbr = ft_octal_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
-	if (!p->precision && n == 0 && !p->sharp)
+	if (!p->precision && !p->width && n == 0 && !p->sharp)
 		return (0);
-	else if (n == 0 && !p->sharp)
-		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);
@@ -98,10 +90,8 @@ int	ft_print_char_octal(t_parameter *p, va_list *ap)
 	nbr = ft_octal_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling_octal(p, n, len);
-	if (!p->precision && n == 0 && !p->sharp)
+	if (!p->precision && !p->width && n == 0 && !p->sharp)
 		return (0);
-	else if (n == 0 && !p->sharp)
-		p->return_value += ft_print_char(' ');
 	else
 		p->return_value += ft_recursive_octal(p, n, n);
 	return (0);

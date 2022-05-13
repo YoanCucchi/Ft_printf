@@ -286,8 +286,8 @@ static void o_test()
 	ret1 = printf("norm:%3o\n", 0);
 	ret2 = ft_printf("mine:%3o\n", 0);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%o\n", 0);
-	ret2 = ft_printf("mine:%o\n", 0);
+	ret1 = printf("norm:%#.o\n", 0);
+	ret2 = ft_printf("mine:%#.o\n", 0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -576,7 +576,7 @@ int main(void)
 	// percent_test();
 	// xX_hash_test();
 	// pointer_test();
-	// o_test();
+	o_test();
 	// ohh_test();
 	// o_hash_test();
 
@@ -586,12 +586,12 @@ int main(void)
 
 	
 	int ret1, ret2;
-	ret1 = printf("norm:%12.6lo\n", -4294967295);
-	ret2 = ft_printf("mine:%12.6lo\n", -4294967295);
-	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%12.6o\n", -4294967295);
-	ret2 = ft_printf("mine:%12.6o\n", -4294967295);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%12.6lo\n", -4294967295);
+	// ret2 = ft_printf("mine:%12.6lo\n", -4294967295);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%12.6o\n", -4294967295);
+	// ret2 = ft_printf("mine:%12.6o\n", -4294967295);
+	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%2.3d\n", 2);
 	// ret2 = ft_printf("mine:%2.3d\n", 2);
 	// printf("%d %d\n", ret1, ret2);

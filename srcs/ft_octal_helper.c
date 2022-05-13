@@ -17,7 +17,7 @@ int	ft_recursive_octal(t_parameter *p, size_t n, size_t iteration)
 	int		remainder;
 	char	character;
 
-	if (n > 0 || (!iteration && p->specifier != 'p'))
+	if (n > 0 || !iteration)
 	{
 		remainder = n % 8;
 		character = OCTAL[remainder];
