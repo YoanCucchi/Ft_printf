@@ -17,7 +17,7 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	int		n;
 	int		len;
 	char	*nbr;
-
+// need to fix problem with negative number
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
