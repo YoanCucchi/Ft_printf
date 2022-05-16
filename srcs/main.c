@@ -595,13 +595,13 @@ int main(void)
 	// ohh_test();
 	// o_hash_test();
 
-	// ellas_tests();
+	ellas_tests();
 	//float_test();
 
-	int ret1, ret2;
-	ret1 = printf("norm:%10.10d\n", -424242424);
-	ret2 = ft_printf("mine:%10.10d\n", -424242424);
-	printf("%d %d\n", ret1, ret2);
+	// int ret1, ret2;
+	// ret1 = printf("norm:%10.10d%10.10d\n", -424242424, -424242424);
+	// ret2 = ft_printf("mine:%10.10d%10.10d\n", -424242424, -424242424);
+	// printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 	return (0);
 }

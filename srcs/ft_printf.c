@@ -12,16 +12,8 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+static void	printing(const char *str, char *first, va_list ap, t_parameter *p)
 {
-	va_list		ap;
-	t_parameter	*p;
-	char		*first;
-
-	p = NULL;
-	va_start(ap, str);
-	p = memalloc_struct(p);
-	first = NULL;
 	while (*str)
 	{
 		if (*str == '%')
@@ -40,6 +32,19 @@ int	ft_printf(const char *str, ...)
 		if (*str)
 			str++;
 	}
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list		ap;
+	t_parameter	*p;
+	char		*first;
+
+	p = NULL;
+	va_start(ap, str);
+	p = memalloc_struct(p);
+	first = NULL;
+	printing(str, first, ap, p);
 	va_end(ap);
 	param_free(p);
 	free(p);
