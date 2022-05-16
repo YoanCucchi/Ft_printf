@@ -599,16 +599,9 @@ int main(void)
 	//float_test();
 
 	int ret1, ret2;
-	// ret1 = printf("norm:%10.10d%10.10d\n", -424242424, -424242424);
-	// ret2 = ft_printf("mine:%10.10d%10.10d\n", -424242424, -424242424);
-	// printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%ld\n", 922337203685477580);
-	ret2 = ft_printf("mine:%ld\n", 922337203685477580);
+	ret1 = printf("norm:%-12.10d\n", -424242424);
+	ret2 = ft_printf("mine:%-12.10d\n", -424242424);
 	printf("%d %d\n", ret1, ret2);
-	
-	// ret1 = printf("norm:%lld\n", -922337203685477580);
-	// ret2 = ft_printf("mine:%lld\n", -922337203685477580);
-	// printf("%d %d\n", ret1, ret2);
 	// system("leaks ft_printf");
 	return (0);
 }

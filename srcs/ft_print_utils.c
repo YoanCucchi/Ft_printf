@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_len_zero_handling(t_parameter *p, int n, int len)
+void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 {
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if ((n < 0 || p->plus) && (p->specifier == 'd' || p->specifier == 'i') \

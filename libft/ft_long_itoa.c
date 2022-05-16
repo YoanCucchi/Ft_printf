@@ -48,8 +48,6 @@ char	*ft_long_itoa(long long n)
 	str = (char *)malloc(sizeof(char) * (count + 1));
 	if (str == NULL)
 		return (NULL);
-	if (n < -9223372036854775807)
-		return (ft_strdup("-9223372036854775808"));
 	if (n < 0)
 	{
 		str[0] = '-';
