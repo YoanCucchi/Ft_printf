@@ -28,6 +28,9 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('0');
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -48,6 +51,9 @@ int	ft_print_ulong_nbr(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('0');
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -68,6 +74,9 @@ int	ft_print_ushort_nbr(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('0');
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -85,6 +94,9 @@ int	ft_print_uchar_nbr(t_parameter *p, va_list *ap)
 		return (0);
 	ft_len_zero_handling(p, n, len);
 	p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }

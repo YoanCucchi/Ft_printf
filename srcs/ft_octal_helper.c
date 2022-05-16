@@ -32,10 +32,12 @@ int	ft_recursive_octal(t_parameter *p, size_t n, size_t iteration)
 void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 {
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
-	if (p->sharp && p->specifier == 'o' && n != 0 && \
+	if (n == 0 && p->dot)
+		len = 0;
+	if (p->sharp && n != 0 && \
 	(p->width >= p->precision || !p->precision || p->highest_value < len))
 		p->highest_value--;
-	if (p->width - p->precision > 0)
+	if (p->width > p->precision && !p->minus)
 	{
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
 			if (p->width > len)

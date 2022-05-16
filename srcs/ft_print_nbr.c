@@ -28,6 +28,9 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -48,6 +51,9 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -68,6 +74,9 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -88,6 +97,9 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }
@@ -108,6 +120,9 @@ int	ft_print_char_nbr(t_parameter *p, va_list *ap)
 		p->return_value += write(1, nbr + 1, --len);
 	else
 		p->return_value += write(1, nbr, len);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	free(nbr);
 	return (0);
 }

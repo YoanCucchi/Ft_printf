@@ -24,8 +24,11 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 	ft_len_zero_handling_octal(p, n, len);
 	if (!p->precision && !p->width && n == 0 && !p->sharp)
 		return (0);
-	else
+	else if (n != 0)
 		p->return_value += ft_recursive_octal(p, n, n);
+	len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n, len);
 	return (0);
 }
 

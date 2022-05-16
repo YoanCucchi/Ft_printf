@@ -15,10 +15,12 @@
 void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 {
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	if (n == 0 && p->dot)
+		len = 0;
 	if ((n < 0 || p->plus) && (p->specifier == 'd' || p->specifier == 'i') \
 	&& p->width && p->dot && (p->width > p->precision || p->width > len))
 		p->highest_value--;
-	if (p->width - p->precision > 0 && p->width - len > 0)
+	if (p->width > p->precision && !p->minus)
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
 			p->return_value += ft_print_char(' ');
 	if (p->plus && n >= 0 && (p->specifier == 'd' || p->specifier == 'i'))
@@ -77,4 +79,13 @@ int	who_is_biggest_of_3(int a, int b, int c)
 		return (b);
 	else
 		return (c);
+}
+
+void	minus_flag(t_parameter *p, long long n, int len)
+{
+	if (n == 0 && p->dot) // for %p at least
+		len = 0;
+	if (p->width - p->precision > 0 && p->width - len > 0)
+	while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+		p->return_value += ft_print_char(' ');
 }
