@@ -14,27 +14,20 @@
 
 void	ft_len_zero_handling(t_parameter *p, int n, int len)
 {
-	int sign;
-
-	sign = 0;
-	printf("len = %d\n", len);
-	parameter_print(p);
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if ((n < 0 || p->plus) && (p->specifier == 'd' || p->specifier == 'i') \
 	&& p->width && p->dot && (p->width > p->precision || p->width > len))
 		p->highest_value--;
-	if (p->width - p->precision > 0)
-	{
+	if (p->width - p->precision > 0 && p->width - len > 0)
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
-			p->return_value += ft_print_char('0');
-	}
+			p->return_value += ft_print_char(' ');
 	if (p->plus && n >= 0 && (p->specifier == 'd' || p->specifier == 'i'))
 		p->return_value += ft_print_char('+');
-	// else if (n < 0 && !sign &&(p->specifier == 'd' || p->specifier == 'i'))
-	// {
-	// 	p->return_value += ft_print_char('-');
-	// 	len--;
-	// }
+	else if (n < 0 && (p->specifier == 'd' || p->specifier == 'i'))
+	{
+		p->return_value += ft_print_char('-');
+		len--;
+	}
 	if (p->precision > len)
 		while (p->precision > len++)
 			p->return_value += ft_print_char('0');
