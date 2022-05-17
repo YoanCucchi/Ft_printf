@@ -599,16 +599,24 @@ int main(void)
 	//float_test();
 
 	int ret1, ret2;
-	// ret1 = printf("norm:%-15x\n", 2);
-	// ret2 = ft_printf("mine:%-15x\n", 2);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%15p\n", 0);
-	// ret2 = ft_printf("mine:%15p\n", 0);
-	// printf("%d %d\n", ret1, ret2);
-// marche pas 
-	ret1 = printf("norm:%13x\n", 0);
-	ret2 = ft_printf("mine:%13x\n", 0);
+	ret1 = printf("norm:%.s\n", "test");
+	ret2 = ft_printf("mine:%.s\n", "test");
 	printf("%d %d\n", ret1, ret2);
-	// system("leaks ft_printf");
+	ret1 = printf("norm:%s\n", "test");
+	ret2 = ft_printf("mine:%s\n", "test");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%5s\n", "test");
+	ret2 = ft_printf("mine:%5s\n", "test");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%2.5s\n", "test");
+	ret2 = ft_printf("mine:%2.5s\n", "test");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%s\n", "test");
+	ret2 = ft_printf("mine:%s\n", "test");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%s\n", "test");
+	ret2 = ft_printf("mine:%s\n", "test");
+	printf("%d %d\n", ret1, ret2);
+	system("leaks ft_printf");
 	return (0);
 }

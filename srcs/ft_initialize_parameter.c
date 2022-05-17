@@ -73,3 +73,17 @@ void	ft_reset_params(t_parameter *p)
 	p->format = NULL;
 	p->length = NULL;
 }
+
+void	param_free(t_parameter *p)
+{
+	p->sharp = 0;
+	p->zero = 0;
+	p->minus = 0;
+	p->plus = 0;
+	p->space = 0;
+	p->width = 0;
+	p->precision = 0;
+	p->specifier = 0;
+	p->highest_value = 0;
+	free(p->length);
+}

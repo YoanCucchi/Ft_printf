@@ -23,7 +23,10 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && !p->width && n == 0 && p->dot)
+	{
+		free(nbr);
 		return (0);
+	}
 	else if (nbr[0] == '-')
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -46,7 +49,10 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && !p->width && n == 0 && p->dot)
+	{
+		free(nbr);
 		return (0);
+	}
 	else if (nbr[0] == '-')
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -69,7 +75,10 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && !p->width && n == 0 && p->dot)
+	{
+		free(nbr);
 		return (0);
+	}
 	else if (nbr[0] == '-')
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -92,7 +101,10 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && !p->width && n == 0 && p->dot)
+	{
+		free(nbr);
 		return (0);
+	}
 	else if (nbr[0] == '-')
 		p->return_value += write(1, nbr + 1, --len);
 	else
@@ -115,7 +127,10 @@ int	ft_print_char_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && !p->width && n == 0 && p->dot)
+	{
+		free(nbr);
 		return (0);
+	}
 	else if (nbr[0] == '-')
 		p->return_value += write(1, nbr + 1, --len);
 	else

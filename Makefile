@@ -16,15 +16,15 @@ SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_print_utils.c \
 ./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c ./srcs/ft_length_flags.c \
 ./srcs/ft_print_flag_hex.c ./srcs/ft_print_octal.c ./srcs/ft_octal_helper.c \
 ./srcs/ft_hex_helper.c ./srcs/ft_print_unbr.c
-OBJ = ft_printf.o main.o ft_print_utils.o ft_parse.o \
+OBJ = ft_printf.o ft_print_utils.o ft_parse.o \
 ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o ft_print_hex.o \
 ft_length_flags.o ft_print_flag_hex.o ft_print_octal.o ft_octal_helper.o \
-ft_hex_helper.o ft_print_unbr.o
+ft_hex_helper.o ft_print_unbr.o main.o
 OBJ_DIR = ./objects
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
 LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra #-fsanitize=address #-Werror 
+FLAGS = -Wall -Wextra #-Werror
 CC = gcc
 
 DEFAULT = \033[0;39m

@@ -63,7 +63,6 @@ int			conversion_type(t_parameter *p, va_list *ap);
 */
 
 void		is_it_double_specifier(char *str, char *tmp, int i);
-void		param_free(t_parameter *p);
 int			who_is_biggest_of_2(int a, int b);
 int			who_is_biggest_of_3(int a, int b, int c);
 void		ft_len_zero_handling(t_parameter *p, long long n, int len);
@@ -126,6 +125,7 @@ void		parameter_print(t_parameter *p); // A VIRER !!!
 void		ft_init_params(t_parameter *p);
 void		ft_reset_params(t_parameter *p);
 t_parameter	*memalloc_struct(t_parameter *p);
+void		param_free(t_parameter *p);
 
 /*
 ** ft_length_flags.c

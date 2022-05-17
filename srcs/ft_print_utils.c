@@ -49,20 +49,6 @@ void	is_it_double_specifier(char *str, char *tmp, int i)
 	}
 }
 
-void	param_free(t_parameter *p)
-{
-	p->sharp = 0;
-	p->zero = 0;
-	p->minus = 0;
-	p->plus = 0;
-	p->space = 0;
-	p->width = 0;
-	p->precision = 0;
-	p->specifier = 0;
-	p->highest_value = 0;
-	free(p->length);
-}
-
 int	who_is_biggest_of_2(int a, int b)
 {
 	if (a > b)
@@ -73,9 +59,9 @@ int	who_is_biggest_of_2(int a, int b)
 
 int	who_is_biggest_of_3(int a, int b, int c)
 {
-	if (a > b && a > c)
+	if (a >= b && a >= c)
 		return (a);
-	else if (b > a && b > c)
+	else if (b >= a && b >= c)
 		return (b);
 	else
 		return (c);
@@ -83,9 +69,9 @@ int	who_is_biggest_of_3(int a, int b, int c)
 
 void	minus_flag(t_parameter *p, long long n, int len)
 {
-	if (n == 0 && p->dot) // for %p at least
+	if (n == 0 && p->dot)
 		len = 0;
-	if (p->width - p->precision > 0 && p->width - len > 0)
-	while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
-		p->return_value += ft_print_char(' ');
+	if (p->width > p->precision && p->width > len)
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+			p->return_value += ft_print_char(' ');
 }

@@ -53,6 +53,6 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 	}
 	if ((p->specifier == 'p' || (p->sharp && n != 0)) && !p->zero)
 		p->return_value += ft_putnstr("0x", 2);
-	while (p->precision - len++ > 0)
+	while (p->precision > len++)
 		p->return_value += ft_print_char('0');
 }
