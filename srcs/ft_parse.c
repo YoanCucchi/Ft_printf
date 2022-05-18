@@ -43,9 +43,22 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 		if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
+			{
 				p->width = va_arg(*ap, int);
-			else
+				if (p->width < 0)
+				{
+					p->width = p->width * (-1);
+					p->minus = 1;
+				}
+				str++;
+			}
+			if (ft_isdigit(*str))
+			{
+				p->width = 0;
 				p->width = ft_atoi(str);
+			}
+			else
+				str--;
 			checked = 1;
 		}
 		str++;
@@ -68,7 +81,14 @@ static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
 		if ((ft_isdigit(*str) || *str == '*') && !checked)
 		{
 			if (*str == '*')
+			{
 				p->precision = va_arg(*ap, int);
+				if (p->precision < 0)
+				{
+					p->precision = 0;
+					p->dot = 0;
+				}
+			}
 			else
 				p->precision = ft_atoi(str);
 			checked = 1;

@@ -12,6 +12,7 @@
 
 #include "./includes/ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 
 static void string_test()
@@ -322,28 +323,19 @@ int main(void)
 //	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 	int ret1,ret2;
-// marche toujours pas 
 
-	// ret1 = printf("norm:% 10.5d\n", 4242);
-	// ret2 = ft_printf("mine:% 10.5d\n", 4242);
-	// printf("%d %d\n", ret1, ret2);
-
-	ret1 = printf("norm:%+10.5d\n", 4242);
-	ret2 = ft_printf("mine:%+10.5d\n", 4242);
+	ret1 = printf("norm:%u\n", UINT_MAX);
+	ret2 = ft_printf("mine:%u\n", UINT_MAX);
 	printf("%d %d\n", ret1, ret2);
 
-	// ret1 = printf("norm:%-+10.5d\n", 4242);
-	// ret2 = ft_printf("mine:%-+10.5d\n", 4242);
+	// ret1 = printf("norm:{%.5s}\n", "42");
+	// ret2 = ft_printf("mine:{%.5s}\n", "42");
 	// printf("%d %d\n", ret1, ret2);
 
-	// ret1 = printf("norm:%03.2d\n", 0);
-	// ret2 = ft_printf("mine:%03.2d\n", 0);
+	// ret1 = printf("norm:%+-10.3d\n", 1234);
+	// ret2 = ft_printf("mine:%+-10.3d\n", 1234);
 	// printf("%d %d\n", ret1, ret2);
-
-	// ret1 = printf("norm:%03.2d\n", 1);
-	// ret2 = ft_printf("mine:%03.2d\n", 1);
-	// printf("%d %d\n", ret1, ret2);
-
+	
 	// ret1 = printf("norm:%ld\n", 922337203685477580);
 	// ret2 = ft_printf("mine:%ld\n", 922337203685477580);
 	// printf("%d %d\n", ret1, ret2);

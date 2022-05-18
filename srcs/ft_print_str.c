@@ -14,12 +14,12 @@
 
 static void	ft_len_zero_handling_str(t_parameter *p, int lowest, int len)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_2(p->precision, p->width);
 	if (p->precision > len)
 		lowest = len;
 	else
 		lowest = p->precision;
-	if (p->width >= p->precision && !p->minus && !p->dot)
+	if (p->width >= p->precision && !p->minus)
 	{
 		while (p->highest_value-- > lowest)
 		{
