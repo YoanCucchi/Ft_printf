@@ -40,19 +40,29 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 	if (p->specifier == 'p' || (p->sharp && n != 0))
 		p->highest_value -= 2;
 	if ((p->specifier == 'p' || (p->sharp && n != 0)) && p->zero)
-		p->return_value += ft_putnstr("0x", 2);
+	{
+		if (p->specifier == 'X')
+			p->return_value += ft_putnstr("0X", 2);
+		else
+			p->return_value += ft_putnstr("0x", 2);
+	}
 	if (p->width > p->precision && !p->minus)
 	{
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
-			if ((p->zero && n == 0) && (p->precision > len || !p->precision))
+			if ((p->zero) && (p->precision > len || !p->precision))
 				p->return_value += ft_print_char('0');
 			else
 				p->return_value += ft_print_char(' ');
 		}
 	}
 	if ((p->specifier == 'p' || (p->sharp && n != 0)) && !p->zero)
-		p->return_value += ft_putnstr("0x", 2);
+	{
+		if (p->specifier == 'X')
+			p->return_value += ft_putnstr("0X", 2);
+		else
+			p->return_value += ft_putnstr("0x", 2);
+	}
 	while (p->precision > len++)
 		p->return_value += ft_print_char('0');
 }

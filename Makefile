@@ -10,49 +10,49 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
-SRCS = ./srcs/ft_printf.c ./srcs/main.c ./srcs/ft_print_utils.c \
-./srcs/ft_parse.c ./srcs/ft_initialize_parameter.c ./srcs/ft_print_str.c \
-./srcs/ft_print_nbr.c ./srcs/ft_print_hex.c ./srcs/ft_length_flags.c \
-./srcs/ft_print_flag_hex.c ./srcs/ft_print_octal.c ./srcs/ft_octal_helper.c \
-./srcs/ft_hex_helper.c ./srcs/ft_print_unbr.c
-OBJ = ft_printf.o ft_print_utils.o ft_parse.o \
-ft_initialize_parameter.o ft_print_str.o ft_print_nbr.o ft_print_hex.o \
-ft_length_flags.o ft_print_flag_hex.o ft_print_octal.o ft_octal_helper.o \
-ft_hex_helper.o ft_print_unbr.o main.o
+NAME = libftprintf.a
+
+PRINTF_SRCS = ft_printf.c ft_print_utils.c \
+ft_parse.c ft_initialize_parameter.c ft_print_str.c \
+ft_print_nbr.c ft_print_hex.c ft_length_flags.c \
+ft_print_flag_hex.c ft_print_octal.c ft_octal_helper.c \
+ft_hex_helper.c ft_print_unbr.c
+
+LIBFT_SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
+ft_isdigit.c ft_isprint.c ft_itoa.c ft_memalloc.c ft_memccpy.c ft_memchr.c\
+ ft_memcmp.c ft_memcpy.c ft_memdel.c ft_memmove.c ft_memset.c ft_putchar.c\
+ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c ft_putnbr.c ft_putnbr_fd.c\
+ft_putstr.c ft_putstr_fd.c ft_strcat.c ft_strchr.c ft_strclr.c ft_strcmp.c\
+ft_strcpy.c ft_strdel.c ft_strdup.c ft_strequ.c ft_striter.c ft_striteri.c\
+ft_strjoin.c ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c\
+ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c\
+ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c\
+ft_toupper.c ft_atoi_unsigned.c ft_long_itoa.c ft_unsigned_long_itoa.c \
+ft_nbrlen.c ft_print_char.c ft_putnstr.c ft_octal_itoa.c
+
+PRINTF_OBJ = $(addprefix $(PRINTF_OBJ_DIR), $(PRINTF_SRCS:%.c=%.o))
+PRINTF_SRC = $(addprefix $(PRINTF_SRCS_DIR), $(PRINTF_SRCS:%.c=%.c))
+PRINTF_SRCS_DIR = ./srcs/
+PRINTF_OBJ_DIR = ./objects/
+OBJ = $(PRINTF_SRCS:.c=.o)
+LIBFT_OBJ = $(addprefix $(LIBFT_OBJ_DIR), $(LIBFT_SRCS:.c=.o))
+LIBFT_OBJ_DIR = ./libft/objects/
 OBJ_DIR = ./objects
+
+INCLUDES = -I includes/ft_printf.h
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
-LIBFT_PRINTF = libftprintf.a
-FLAGS = -Wall -Wextra #-Werror
+FLAGS = -Wall -Wextra -Werror
 CC = gcc
-
-DEFAULT = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-PURPLE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
-
-.PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME):
 	@make -C $(LIBFT_PATH)
-	@$(CC) $(FLAGS) -c $(SRCS)
-	@echo "$(GREEN)$(NAME) compiled!$(DEFAULT)"
-	@cp $(LIBFT_PATH)$(LIBFT) ./$(LIBFT_PRINTF)
-	@echo "$(CYAN)$(LIBFT) copied in root with name : $(LIBFT_PRINTF)$(DEFAULT)"
-	@echo "$(PURPLE)Compiling $(NAME) with library..$(DEFAULT)"
-	@$(CC) $(OBJ) $(LIBFT_PRINTF) $(FLAGS) -o $(NAME)
-	@echo "$(GREEN)$(NAME) with $(LIBFT_PRINTF) compiled!$(DEFAULT)"
+	@$(CC) $(FLAGS) -c $(PRINTF_SRC) $(INCLUDES)
 	@mkdir -p $(OBJ_DIR)
 	@mv $(OBJ) $(OBJ_DIR)
-	@echo "$(CYAN)objects moved in $(OBJ_DIR)$(DEFAULT)"
+	@ar rcs $(NAME) $(PRINTF_OBJ) $(LIBFT_OBJ)
 
 git:
 	git add -A
@@ -71,3 +71,5 @@ fclean: clean
 	@echo "$(GRAY)$(NAME) cleaned!$(DEFAULT)"
 
 re: fclean all
+
+.PHONY: all clean fclean re

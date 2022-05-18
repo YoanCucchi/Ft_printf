@@ -75,7 +75,7 @@ int	ft_print_c(t_parameter *p, va_list *ap)
 	lowest = 0;
 	len = 0;
 	c = va_arg(*ap, int);
-	if (c)
+	if (c || c == 0)
 		len = 1;
 	if (!p->precision && !p->dot)
 		p->precision = len;

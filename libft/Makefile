@@ -26,7 +26,10 @@ ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c\
 ft_toupper.c ft_atoi_unsigned.c ft_long_itoa.c ft_unsigned_long_itoa.c \
 ft_nbrlen.c ft_print_char.c ft_putnstr.c ft_octal_itoa.c
 
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(SOURCES:%.c=$(DIR_OBJ)%.o)
+
+DIR_OBJ = ./objects/
+DIR_SRC = ./srcs/
 
 # Colors
 DEFAULT = \033[0;39m
@@ -41,18 +44,18 @@ WHITE = \033[0;97m
 
 all: $(NAME)
 
-.c.o: $(SOURCES)
-	@gcc $(FLAGS) -c $< -o $@
-
 $(NAME): $(OBJECTS)
 	@echo "$(PURPLE)Creating libft..$(DEFAULT)"
 	@ar rcs $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
 	@echo "$(GREEN)libft created!$(DEFAULT)"
+
+$(DIR_OBJ)%.o:$(DIR_SRC)%.c
+	@mkdir -p $(dir $@)
+	@gcc $(FLAGS) -c $< -o $@
 
 clean:
 	@echo "$(PURPLE)Cleaning all objects..$(DEFAULT)"
-	@rm -f *.o
+	@rm -rf $(DIR_OBJ)
 	@echo "$(GRAY)$(OBJECTS) cleaned!$(DEFAULT)"
 
 fclean: clean

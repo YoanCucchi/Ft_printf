@@ -22,7 +22,7 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
-	if (!p->precision && !p->width && n == 0 && p->dot)
+	if (!p->precision && n == 0 && p->dot)
 	{
 		free(nbr);
 		return (0);
