@@ -286,17 +286,17 @@ void	pointer_test()
 	int *i = &a;
 	char *s = "abcde";
 	int ret1, ret2;
-	ret1 = printf("norm:%2.5x\n", 123456789);
-	ret2 = ft_printf("mine:%2.5x\n", 123456789);
+	ret1 = printf("norm:%-19p\n", &a);
+	ret2 = ft_printf("mine:%-19p\n", &a);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%5.2x\n", 123456789);
-	ret2 = ft_printf("mine:%5.2x\n", 123456789);
+	ret1 = printf("norm:%-5p\n", &a);
+	ret2 = ft_printf("mine:%-5p\n", &a);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%4.4x\n", 123456789);
-	ret2 = ft_printf("mine:%4.4x\n", 123456789);
+	ret1 = printf("norm:%4p\n", &s);
+	ret2 = ft_printf("mine:%4p\n", &s);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%5x\n", 1);
-	ret2 = ft_printf("mine:%5x\n", 1);
+	ret1 = printf("norm:%5p\n", 0);
+	ret2 = ft_printf("mine:%5p\n", 0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -311,7 +311,7 @@ int main(void)
 	//X_test();
 	//percent_test();
 	//xX_hash_test();
-	//pointer_test();
+	// pointer_test();
 
 	//o_test();
 	//o_hash_test();
@@ -323,14 +323,35 @@ int main(void)
 //	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 	int ret1,ret2;
+	int strlen;
+	// char *test;
 
-	ret1 = printf("norm:%u\n", UINT_MAX);
-	ret2 = ft_printf("mine:%u\n", UINT_MAX);
-	printf("%d %d\n", ret1, ret2);
-
-	// ret1 = printf("norm:{%.5s}\n", "42");
-	// ret2 = ft_printf("mine:{%.5s}\n", "42");
+	// test = "hello world";
+	strlen = 10;
+	// ret1 = printf("norm:%u\n", UINT_MAX);
+	// ret2 = ft_printf("mine:%u\n", UINT_MAX);
 	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:%u\n", 4294967295);
+	// ret2 = ft_printf("mine:%u\n", 4294967295);
+	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:%u\n", 0xffffffff);
+	// ret2 = ft_printf("mine:%u\n", 0xffffffff);
+	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:%-15p\n", 0);
+	// ret2 = ft_printf("mine:%-15p\n", 0);
+	// printf("%d %d\n", ret1, ret2);
+
+
+	// ret1 = printf("norm:%5p\n", 0);
+	// ret2 = ft_printf("mine:%5p\n", 0);
+	// printf("%d %d\n", ret1, ret2);
+
+	ret1 = printf("norm:{%-15p}\n", &test);
+	ret2 = ft_printf("mine:{%-15p}\n", &test);
+	printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:%+-10.3d\n", 1234);
 	// ret2 = ft_printf("mine:%+-10.3d\n", 1234);

@@ -40,6 +40,7 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 	if (p->width > p->precision && !p->minus)
 	{
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+		{
 			if (p->width > len)
 			{
 				if (p->zero)
@@ -47,6 +48,7 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 				else
 					p->return_value += ft_print_char(' ');
 			}
+		}
 	}
 	if (p->precision > len)
 		while (p->precision > len++)

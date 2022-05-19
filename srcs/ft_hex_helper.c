@@ -35,6 +35,8 @@ int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 {
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	// printf("high debut %d\n", p->highest_value);
+	// printf("len %d\n", len);
 	if (n == 0 && p->dot)
 		len = 0;
 	if (p->specifier == 'p' || (p->sharp && n != 0))
@@ -46,8 +48,15 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 		else
 			p->return_value += ft_putnstr("0x", 2);
 	}
+	// parameter_print(p);
+	// printf("high %d\n", p->highest_value);
 	if (p->width > p->precision && !p->minus)
 	{
+		if (p->highest_value + 3 > len && (p->specifier == 'p') && n != 0 && !p->precision)
+		{
+			// printf("here");
+			p->highest_value--;
+		}
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
 		{
 			if ((p->zero) && (p->precision > len || !p->precision))
