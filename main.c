@@ -336,8 +336,8 @@ int main(void)
 //	printf("%d %d\n", ret1, ret2);
 // "mine:%0#%%4.08Lp\n" doesn't work with double %
 	int ret1,ret2;
-	ret1 = printf("norm:{%#8x}\n", 42);
-	ret2 = ft_printf("mine:{%#8x}\n", 42);
+	ret1 = printf("norm:{%#08x}\n", 42);
+	ret2 = ft_printf("mine:{%#08x}\n", 42);
 	printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:{%#2.8x}\n", 42);

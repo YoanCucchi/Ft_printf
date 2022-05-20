@@ -49,6 +49,7 @@ typedef struct s_parameter
 	char	*length;
 	int		return_value;
 	int		highest_value;
+	int		checked;
 }			t_parameter;
 
 /*
