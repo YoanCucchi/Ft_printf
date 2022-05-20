@@ -34,7 +34,7 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
 	if (n == 0 && p->dot && !p->sharp)
 		len = 0;
-	if (p->sharp && n != 0 && \
+	if (p->sharp && n != 0 && p->precision <= len && \
 	(p->width >= p->precision || !p->precision || p->highest_value < len))
 		p->highest_value--;
 	if (p->width > p->precision && !p->minus)
@@ -43,16 +43,19 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 		{
 			if (p->width > len)
 			{
-				if (p->zero)
+				if (p->zero && !p->precision && !p->dot)
 					p->return_value += ft_print_char('0');
 				else
 					p->return_value += ft_print_char(' ');
 			}
 		}
 	}
+	if (p->sharp && n != 0)
+	{
+		p->return_value += ft_print_char('0');
+		len++;
+	}
 	if (p->precision > len)
 		while (p->precision > len++)
 			p->return_value += ft_print_char('0');
-	else if (p->precision < len && p->sharp && n != 0)
-		p->return_value += ft_print_char('0');
 }

@@ -40,7 +40,7 @@ int	ft_print_p(t_parameter *p, va_list *ap)
 
 	n = va_arg(*ap, long);
 	len = ft_nbrlen(n, 16);
-	ft_len_zero_handling_hex(p, n, len);
+	ft_len_zero_handling_p(p, n, len);
 	if (n == 0 && !p->dot)
 		p->return_value += ft_print_char('0');
 	else if (n != 0)

@@ -48,7 +48,7 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
-	if (!p->precision && !p->width && n == 0 && p->dot)
+	if (n == 0 && p->dot)
 	{
 		free(nbr);
 		return (0);
@@ -74,7 +74,7 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
-	if (!p->precision && !p->width && n == 0 && p->dot)
+	if (n == 0 && p->dot)
 	{
 		free(nbr);
 		return (0);
@@ -100,7 +100,7 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
-	if (!p->precision && !p->width && n == 0 && p->dot)
+	if (n == 0 && p->dot)
 	{
 		free(nbr);
 		return (0);
@@ -126,7 +126,7 @@ int	ft_print_char_nbr(t_parameter *p, va_list *ap)
 	nbr = ft_long_itoa(n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
-	if (!p->precision && !p->width && n == 0 && p->dot)
+	if (n == 0 && p->dot)
 	{
 		free(nbr);
 		return (0);

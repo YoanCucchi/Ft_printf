@@ -156,6 +156,7 @@ void		ft_len_zero_handling_octal(t_parameter *p, long long n, int len);
 
 int			ft_recursive_hex(t_parameter *p, size_t n, size_t iteration);
 void		ft_len_zero_handling_hex(t_parameter *p, long long n, int len);
+void		ft_len_zero_handling_p(t_parameter *p, long long n, int len);
 
 /*
 ** colors.c
