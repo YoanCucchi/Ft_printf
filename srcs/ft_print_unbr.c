@@ -15,109 +15,105 @@
 int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 {
 	unsigned int	n;
-	int				len;
 	char			*nbr;
 
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
-	len = ft_strlen(nbr);
-	ft_len_zero_handling(p, n, len);
+	p->len = ft_strlen(nbr);
+	ft_len_zero_handling(p, n);
 	if (!p->precision && n == 0 && p->dot)
 	{
 		if (p->minus)
-			minus_flag(p, n, len);
+			minus_flag(p, n);
 		free(nbr);
 		return (0);
 	}
 	else if (n == 0 && p->precision <= 0)
 		p->return_value += ft_print_char('0');
 	else
-		p->return_value += write(1, nbr, len);
-	len = ft_strlen(nbr);
+		p->return_value += write(1, nbr, p->len);
+	p->len = ft_strlen(nbr);
 	if (p->minus)
-		minus_flag(p, n, len);
+		minus_flag(p, n);
 	free(nbr);
 	return (0);
 }
 
 int	ft_print_ulong_nbr(t_parameter *p, va_list *ap)
 {
-	int				len;
 	char			*nbr;
 	unsigned long	n;
 
 	n = va_arg(*ap, long);
 	nbr = ft_unsigned_long_itoa(n);
-	len = ft_strlen(nbr);
-	ft_len_zero_handling(p, n, len);
+	p->len = ft_strlen(nbr);
+	ft_len_zero_handling(p, n);
 	if (!p->precision && n == 0 && p->dot)
 	{
 		if (p->minus)
-			minus_flag(p, n, len);
+			minus_flag(p, n);
 		free(nbr);
 		return (0);
 	}
 	else if (n == 0 && p->precision <= 0)
 		p->return_value += ft_print_char('0');
 	else
-		p->return_value += write(1, nbr, len);
-	len = ft_strlen(nbr);
+		p->return_value += write(1, nbr, p->len);
+	p->len = ft_strlen(nbr);
 	if (p->minus)
-		minus_flag(p, n, len);
+		minus_flag(p, n);
 	free(nbr);
 	return (0);
 }
 
 int	ft_print_ushort_nbr(t_parameter *p, va_list *ap)
 {
-	int				len;
 	char			*nbr;
 	unsigned short	n;
 
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
-	len = ft_strlen(nbr);
-	ft_len_zero_handling(p, n, len);
+	p->len = ft_strlen(nbr);
+	ft_len_zero_handling(p, n);
 	if (!p->precision && n == 0 && p->dot)
 	{
 		if (p->minus)
-			minus_flag(p, n, len);
+			minus_flag(p, n);
 		free(nbr);
 		return (0);
 	}
 	else if (n == 0 && p->precision <= 0)
 		p->return_value += ft_print_char('0');
 	else
-		p->return_value += write(1, nbr, len);
-	len = ft_strlen(nbr);
+		p->return_value += write(1, nbr, p->len);
+	p->len = ft_strlen(nbr);
 	if (p->minus)
-		minus_flag(p, n, len);
+		minus_flag(p, n);
 	free(nbr);
 	return (0);
 }
 
 int	ft_print_uchar_nbr(t_parameter *p, va_list *ap)
 {
-	int				len;
 	char			*nbr;
 	unsigned char	n;
 
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
-	len = ft_strlen(nbr);
+	p->len = ft_strlen(nbr);
 	if (!p->precision && n == 0 && p->dot)
 	{
-		ft_len_zero_handling(p, n, len);
+		ft_len_zero_handling(p, n);
 		if (p->minus)
-			minus_flag(p, n, len);
+			minus_flag(p, n);
 		free(nbr);
 		return (0);
 	}
-	ft_len_zero_handling(p, n, len);
-	p->return_value += write(1, nbr, len);
-	len = ft_strlen(nbr);
+	ft_len_zero_handling(p, n);
+	p->return_value += write(1, nbr, p->len);
+	p->len = ft_strlen(nbr);
 	if (p->minus)
-		minus_flag(p, n, len);
+		minus_flag(p, n);
 	free(nbr);
 	return (0);
 }

@@ -29,19 +29,19 @@ int	ft_recursive_octal(t_parameter *p, size_t n, size_t iteration)
 	return (0);
 }
 
-void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
+void	ft_len_zero_handling_octal(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot && !p->sharp)
-		len = 0;
-	if (p->sharp && n != 0 && p->precision <= len && \
-	(p->width >= p->precision || !p->precision || p->highest_value < len))
+		p->len = 0;
+	if (p->sharp && n != 0 && p->precision <= p->len && \
+	(p->width >= p->precision || !p->precision || p->highest_value < p->len))
 		p->highest_value--;
 	if (p->width > p->precision && !p->minus)
 	{
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 		{
-			if (p->width > len)
+			if (p->width > p->len)
 			{
 				if (p->zero && !p->precision && !p->dot)
 					p->return_value += ft_print_char('0');
@@ -53,9 +53,9 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n, int len)
 	if (p->sharp && n != 0)
 	{
 		p->return_value += ft_print_char('0');
-		len++;
+		p->len++;
 	}
-	if (p->precision > len)
-		while (p->precision > len++)
+	if (p->precision > p->len)
+		while (p->precision-- > p->len)
 			p->return_value += ft_print_char('0');
 }

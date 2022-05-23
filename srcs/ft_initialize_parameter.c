@@ -27,6 +27,7 @@ void	parameter_print(t_parameter *p)
 	printf("return_value = %d\n", p->return_value);
 	printf("highest_value = %d\n", p->highest_value);
 	printf("checked = %d\n", p->checked);
+	printf("len = %d\n", p->len);
 	printf("minus_check = %d\n", p->minus_check);
 	printf("format = %s\n", p->format);
 	printf("length = %s\n", p->length);
@@ -58,6 +59,7 @@ void	ft_init_params(t_parameter *p)
 	p->highest_value = 0;
 	p->checked = 0;
 	p->minus_check = 0;
+	p->len = 0;
 	p->format = NULL;
 	p->length = NULL;
 }
@@ -76,6 +78,7 @@ void	ft_reset_params(t_parameter *p)
 	p->highest_value = 0;
 	p->checked = 0;
 	p->minus_check = 0;
+	p->len = 0;
 	p->format = NULL;
 	p->length = NULL;
 }
@@ -93,5 +96,6 @@ void	param_free(t_parameter *p)
 	p->highest_value = 0;
 	p->checked = 0;
 	p->minus_check = 0;
+	p->len = 0;
 	free(p->length);
 }

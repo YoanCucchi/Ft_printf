@@ -41,55 +41,55 @@ int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 	return (0);
 }
 
-void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
+void	ft_len_zero_handling_hex(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
-		len = 0;
+		p->len = 0;
 	if (p->sharp && n != 0)
 		p->highest_value -= 2;
 	if (p->width > p->precision && !p->minus)
 	{
 		if (p->sharp && (p->dot || p->zero) && n != 0 &&\
-		(p->precision < len || !p->precision))
+		(p->precision < p->len || !p->precision))
 			zerox_print(p);
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 		{
-			if (p->zero && !p->dot && (p->precision < len || !p->precision))
+			if (p->zero && !p->dot && (p->precision < p->len || !p->precision))
 				p->return_value += ft_print_char('0');
 			else
 				p->return_value += ft_print_char(' ');
 		}
 	}
 	if (p->sharp && n != 0 && !p->checked && ((!p->precision && !p->dot) || \
-	p->precision >= len || (!p->precision && p->dot)))
+	p->precision >= p->len || (!p->precision && p->dot)))
 		zerox_print(p);
-	while (p->precision > len++)
+	while (p->precision > p->len++)
 		p->return_value += ft_print_char('0');
 }
 
-void	ft_len_zero_handling_p(t_parameter *p, long long n, int len)
+void	ft_len_zero_handling_p(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
-		len = 0;
+		p->len = 0;
 	p->highest_value -= 2;
-	if (n != 0 && p->precision > len)
+	if (n != 0 && p->precision > p->len)
 		p->return_value += ft_putnstr("0x", 2);
 	if (p->width > p->precision && !p->minus)
 	{
-		if (p->highest_value + 3 > len && n != 0 && !p->precision)
+		if (p->highest_value + 3 > p->len && n != 0 && !p->precision)
 			p->highest_value--;
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 		{
-			if ((p->zero) && (p->precision > len || !p->precision))
+			if ((p->zero) && (p->precision > p->len || !p->precision))
 				p->return_value += ft_print_char('0');
 			else
 				p->return_value += ft_print_char(' ');
 		}
 	}
-	if (n == 0 || p->precision < len)
+	if (n == 0 || p->precision < p->len)
 		p->return_value += ft_putnstr("0x", 2);
-	while (p->precision > len++)
+	while (p->precision-- > p->len)
 		p->return_value += ft_print_char('0');
 }

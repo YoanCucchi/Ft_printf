@@ -12,20 +12,20 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_len_zero_handling(t_parameter *p, long long n, int len)
+void	ft_len_zero_handling(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, len);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
-		len = 0;
-	if (((n < 0 && p->precision > len) || p->plus) && (p->specifier == 'd' || p->specifier == 'i') \
+		p->len = 0;
+	if (((n < 0 && p->precision > p->len) || p->plus) && (p->specifier == 'd' || p->specifier == 'i') \
 	&& p->width && p->dot && \
-	(p->width > p->precision && (p->precision > len || p->width > len)))
+	(p->width > p->precision && (p->precision > p->len || p->width > p->len)))
 		p->highest_value--;
-	if (n < 0 && !p->minus_check && (!p->zero || !p->precision) && ((p->width < p->precision || p->width < len) || p->zero) && (p->specifier == 'd' || p->specifier == 'i'))
+	if (n < 0 && !p->minus_check && (!p->zero || !p->precision) && ((p->width < p->precision || p->width < p->len) || p->zero) && (p->specifier == 'd' || p->specifier == 'i'))
 	{
 		p->return_value += ft_print_char('-');
 		p->highest_value--;
-		len--;
+		p->len--;
 		p->minus_check = 1;
 	}
 	else if (p->plus && p->zero && n >= 0 && (p->specifier == 'd' || p->specifier == 'i'))
@@ -33,16 +33,16 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 		p->return_value += ft_print_char('+');
 		p->highest_value--;
 	}
-	else if (p->space && !p->plus && n >= 0 && p->specifier != 'u' && p->precision < len)
+	else if (p->space && !p->plus && n >= 0 && p->specifier != 'u' && p->precision < p->len)
 	{
 		p->return_value += ft_print_char(' ');
 		p->highest_value--;
 	}
 	if (p->width > p->precision && !p->minus)
 	{
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 		{
-			if (!p->zero || p->precision >= len)
+			if (!p->zero || p->precision >= p->len)
 				p->return_value += ft_print_char(' ');
 			else
 				p->return_value += ft_print_char('0');
@@ -53,14 +53,14 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 		p->return_value += ft_print_char('+');
 		p->highest_value--;
 	}
-	if (n < 0 && !p->minus_check && (p->width > p->precision || p->width > len) && (p->specifier == 'd' || p->specifier == 'i'))
+	if (n < 0 && !p->minus_check && (p->width > p->precision || p->width > p->len) && (p->specifier == 'd' || p->specifier == 'i'))
 	{
 		p->return_value += ft_print_char('-');
 		p->highest_value--;
-		len--;
+		p->len--;
 	}
-	if (p->precision > len)
-		while (p->precision > len++)
+	if (p->precision > p->len)
+		while (p->precision-- > p->len)
 			p->return_value += ft_print_char('0');
 }
 
@@ -96,15 +96,15 @@ int	who_is_biggest_of_3(int a, int b, int c)
 		return (c);
 }
 
-void	minus_flag(t_parameter *p, long long n, int len)
+void	minus_flag(t_parameter *p, long long n)
 {
 	if (n == 0 && p->dot)
-		len = 0;
+		p->len = 0;
 	if (p->plus || n < 0)
 		p->highest_value++;
-	if (p->specifier == 'p' && p->highest_value + 3 > len && n != 0)
+	if (p->specifier == 'p' && p->highest_value + 3 > p->len && n != 0)
 		p->highest_value--;
-	if (p->width > p->precision && p->width > len)
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
+	if (p->width > p->precision && p->width > p->len)
+		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 			p->return_value += ft_print_char(' ');
 }

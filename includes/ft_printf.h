@@ -51,6 +51,7 @@ typedef struct s_parameter
 	int		highest_value;
 	int		checked;
 	int		minus_check;
+	int		len;
 }			t_parameter;
 
 /*
@@ -67,8 +68,8 @@ int			conversion_type(t_parameter *p, va_list *ap);
 void		is_it_double_specifier(char *str, char *tmp, int i);
 int			who_is_biggest_of_2(int a, int b);
 int			who_is_biggest_of_3(int a, int b, int c);
-void		ft_len_zero_handling(t_parameter *p, long long n, int len);
-void		minus_flag(t_parameter *p, long long n, int len);
+void		ft_len_zero_handling(t_parameter *p, long long n);
+void		minus_flag(t_parameter *p, long long n);
 
 /*
 ** ft_print_str.c
@@ -150,15 +151,15 @@ int			ft_print_char_octal(t_parameter *p, va_list *ap);
 */
 
 int			ft_recursive_octal(t_parameter *p, size_t n, size_t iteration);
-void		ft_len_zero_handling_octal(t_parameter *p, long long n, int len);
+void		ft_len_zero_handling_octal(t_parameter *p, long long n);
 
 /*
 ** ft_hex_helper.c
 */
 
 int			ft_recursive_hex(t_parameter *p, size_t n, size_t iteration);
-void		ft_len_zero_handling_hex(t_parameter *p, long long n, int len);
-void		ft_len_zero_handling_p(t_parameter *p, long long n, int len);
+void		ft_len_zero_handling_hex(t_parameter *p, long long n);
+void		ft_len_zero_handling_p(t_parameter *p, long long n);
 
 /*
 ** colors.c

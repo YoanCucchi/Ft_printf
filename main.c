@@ -348,8 +348,8 @@ int main(void)
 	// ret2 = ft_printf("mine:%05d\n", -42);
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:%014.6d\n", -42);
-	ret2 = ft_printf("mine:%014.6d\n", -42);
+	ret1 = printf("norm:{%5.6d}\n", 42);
+	ret2 = ft_printf("mine:{%5.6d}\n", 42);
 	printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%#05.2X\n", 52);
 	// ret2 = ft_printf("mine:%#05.2X\n", 52);
