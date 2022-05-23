@@ -22,7 +22,7 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
 		p->minus_check = 1;
-	ft_len_zero_handling(p, n);
+	ft_len_zero_handling_nbr(p, n);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -51,7 +51,7 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
 		p->minus_check = 1;
-	ft_len_zero_handling(p, n);
+	ft_len_zero_handling_nbr(p, n);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -80,7 +80,7 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
 		p->minus_check = 1;
-	ft_len_zero_handling(p, n);
+	ft_len_zero_handling_nbr(p, n);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -109,7 +109,7 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
 		p->minus_check = 1;
-	ft_len_zero_handling(p, n);
+	ft_len_zero_handling_nbr(p, n);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -138,7 +138,7 @@ int	ft_print_char_nbr(t_parameter *p, va_list *ap)
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
 		p->minus_check = 1;
-	ft_len_zero_handling(p, n);
+	ft_len_zero_handling_nbr(p, n);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -150,7 +150,6 @@ int	ft_print_char_nbr(t_parameter *p, va_list *ap)
 		p->return_value += write(1, nbr + 1, p->len);
 	else
 		p->return_value += write(1, nbr, p->len);
-	p->len = 0;
 	p->len = ft_strlen(nbr);
 	if (p->minus)
 		minus_flag(p, n);

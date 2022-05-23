@@ -68,7 +68,6 @@ int			conversion_type(t_parameter *p, va_list *ap);
 void		is_it_double_specifier(char *str, char *tmp, int i);
 int			who_is_biggest_of_2(int a, int b);
 int			who_is_biggest_of_3(int a, int b, int c);
-void		ft_len_zero_handling(t_parameter *p, long long n);
 void		minus_flag(t_parameter *p, long long n);
 
 /*
@@ -97,6 +96,12 @@ int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
 int			ft_print_ushort_nbr(t_parameter *p, va_list *ap);
 int			ft_print_ulong_nbr(t_parameter *p, va_list *ap);
 int			ft_print_uchar_nbr(t_parameter *p, va_list *ap);
+
+/*
+** ft_nbr_helper.c
+*/
+
+void		ft_len_zero_handling_nbr(t_parameter *p, long long n);
 
 /*
 ** ft_print_hex.c
