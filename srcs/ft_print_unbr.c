@@ -24,6 +24,8 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -50,6 +52,8 @@ int	ft_print_ulong_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -76,6 +80,8 @@ int	ft_print_ushort_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -101,6 +107,8 @@ int	ft_print_uchar_nbr(t_parameter *p, va_list *ap)
 	len = ft_strlen(nbr);
 	if (!p->precision && n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}

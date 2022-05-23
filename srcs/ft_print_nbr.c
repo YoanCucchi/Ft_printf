@@ -24,6 +24,8 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -50,6 +52,8 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -76,6 +80,8 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -102,6 +108,8 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}
@@ -128,6 +136,8 @@ int	ft_print_char_nbr(t_parameter *p, va_list *ap)
 	ft_len_zero_handling(p, n, len);
 	if (n == 0 && p->dot)
 	{
+		if (p->minus)
+			minus_flag(p, n, len);
 		free(nbr);
 		return (0);
 	}

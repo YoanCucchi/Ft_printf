@@ -333,12 +333,14 @@ int main(void)
 //	int ret1, ret2;;
 //	ret1 = printf("norm:%hu\n", -32768);
 //	ret2 = ft_printf("mine:%hu\n", -32768);
-//	printf("%d %d\n", ret1, ret2);
-// "mine:%0#%%4.08Lp\n" doesn't work with double %
 	int ret1,ret2;
-	ret1 = printf("norm:{%#08x}\n", 42);
-	ret2 = ft_printf("mine:{%#08x}\n", 42);
+	ret1 = printf("norm:{%u}\n", "74294967295");
+	ret2 = ft_printf("mine:{%u}\n", "74294967295");
 	printf("%d %d\n", ret1, ret2);
+// probleme avec hhu hhx avec precision 0
+// avec - 0000000000042 probleme du - pas print au bon endroit
+// probleme avec %u sur gros nombres
+// probleme 0x avec printf("norm:{%#5.0x}\n", 0);
 
 	// ret1 = printf("norm:{%#2.8x}\n", 42);
 	// ret2 = ft_printf("mine:{%#2.8x}\n", 42);
@@ -346,14 +348,6 @@ int main(void)
 
 	// ret1 = printf("norm:%5.hhx%5.0hhx\n",0, 0);
 	// ret2 = ft_printf("mine:%5.hhx%5.0hhx\n",0, 0);
-	// printf("%d %d\n", ret1, ret2);
-
-	// ret1 = printf("norm:%u\n", 4294967295);
-	// ret2 = ft_printf("mine:%u\n", 4294967295);
-	// printf("%d %d\n", ret1, ret2);
-
-	// ret1 = printf("norm:%u\n", 0xffffffff);
-	// ret2 = ft_printf("mine:%u\n", 0xffffffff);
 	// printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:%#05.2X\n", 52);
@@ -428,6 +422,6 @@ int main(void)
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// printf("%d %d\n", ret1, ret2);
-	//system("leaks ft_printf");
+	// system("leaks a.out");
 	return (0);
 }

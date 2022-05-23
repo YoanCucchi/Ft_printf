@@ -50,7 +50,7 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n, int len)
 		p->highest_value -= 2;
 	if (p->width > p->precision && !p->minus)
 	{
-		if (p->sharp && (p->dot || p->zero) && \
+		if (p->sharp && (p->dot || p->zero) && n != 0 &&\
 		(p->precision < len || !p->precision))
 			zerox_print(p);
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, len))
