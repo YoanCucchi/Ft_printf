@@ -19,6 +19,7 @@ int	ft_print_char_hex(t_parameter *p, va_list *ap)
 
 	n = va_arg(*ap, int);
 	len = ft_nbrlen(n, 16);
+	ft_len_zero_handling_hex(p, n, len);
 	if (n == 0 && !p->dot)
 		p->return_value += ft_print_char('0');
 	else if (n != 0)

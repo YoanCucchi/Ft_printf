@@ -21,11 +21,12 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 	&& p->width && p->dot && \
 	(p->width > p->precision && (p->precision > len || p->width > len)))
 		p->highest_value--;
-	if (n < 0 && p->zero && (p->specifier == 'd' || p->specifier == 'i'))
+	if (n < 0 && !p->minus_check && (!p->zero || !p->precision) && ((p->width < p->precision || p->width < len) || p->zero) && (p->specifier == 'd' || p->specifier == 'i'))
 	{
 		p->return_value += ft_print_char('-');
 		p->highest_value--;
 		len--;
+		p->minus_check = 1;
 	}
 	else if (p->plus && p->zero && n >= 0 && (p->specifier == 'd' || p->specifier == 'i'))
 	{
@@ -52,7 +53,7 @@ void	ft_len_zero_handling(t_parameter *p, long long n, int len)
 		p->return_value += ft_print_char('+');
 		p->highest_value--;
 	}
-	if (n < 0 && !p->zero && (p->specifier == 'd' || p->specifier == 'i'))
+	if (n < 0 && !p->minus_check && (p->width > p->precision || p->width > len) && (p->specifier == 'd' || p->specifier == 'i'))
 	{
 		p->return_value += ft_print_char('-');
 		p->highest_value--;

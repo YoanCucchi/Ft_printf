@@ -75,6 +75,5 @@ int		ft_nbrlen(unsigned int n, int base);
 int		ft_print_char(int c);
 int		ft_putnstr(char const *s, int n);
 char	*ft_octal_itoa(unsigned long long n);
-char	*ft_itoa_base(unsigned long long n, int base);
 
 #endif

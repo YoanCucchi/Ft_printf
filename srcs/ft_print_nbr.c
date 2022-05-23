@@ -21,6 +21,8 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	n = va_arg(*ap, int);
 	nbr = ft_itoa(n);
 	len = ft_strlen(nbr);
+	if (p->zero && n < 0 && p->precision > p->width)
+		p->minus_check = 1;
 	ft_len_zero_handling(p, n, len);
 	if (n == 0 && p->dot)
 	{
