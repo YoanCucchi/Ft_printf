@@ -53,10 +53,7 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 				str++;
 			}
 			if (ft_isdigit(*str))
-			{
-				p->width = 0;
 				p->width = ft_atoi(str);
-			}
 			else
 				str--;
 			checked = 1;
