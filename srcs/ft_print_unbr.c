@@ -18,8 +18,8 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	int				len;
 	char			*nbr;
 
-	n = va_arg(*ap, int);
-	nbr = ft_itoa_unsigned(n);
+	n = (unsigned long long)va_arg(*ap, unsigned int);
+	nbr = ft_itoa((unsigned)n);
 	len = ft_strlen(nbr);
 	ft_len_zero_handling(p, n, len);
 	if (!p->precision && n == 0 && p->dot)

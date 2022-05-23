@@ -334,8 +334,8 @@ int main(void)
 //	ret1 = printf("norm:%hu\n", -32768);
 //	ret2 = ft_printf("mine:%hu\n", -32768);
 	int ret1,ret2;
-	ret1 = printf("norm:{%u}\n", "74294967295");
-	ret2 = ft_printf("mine:{%u}\n", "74294967295");
+	ret1 = printf("norm:{%u}\n", -742);
+	ret2 = ft_printf("mine:{%u}\n", -742);
 	printf("%d %d\n", ret1, ret2);
 // probleme avec hhu hhx avec precision 0
 // avec - 0000000000042 probleme du - pas print au bon endroit

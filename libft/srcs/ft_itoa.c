@@ -12,56 +12,49 @@
 
 #include "../includes/libft.h"
 
-static int	ft_len(int n)
+static char	*ft_strduprev(char *s1)
 {
-	int	count;
+	char	*dup;
+	int		len;
+	int		i;
 
-	count = 0;
-	if (n <= 0)
-		count++;
-	while (n != 0)
-	{
-		n = n / 10;
-		count++;
-	}
-	return (count);
-}
-
-static void	ft_fill_str(int count, int offset, int n, char *str)
-{
-	while (count > offset)
-	{
-		str[count - 1] = n % 10 + '0';
-		n = n / 10;
-		count--;
-	}
-}
-
-char	*ft_itoa(int n)
-{
-	char	*str;
-	int		count;
-	int		offset;
-
-	offset = 0;
-	count = ft_len(n);
-	str = (char *)malloc(sizeof(char) * (count + 1));
-	if (str == NULL)
+	i = 0;
+	len = ft_strlen(s1);
+	dup = (char *)ft_memalloc(sizeof(char) * (len + 1));
+	if (dup == NULL)
 		return (NULL);
-	if (n == -2147483648)
+	len--;
+	while (len >= 0)
 	{
-		str[0] = '-';
-		str[1] = '2';
-		n = 147483648;
-		offset = 2;
+		dup[i] = s1[len];
+		len--;
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+char	*ft_itoa(long long n)
+{	int			i;
+	char		arr[24];
+	long long	k;
+
+	if (n < -9223372036854775807)
+		return (ft_strdup("-9223372036854775808"));
+	i = 0;
+	k = n;
+	ft_bzero(arr, 24);
+	if (n < 0)
+		k = k * -1;
+	arr[i] = k % 10 + '0';
+	i++;
+	while (k / 10 > 0)
+	{
+		k = k / 10;
+		arr[i] = (k % 10 + '0');
+		i++;
 	}
 	if (n < 0)
-	{
-		str[0] = '-';
-		offset = 1;
-		n = -n;
-	}
-	ft_fill_str(count, offset, n, str);
-	str[count] = '\0';
-	return (str);
+		arr[i] = '-';
+	return (ft_strduprev(arr));
 }

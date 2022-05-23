@@ -28,7 +28,7 @@ ft_strjoin.c ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c\
 ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c\
 ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c\
 ft_toupper.c ft_itoa_unsigned.c ft_long_itoa.c ft_unsigned_long_itoa.c \
-ft_nbrlen.c ft_print_char.c ft_putnstr.c ft_octal_itoa.c
+ft_nbrlen.c ft_print_char.c ft_putnstr.c ft_octal_itoa.c ft_itoa_base.c
 
 PRINTF_OBJ = $(addprefix $(PRINTF_OBJ_DIR), $(PRINTF_SRCS:%.c=%.o))
 PRINTF_SRC = $(addprefix $(PRINTF_SRCS_DIR), $(PRINTF_SRCS:%.c=%.c))
