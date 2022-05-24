@@ -50,6 +50,7 @@ typedef struct s_parameter
 	int		return_value;
 	int		highest_value;
 	int		checked;
+	int		wildcard_check;
 	int		minus_check;
 	int		len;
 }			t_parameter;

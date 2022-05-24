@@ -58,6 +58,7 @@ void	ft_init_params(t_parameter *p)
 	p->return_value = 0;
 	p->highest_value = 0;
 	p->checked = 0;
+	p->wildcard_check = 0;
 	p->minus_check = 0;
 	p->len = 0;
 	p->format = NULL;
@@ -77,6 +78,7 @@ void	ft_reset_params(t_parameter *p)
 	p->specifier = 0;
 	p->highest_value = 0;
 	p->checked = 0;
+	p->wildcard_check = 0;
 	p->minus_check = 0;
 	p->len = 0;
 	p->format = NULL;

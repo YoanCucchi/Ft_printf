@@ -33,14 +33,11 @@ static void	ft_parse_flags(char *str, t_parameter *p)
 
 static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 {
-	int	checked;
-
-	checked = 0;
 	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str))
 	{
 		if (*str == '.')
 			return ;
-		if ((ft_strchr(WIDTH, *str) || *str == '*') && !checked)
+		if ((ft_strchr(WIDTH, *str) || *str == '*') && !p->wildcard_check)
 		{
 			if (*str == '*')
 			{
@@ -56,7 +53,7 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 				p->width = ft_atoi(str);
 			else
 				str--;
-			checked = 1;
+			p->wildcard_check = 1;
 		}
 		str++;
 		p->format++;
@@ -65,9 +62,6 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 
 static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
 {
-	int	checked;
-
-	checked = 0;
 	if (*str != '.')
 		return ;
 	p->dot = 1;
@@ -75,7 +69,7 @@ static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
 	p->format++;
 	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str))
 	{
-		if ((ft_isdigit(*str) || *str == '*') && !checked)
+		if ((ft_isdigit(*str) || *str == '*') && !p->wildcard_check)
 		{
 			if (*str == '*')
 			{
@@ -88,7 +82,7 @@ static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
 			}
 			else
 				p->precision = ft_atoi(str);
-			checked = 1;
+			p->wildcard_check = 1;
 		}
 		str++;
 		p->format++;
@@ -133,6 +127,7 @@ int	ft_parse(char *str, va_list *ap, t_parameter *p)
 	p->format = str;
 	ft_parse_flags(p->format, p);
 	ft_parse_width(p->format, ap, p);
+	p->wildcard_check = 0;
 	ft_parse_precision(p->format, ap, p);
 	ft_parse_length(p->format, p);
 	p->specifier = *p->format;
