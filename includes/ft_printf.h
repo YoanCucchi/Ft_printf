@@ -52,6 +52,7 @@ typedef struct s_parameter
 	int		checked;
 	int		wildcard_check;
 	int		minus_check;
+	int		zeros_print;
 	int		len;
 }			t_parameter;
 

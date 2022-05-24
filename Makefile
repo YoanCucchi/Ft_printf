@@ -45,14 +45,22 @@ LIBFT = libft.a
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
 
+DEFAULT = \033[0;39m
+GRAY = \033[0;90m
+GREEN = \033[0;92m
+CYAN = \033[0;96m
+
 all: $(NAME)
 
 $(NAME):
 	@make -C $(LIBFT_PATH)
 	@$(CC) $(FLAGS) -c $(PRINTF_SRC) $(INCLUDES)
+	@echo "$(CYAN) $(PRINTF_SRCS) compiled!$(DEFAULT)"
 	@mkdir -p $(OBJ_DIR)
 	@mv $(OBJ) $(OBJ_DIR)
+	@echo "$(CYAN)objects moved in $(OBJ_DIR)$(DEFAULT)"
 	@ar rcs $(NAME) $(PRINTF_OBJ) $(LIBFT_OBJ)
+	@echo "$(GREEN)$(NAME) compiled with PRINTF and LIBFT binaries!$(DEFAULT)"
 
 git:
 	git add -A
@@ -68,6 +76,8 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@echo "$(GRAY)$(NAME) cleaned!$(DEFAULT)"
+	@make fclean -C $(LIBFT_PATH)
 	@echo "$(GRAY)$(NAME) cleaned!$(DEFAULT)"
 
 re: fclean all

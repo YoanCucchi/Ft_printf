@@ -57,7 +57,7 @@ void	ft_len_zero_handling_nbr(t_parameter *p, long long n)
 	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
 		p->len = 0;
-	if (((n < 0 && p->precision > p->len) || p->plus) && p->specifier != 'u' \
+	if (((n < 0 && p->precision >= p->len) || p->plus) && p->specifier != 'u' \
 	&& p->width && p->dot && \
 	(p->width > p->precision && (p->precision > p->len || p->width > p->len)))
 		p->highest_value--;
@@ -66,14 +66,15 @@ void	ft_len_zero_handling_nbr(t_parameter *p, long long n)
 	{
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 		{
-			if (!p->zero || p->precision >= p->len)
+			if (!p->zero || p->precision > p->len)
 				p->return_value += ft_print_char(' ');
 			else
 				p->return_value += ft_print_char('0');
 		}
 	}
 	minus_plus_handling_after_zeros(p, n);
-	if (p->precision > p->len)
-		while (p->precision-- > p->len)
+	p->zeros_print = p->precision - p->len;
+	if (p->zeros_print > 0)
+		while (p->zeros_print-- > 0)
 			p->return_value += ft_print_char('0');
 }

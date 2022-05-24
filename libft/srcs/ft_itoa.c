@@ -35,7 +35,8 @@ static char	*ft_strduprev(char *s1)
 }
 
 char	*ft_itoa(long long n)
-{	int			i;
+{
+	int			i;
 	char		arr[24];
 	long long	k;
 

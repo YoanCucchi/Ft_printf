@@ -23,6 +23,7 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 		p->len = 0;
 	else
 		p->len = ft_strlen(nbr);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	ft_len_zero_handling_octal(p, n);
 	if (n == 0 && (!p->dot || p->sharp))
 		p->return_value += ft_print_char('0');
@@ -48,6 +49,7 @@ int	ft_print_long_o(t_parameter *p, va_list *ap)
 		p->len = 0;
 	else
 		p->len = ft_strlen(nbr);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	ft_len_zero_handling_octal(p, n);
 	if (n == 0 && (!p->dot || p->sharp))
 		p->return_value += ft_print_char('0');
@@ -73,6 +75,7 @@ int	ft_print_llong_o(t_parameter *p, va_list *ap)
 		p->len = 0;
 	else
 		p->len = ft_strlen(nbr);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	ft_len_zero_handling_octal(p, n);
 	if (n == 0 && (!p->dot || p->sharp))
 		p->return_value += ft_print_char('0');
@@ -98,6 +101,7 @@ int	ft_print_short_o(t_parameter *p, va_list *ap)
 		p->len = 0;
 	else
 		p->len = ft_strlen(nbr);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	ft_len_zero_handling_octal(p, n);
 	if (n == 0 && (!p->dot || p->sharp))
 		p->return_value += ft_print_char('0');
@@ -123,6 +127,7 @@ int	ft_print_char_octal(t_parameter *p, va_list *ap)
 		p->len = 0;
 	else
 		p->len = ft_strlen(nbr);
+	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
 	ft_len_zero_handling_octal(p, n);
 	if (n == 0 && (!p->dot || p->sharp))
 		p->return_value += ft_print_char('0');

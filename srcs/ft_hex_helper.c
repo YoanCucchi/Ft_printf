@@ -84,12 +84,13 @@ void	ft_len_zero_handling_p(t_parameter *p, long long n)
 		{
 			if ((p->zero) && (p->precision > p->len || !p->precision))
 				p->return_value += ft_print_char('0');
-			else
-				p->return_value += ft_print_char(' ');
+			p->return_value += ft_print_char(' ');
 		}
 	}
 	if (n == 0 || p->precision < p->len)
 		p->return_value += ft_putnstr("0x", 2);
-	while (p->precision-- > p->len)
-		p->return_value += ft_print_char('0');
+	p->zeros_print = p->precision - p->len;
+	if (p->zeros_print > 0)
+		while (p->zeros_print-- > 0)
+			p->return_value += ft_print_char('0');
 }

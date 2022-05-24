@@ -60,6 +60,7 @@ void	ft_init_params(t_parameter *p)
 	p->checked = 0;
 	p->wildcard_check = 0;
 	p->minus_check = 0;
+	p->zeros_print = 0;
 	p->len = 0;
 	p->format = NULL;
 	p->length = NULL;
@@ -80,6 +81,7 @@ void	ft_reset_params(t_parameter *p)
 	p->checked = 0;
 	p->wildcard_check = 0;
 	p->minus_check = 0;
+	p->zeros_print = 0;
 	p->len = 0;
 	p->format = NULL;
 	p->length = NULL;
@@ -98,6 +100,8 @@ void	param_free(t_parameter *p)
 	p->highest_value = 0;
 	p->checked = 0;
 	p->minus_check = 0;
+	p->zeros_print = 0;
+	p->wildcard_check = 0;
 	p->len = 0;
 	free(p->length);
 }
