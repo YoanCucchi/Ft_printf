@@ -16,7 +16,7 @@ PRINTF_SRCS = ft_printf.c ft_print_utils.c \
 ft_parse.c ft_initialize_parameter.c ft_print_str.c \
 ft_print_nbr.c ft_print_hex.c ft_length_flags.c \
 ft_print_flag_hex.c ft_print_octal.c ft_octal_helper.c \
-ft_hex_helper.c ft_print_unbr.c ft_nbr_helper.c
+ft_hex_helper.c ft_print_unbr.c ft_nbr_helper.c ft_print_float.c
 
 LIBFT_SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 ft_isdigit.c ft_isprint.c ft_itoa.c ft_memalloc.c ft_memccpy.c ft_memchr.c\

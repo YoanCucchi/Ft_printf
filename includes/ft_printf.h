@@ -13,11 +13,11 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define SPECIFIERS "cspdiouxX%"
+# define SPECIFIERS "cspdiouxXf%"
 # define FLAGS "#0-+ "
 # define WIDTH "0123456789"
 # define LENGTH "hlL"
-# define LENGTH_DISPATCH "diouxX"
+# define LENGTH_DISPATCH "diouxXf"
 # define HEXALOWCASE "0123456789abcdef"
 # define HEXAUPCASE "0123456789ABCDEF"
 # define OCTAL "012345678"
@@ -167,6 +167,12 @@ void		ft_len_zero_handling_octal(t_parameter *p, long long n);
 int			ft_recursive_hex(t_parameter *p, size_t n, size_t iteration);
 void		ft_len_zero_handling_hex(t_parameter *p, long long n);
 void		ft_len_zero_handling_p(t_parameter *p, long long n);
+
+/*
+** ft_print_float.c
+*/
+
+int			ft_print_float(t_parameter *p, va_list *ap);
 
 /*
 ** colors.c

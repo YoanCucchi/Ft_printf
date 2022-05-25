@@ -315,7 +315,7 @@ void	pointer_test()
 
 int main(void)
 {
-	//string_test();
+	// string_test();
 	//char_test();
 	//d_test();
 	//i_test();
@@ -329,7 +329,7 @@ int main(void)
 	//o_test();
 	//o_hash_test();
 	// ellas_tests();
-	//float_test();
+	// float_test();
 //	int ret1, ret2;;
 //	ret1 = printf("norm:%hu\n", -32768);
 //	ret2 = ft_printf("mine:%hu\n", -32768);
@@ -341,16 +341,16 @@ int main(void)
 // avec - 0000000000042 probleme du - pas print au bon endroit
 // probleme 0x avec printf("norm:{%#5.0x}\n", 0);
 
-	// ret1 = printf("norm:{%#2.8x}\n", 42);
-	// ret2 = ft_printf("mine:{%#2.8x}\n", 42);
+	ret1 = printf("norm:{%f}\n", 4256.444643);
+	ret2 = ft_printf("mine:{%f}\n", 4256.444643);
 	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%05d\n", -42);
 	// ret2 = ft_printf("mine:%05d\n", -42);
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:{%03.2d}\n", -1);
-	ret2 = ft_printf("mine:{%03.2d}\n", -1);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:{%03.2d}\n", -1);
+	// ret2 = ft_printf("mine:{%03.2d}\n", -1);
+	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%#05.2X\n", 52);
 	// ret2 = ft_printf("mine:%#05.2X\n", 52);
 	// printf("%d %d\n", ret1, ret2);

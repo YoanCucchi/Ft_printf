@@ -71,6 +71,8 @@ int	conversion_type(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_unsigned_nbr(p, ap);
 	else if (p->specifier == 'o')
 		p->return_value += ft_print_octal(p, ap);
+	else if (p->specifier == 'f')
+		p->return_value += ft_print_float(p, ap);
 	else if (p->specifier == '%')
 		p->return_value += ft_print_percent(p);
 	return (p->return_value);
