@@ -175,6 +175,15 @@ void		ft_len_zero_handling_p(t_parameter *p, long long n);
 int			ft_print_float(t_parameter *p, va_list *ap);
 
 /*
+** ft_print_float.c
+*/
+
+char		*ft_strduprev(char *s1);
+unsigned long long	set_amount(t_parameter *p);
+char			*split_float(long double n, t_parameter *p);
+char			*f_join(unsigned long long decimal, unsigned long long trunc);
+
+/*
 ** colors.c
 */
 

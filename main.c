@@ -341,9 +341,10 @@ int main(void)
 // avec - 0000000000042 probleme du - pas print au bon endroit
 // probleme 0x avec printf("norm:{%#5.0x}\n", 0);
 
-	ret1 = printf("norm:{%f}\n", 4256.444643);
-	ret2 = ft_printf("mine:{%f}\n", 4256.444643);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%12f\n", 1.935693569356);
+	ret2 = ft_printf("%12f\n", 1.935693569356);
+	
+	printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%05d\n", -42);
 	// ret2 = ft_printf("mine:%05d\n", -42);
 	// printf("%d %d\n", ret1, ret2);
