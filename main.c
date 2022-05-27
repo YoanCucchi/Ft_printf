@@ -449,6 +449,6 @@ int main(void)
 	// printf("%d %d\n", ret1, ret2);
 	// ft_printf("%.15f\n", 3.141593);
 	// ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
-	system("leaks a.out");
+	// system("leaks a.out");
 	return (0);
 }

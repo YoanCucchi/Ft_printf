@@ -24,17 +24,19 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 {
 	double	n;
 	char	*nbr;
+	t_float	f;
 
-// precision = nbr of decimal to be printed
+	nbr = NULL;
+	f.decimal = 0;
+	f.trunc = 0;
 	n = va_arg(*ap, double);
-	// printf("n = %f\n", n);
-	printf("precision : %d\n", p->precision);
 	if (!p->precision && !p->dot)
 		p->precision = 6;
-	nbr = split_float(n, p);
+	f = split_float(n, p, f);
+	nbr = f_join(f, nbr);
 	p->len = 0;
 	ft_len_zero_handling_float(p, n);
 	p->return_value += ft_putnstr(nbr, (p->precision + 2));
-	free(nbr);	
+	free(nbr);
 	return (0);
 }

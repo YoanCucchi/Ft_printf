@@ -47,33 +47,23 @@ unsigned long long	set_amount(t_parameter *p)
 	return (amount);
 }
 
-char	*f_join(unsigned long long decimal, unsigned long long trunc)
+char	*f_join(t_float f, char *nbr)
 {
 	char	*s1;
 	char	*s2;
-	char	*tmp;
-	int		len;
 
-	tmp = NULL;
-	s1 = ft_unsigned_long_itoa(trunc);
-	s2 = ft_unsigned_long_itoa(decimal);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	tmp = (char *)ft_memalloc(sizeof(char) * (len + 1));
-	if (!tmp)
-		return (NULL);
-	tmp = s1;
-	tmp[ft_strlen(s1)] = '.';
-	tmp = ft_strjoin(tmp, s2);
+	s1 = ft_unsigned_long_itoa(f.trunc);
+	s2 = ft_unsigned_long_itoa(f.decimal);
+	s1[ft_strlen(s1)] = '.';
+	nbr = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);
-	return(tmp);
+	return(nbr);
 }
 
-char	*split_float(long double n, t_parameter *p)
+t_float	split_float(long double n, t_parameter *p, t_float f)
 {
 	unsigned long long	amount;
-	unsigned long long	trunc;
-	unsigned long long	decimal;
 	unsigned long long	test;
 	int					sign;
 	long double			one_point;
@@ -85,23 +75,20 @@ char	*split_float(long double n, t_parameter *p)
 		sign = -1;
 	n *= sign;
 	amount = set_amount(p);
-	trunc = (unsigned long long)n;
-	one_point = n - trunc;
-	decimal = one_point * amount;
+	f.trunc = (unsigned long long)n;
+	one_point = n - f.trunc;
+	f.decimal = one_point * amount;
 	test = one_point * (amount * 10);
 	reverse = ft_itoa(test);
 	reverse = ft_strduprev(reverse);
 	increment = ft_atoi(reverse) / amount;
 	if (increment >= 5)
-		decimal++;
-	printf("decimal = %llu\n", decimal);
-	printf("trunc = %llu\n", trunc);
+		f.decimal++;
 	free(reverse);
-	// if (!p->precision && p->dot)
-	// {
-	// 	if (decimal >= 5)
-	// 		trunc++;
-	// 	return (ft_long_itoa(trunc));
-	// }
-	return(f_join(decimal, trunc));
+	if (!p->precision && p->dot)
+	{
+		if (f.decimal >= 5)
+			f.trunc++;
+	}
+	return(f);
 }
