@@ -55,13 +55,18 @@ char	*f_join(unsigned long long decimal, unsigned long long trunc)
 	int		len;
 
 	tmp = NULL;
-	len = ft_strlen(s1);
 	s1 = ft_unsigned_long_itoa(trunc);
-	tmp = (char *)ft_memalloc(sizeof(char) * (len + 1));
-	tmp = s1;
-	tmp[len + 1] = '.';
 	s2 = ft_unsigned_long_itoa(decimal);
-	return(ft_strjoin(s1, s2));
+	len = ft_strlen(s1) + ft_strlen(s2);
+	tmp = (char *)ft_memalloc(sizeof(char) * (len + 1));
+	if (!tmp)
+		return (NULL);
+	tmp = s1;
+	tmp[ft_strlen(s1)] = '.';
+	tmp = ft_strjoin(tmp, s2);
+	free(s1);
+	free(s2);
+	return(tmp);
 }
 
 char	*split_float(long double n, t_parameter *p)
@@ -69,9 +74,9 @@ char	*split_float(long double n, t_parameter *p)
 	unsigned long long	amount;
 	unsigned long long	trunc;
 	unsigned long long	decimal;
+	unsigned long long	test;
 	int					sign;
 	long double			one_point;
-	unsigned long long	test;
 	char				*reverse;
 	int					increment;
 
@@ -82,20 +87,21 @@ char	*split_float(long double n, t_parameter *p)
 	amount = set_amount(p);
 	trunc = (unsigned long long)n;
 	one_point = n - trunc;
-	printf("one point = %Lf\n", one_point);
 	decimal = one_point * amount;
-	printf("decimal = %llu\n", decimal);
 	test = one_point * (amount * 10);
-	printf("test = %llu\n", test);
 	reverse = ft_itoa(test);
 	reverse = ft_strduprev(reverse);
-	printf("reverse = %s\n", reverse);
 	increment = ft_atoi(reverse) / amount;
-	printf("increment = %d\n", increment);
 	if (increment >= 5)
 		decimal++;
 	printf("decimal = %llu\n", decimal);
 	printf("trunc = %llu\n", trunc);
 	free(reverse);
+	// if (!p->precision && p->dot)
+	// {
+	// 	if (decimal >= 5)
+	// 		trunc++;
+	// 	return (ft_long_itoa(trunc));
+	// }
 	return(f_join(decimal, trunc));
 }

@@ -341,10 +341,10 @@ int main(void)
 // avec - 0000000000042 probleme du - pas print au bon endroit
 // probleme 0x avec printf("norm:{%#5.0x}\n", 0);
 
-	ret1 = printf("%12f\n", 1.935693569356);
-	ret2 = ft_printf("%12f\n", 1.935693569356);
+	// ret1 = printf("%12f\n", 1.935693569356);
+	// ret2 = ft_printf("%12f\n", 1.935693569356);
 	
-	printf("%d %d\n", ret1, ret2);
+	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%05d\n", -42);
 	// ret2 = ft_printf("mine:%05d\n", -42);
 	// printf("%d %d\n", ret1, ret2);
@@ -424,6 +424,31 @@ int main(void)
 	// ret1 = printf("norm:%s\n", NULL);
 	// ret2 = ft_printf("mine:%s\n", NULL);
 	// printf("%d %d\n", ret1, ret2);
-	// system("leaks a.out");
+
+
+	ret1 = printf("norm:%f\n", 3.5);
+	ret2 = ft_printf("mine:%f\n", 3.5);
+	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.0f\n", 3.5);
+	// ret2 = ft_printf("mine:%.0f\n", 3.5);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.0f\n", 2.5);
+	// ret2 = ft_printf("mine:%.0f\n", 2.5);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.2f\n", 2.56);
+	// ret2 = ft_printf("mine:%.2f\n", 2.56);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.4f\n", 2.56);
+	// ret2 = ft_printf("mine:%.4f\n", 2.56);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	// ret2 = ft_printf("mine:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%8.4f\n", 2.56);
+	// ret2 = ft_printf("mine:%8.4f\n", 2.56);
+	// printf("%d %d\n", ret1, ret2);
+	// ft_printf("%.15f\n", 3.141593);
+	// ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
+	system("leaks a.out");
 	return (0);
 }

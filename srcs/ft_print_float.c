@@ -13,14 +13,11 @@
 #include "../includes/ft_printf.h"
 
 
-static void	ft_len_zero_handling_float(t_parameter *p, double n)
+static int	ft_len_zero_handling_float(t_parameter *p, double n)
 {
-	if (p->width > p->precision)
-		while (p->width-- > p->precision + 2)
-			p->return_value = ft_print_char(' ');
-	p->len = 1;
-	n = n + 1;
-	return ;
+	while ((p->width-- - 2) > p->precision && n)
+		p->return_value += ft_print_char(' ');
+	return (0);
 }
 
 int	ft_print_float(t_parameter *p, va_list *ap)
@@ -31,11 +28,13 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 // precision = nbr of decimal to be printed
 	n = va_arg(*ap, double);
 	// printf("n = %f\n", n);
-	if (!p->precision)
+	printf("precision : %d\n", p->precision);
+	if (!p->precision && !p->dot)
 		p->precision = 6;
 	nbr = split_float(n, p);
 	p->len = 0;
 	ft_len_zero_handling_float(p, n);
 	p->return_value += ft_putnstr(nbr, (p->precision + 2));
+	free(nbr);	
 	return (0);
 }
