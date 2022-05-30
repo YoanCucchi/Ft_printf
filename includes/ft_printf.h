@@ -21,7 +21,6 @@
 # define HEXALOWCASE "0123456789abcdef"
 # define HEXAUPCASE "0123456789ABCDEF"
 # define OCTAL "012345678"
-# define TEST "02468"
 
 /*
 ** Headers
@@ -59,8 +58,9 @@ typedef struct s_parameter
 
 typedef struct s_float
 {
-	unsigned long long trunc;
-	unsigned long long decimal;
+	unsigned long long	trunc;
+	unsigned long long	decimal;
+	int					sign;
 }			t_float;
 
 /*
@@ -185,8 +185,6 @@ int			ft_print_float(t_parameter *p, va_list *ap);
 ** ft_print_float.c
 */
 
-char		*ft_strduprev(char *s1);
-unsigned long long	set_amount(t_parameter *p);
 t_float			split_float(long double n, t_parameter *p, t_float f);
 char			*f_join(t_float f, t_parameter *p, char *nbr);
 

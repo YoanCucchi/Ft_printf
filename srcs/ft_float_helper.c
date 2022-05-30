@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_strduprev(char *s1)
+static char	*ft_strduprev(char *s1)
 {
 	char	*dup;
 	int		len;
@@ -35,7 +35,7 @@ char	*ft_strduprev(char *s1)
 	return (dup);
 }
 
-unsigned long long	set_amount(t_parameter *p)
+static unsigned long long	set_amount(t_parameter *p)
 {
 	unsigned long long	amount;
 	int					temp;
@@ -60,29 +60,25 @@ char	*f_join(t_float f, t_parameter *p, char *nbr)
 	nbr = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);
-	return(nbr);
+	return (nbr);
 }
 
 t_float	split_float(long double n, t_parameter *p, t_float f)
 {
 	unsigned long long	amount;
 	unsigned long long	test;
-	int					sign;
 	long double			one_point;
 	char				*reverse;
 	int					last_digit;
 
-	sign = 1;
-	if (n < 0)
-		sign = -1;
-	n *= sign;
+	if (f.sign)
+		n *= -1;
 	amount = set_amount(p);
 	f.trunc = (unsigned long long)n;
 	one_point = n - f.trunc;
 	f.decimal = one_point * amount;
 	test = one_point * (amount * 10);
-	reverse = ft_itoa(test);
-	reverse = ft_strduprev(reverse);
+	reverse = ft_strduprev(ft_itoa(test));
 	last_digit = ft_atoi(reverse) / amount;
 	if (last_digit >= 5)
 		f.decimal++;
@@ -93,5 +89,5 @@ t_float	split_float(long double n, t_parameter *p, t_float f)
 	|| f.trunc == 7 || f.trunc == 9))
 			f.trunc++;
 	}
-	return(f);
+	return (f);
 }
