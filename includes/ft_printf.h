@@ -61,6 +61,7 @@ typedef struct s_float
 	unsigned long long	trunc;
 	unsigned long long	decimal;
 	int					sign;
+	unsigned long long	amount;
 }			t_float;
 
 /*
@@ -185,8 +186,8 @@ int			ft_print_float(t_parameter *p, va_list *ap);
 ** ft_print_float.c
 */
 
-t_float		split_float(long double n, t_parameter *p, t_float f);
-char		*f_join(t_float f, t_parameter *p, char *nbr);
+t_float		split_float(t_parameter *p, t_float f, long double n);
+char		*f_join(t_parameter *p, t_float f, char *nbr);
 
 /*
 ** colors.c

@@ -12,11 +12,43 @@
 
 #include "../includes/ft_printf.h"
 
-static int	ft_len_zero_handling_float(t_parameter *p, double n)
+static int	ft_len_zero_handling_float(t_parameter *p, t_float f, double n)
 {
-	while ((p->width-- - 2) > p->precision && n)
-		p->return_value += ft_print_char(' ');
+	if (p->minus && !p->minus_check)
+	{
+		p->minus_check = 1;
+		return (0);
+	}
+	if (!p->minus && !p->minus_check)
+	{
+		while ((p->width-- - ft_nbrlen(f.trunc, 10) - 1 - p->precision) > 0 && n)
+			p->return_value += ft_print_char(' ');
+		return (0);
+	}
+	if (p->minus && p->minus_check)
+	{
+		while ((p->width-- - ft_nbrlen(f.trunc, 10) - 1 - p->precision) > 0 && n)
+			p->return_value += ft_print_char(' ');
+	}
 	return (0);
+}
+
+static int	is_negative(double nbr)
+{
+	unsigned long long	*ull;
+	int					sign;
+	double				zero;
+
+	if (nbr > 0)
+		return (0);
+	if (nbr < 0)
+		return (1);
+	zero = nbr;
+	ull = (unsigned long long *)&zero;
+	sign = (int)(*ull >> 63);
+	if (sign == 0)
+		return (0);
+	return (1);
 }
 
 int	ft_print_float(t_parameter *p, va_list *ap)
@@ -24,23 +56,35 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	double	n;
 	char	*nbr;
 	t_float	f;
+	int		test;
 
+	test = 0;
 	nbr = NULL;
 	f.decimal = 0;
 	f.trunc = 0;
 	f.sign = 0;
+	f.amount = 0;
 	n = va_arg(*ap, double);
-	if (n < 0)
+	if (n <= 0 && is_negative(n))
 		f.sign = 1;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
-	f = split_float(n, p, f);
-	nbr = f_join(f, p, nbr);
-	p->len = 0;
-	ft_len_zero_handling_float(p, n);
+	f = split_float(p, f, n);
+	nbr = f_join(p, f, nbr);
+	ft_len_zero_handling_float(p, f, n);
 	if (f.sign)
 		p->return_value += ft_print_char('-');
-	p->return_value += ft_putnstr(nbr, (p->precision + 2));
+	else if (p->plus)
+		p->return_value += ft_print_char('+');
+	p->return_value += ft_putnstr(nbr, (p->precision + \
+	ft_nbrlen(f.trunc, 10) + 1));
+	if (f.trunc == 0 && f.decimal == 0)
+	{
+		test = ft_nbrlen(f.amount, 10) - 2;
+		while (test--)
+			p->return_value += ft_print_char('0');
+	}
+	ft_len_zero_handling_float(p, f, n);
 	free(nbr);
 	return (0);
 }

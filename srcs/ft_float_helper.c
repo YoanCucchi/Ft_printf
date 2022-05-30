@@ -35,26 +35,25 @@ static char	*ft_strduprev(char *s1)
 	return (dup);
 }
 
-static unsigned long long	set_amount(t_parameter *p)
+static unsigned long long	set_amount(t_parameter *p, t_float f)
 {
-	unsigned long long	amount;
 	int					temp;
 
 	temp = p->precision;
-	amount = 10;
+	f.amount = 10;
 	while (--temp > 0)
-		amount *= 10;
-	return (amount);
+		f.amount *= 10;
+	return (f.amount);
 }
 
-char	*f_join(t_float f, t_parameter *p, char *nbr)
+char	*f_join(t_parameter *p, t_float f, char *nbr)
 {
 	char	*s1;
 	char	*s2;
 
 	s1 = ft_unsigned_long_itoa(f.trunc);
 	s2 = ft_unsigned_long_itoa(f.decimal);
-	if (p->precision == 0 && p->dot)
+	if (p->precision == 0 && p->dot && !p->sharp)
 		return (s1);
 	s1[ft_strlen(s1)] = '.';
 	nbr = ft_strjoin(s1, s2);
@@ -63,23 +62,27 @@ char	*f_join(t_float f, t_parameter *p, char *nbr)
 	return (nbr);
 }
 
-t_float	split_float(long double n, t_parameter *p, t_float f)
+t_float	split_float(t_parameter *p, t_float f, long double n)
 {
-	unsigned long long	amount;
 	unsigned long long	test;
 	long double			one_point;
 	char				*reverse;
 	int					last_digit;
 
+// need to fix + with - number
+// need to impletet space flag
+// need to create length flag floats
+// need to handle 0 flag
+// protect malloc
 	if (f.sign)
 		n *= -1;
-	amount = set_amount(p);
+	f.amount = set_amount(p, f);
 	f.trunc = (unsigned long long)n;
 	one_point = n - f.trunc;
-	f.decimal = one_point * amount;
-	test = one_point * (amount * 10);
+	f.decimal = one_point * f.amount;
+	test = one_point * (f.amount * 10);
 	reverse = ft_strduprev(ft_itoa(test));
-	last_digit = ft_atoi(reverse) / amount;
+	last_digit = ft_atoi(reverse) / f.amount;
 	if (last_digit >= 5)
 		f.decimal++;
 	free(reverse);
