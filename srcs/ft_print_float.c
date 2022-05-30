@@ -33,7 +33,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	if (!p->precision && !p->dot)
 		p->precision = 6;
 	f = split_float(n, p, f);
-	nbr = f_join(f, nbr);
+	nbr = f_join(f, p, nbr);
 	p->len = 0;
 	ft_len_zero_handling_float(p, n);
 	p->return_value += ft_putnstr(nbr, (p->precision + 2));

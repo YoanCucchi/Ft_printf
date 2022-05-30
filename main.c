@@ -426,14 +426,14 @@ int main(void)
 	// printf("%d %d\n", ret1, ret2);
 
 
-	ret1 = printf("norm:%f\n", 3.5);
-	ret2 = ft_printf("mine:%f\n", 3.5);
-	printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.0f\n", 3.5);
-	// ret2 = ft_printf("mine:%.0f\n", 3.5);
+	// ret1 = printf("norm:%f\n", 3.5);
+	// ret2 = ft_printf("mine:%f\n", 3.5);
 	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%.0f\n", 2.5);
-	// ret2 = ft_printf("mine:%.0f\n", 2.5);
+	// ret1 = printf("norm:%.0f\n", 5.5);
+	// ret2 = ft_printf("mine:%.0f\n", 5.5);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.0f\n", 0.5);
+	// ret2 = ft_printf("mine:%.0f\n", 0.5);
 	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%.2f\n", 2.56);
 	// ret2 = ft_printf("mine:%.2f\n", 2.56);
@@ -444,11 +444,9 @@ int main(void)
 	// ret1 = printf("norm:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
 	// ret2 = ft_printf("mine:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
 	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%8.4f\n", 2.56);
-	// ret2 = ft_printf("mine:%8.4f\n", 2.56);
-	// printf("%d %d\n", ret1, ret2);
-	// ft_printf("%.15f\n", 3.141593);
-	// ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
+	ret1 = printf("norm:%8.4f\n", 2.56);
+	ret2 = ft_printf("mine:%8.4f\n", 2.56);
+	printf("%d %d\n", ret1, ret2);
 	// system("leaks a.out");
 	return (0);
 }

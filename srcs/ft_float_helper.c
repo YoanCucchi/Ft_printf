@@ -47,13 +47,15 @@ unsigned long long	set_amount(t_parameter *p)
 	return (amount);
 }
 
-char	*f_join(t_float f, char *nbr)
+char	*f_join(t_float f, t_parameter *p, char *nbr)
 {
 	char	*s1;
 	char	*s2;
 
 	s1 = ft_unsigned_long_itoa(f.trunc);
 	s2 = ft_unsigned_long_itoa(f.decimal);
+	if (p->precision == 0 && p->dot)
+		return (s1);
 	s1[ft_strlen(s1)] = '.';
 	nbr = ft_strjoin(s1, s2);
 	free(s1);
@@ -68,7 +70,7 @@ t_float	split_float(long double n, t_parameter *p, t_float f)
 	int					sign;
 	long double			one_point;
 	char				*reverse;
-	int					increment;
+	int					last_digit;
 
 	sign = 1;
 	if (n < 0)
@@ -81,13 +83,14 @@ t_float	split_float(long double n, t_parameter *p, t_float f)
 	test = one_point * (amount * 10);
 	reverse = ft_itoa(test);
 	reverse = ft_strduprev(reverse);
-	increment = ft_atoi(reverse) / amount;
-	if (increment >= 5)
+	last_digit = ft_atoi(reverse) / amount;
+	if (last_digit >= 5)
 		f.decimal++;
 	free(reverse);
 	if (!p->precision && p->dot)
 	{
-		if (f.decimal >= 5)
+		if (f.decimal >= 5 && (f.trunc == 1 || f.trunc == 3 || f.trunc == 5 \
+	|| f.trunc == 7 || f.trunc == 9))
 			f.trunc++;
 	}
 	return(f);
