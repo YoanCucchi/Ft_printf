@@ -185,8 +185,8 @@ int			ft_print_float(t_parameter *p, va_list *ap);
 ** ft_print_float.c
 */
 
-t_float			split_float(long double n, t_parameter *p, t_float f);
-char			*f_join(t_float f, t_parameter *p, char *nbr);
+t_float		split_float(long double n, t_parameter *p, t_float f);
+char		*f_join(t_float f, t_parameter *p, char *nbr);
 
 /*
 ** colors.c
