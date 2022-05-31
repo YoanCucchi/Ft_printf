@@ -444,8 +444,8 @@ int main(void)
 	// ret1 = printf("norm:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
 	// ret2 = ft_printf("mine:{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
 	// printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%+f\n", 0.0);
-	ret2 = ft_printf("mine:%+f\n", 0.0);
+	ret1 = printf("norm:%10.9f\n", 4.42);
+	ret2 = ft_printf("mine:%10.9f\n", 4.42);
 	printf("%d %d\n", ret1, ret2);
 	// system("leaks a.out");
 	return (0);

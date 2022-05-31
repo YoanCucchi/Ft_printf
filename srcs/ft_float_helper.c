@@ -35,24 +35,24 @@ static char	*ft_strduprev(char *s1)
 	return (dup);
 }
 
-static unsigned long long	set_amount(t_parameter *p, t_float f)
+static unsigned long long	set_amount(t_parameter *p, t_float *f)
 {
 	int					temp;
 
 	temp = p->precision;
-	f.amount = 10;
+	f->amount = 10;
 	while (--temp > 0)
-		f.amount *= 10;
-	return (f.amount);
+		f->amount *= 10;
+	return (f->amount);
 }
 
-char	*f_join(t_parameter *p, t_float f, char *nbr)
+char	*f_join(t_parameter *p, t_float *f, char *nbr)
 {
 	char	*s1;
 	char	*s2;
 
-	s1 = ft_unsigned_long_itoa(f.trunc);
-	s2 = ft_unsigned_long_itoa(f.decimal);
+	s1 = ft_unsigned_long_itoa(f->trunc);
+	s2 = ft_unsigned_long_itoa(f->decimal);
 	if (p->precision == 0 && p->dot && !p->sharp)
 		return (s1);
 	s1[ft_strlen(s1)] = '.';
@@ -62,35 +62,33 @@ char	*f_join(t_parameter *p, t_float f, char *nbr)
 	return (nbr);
 }
 
-t_float	split_float(t_parameter *p, t_float f, long double n)
+void	split_float(t_parameter *p, t_float *f, long double n)
 {
 	unsigned long long	test;
 	long double			one_point;
 	char				*reverse;
 	int					last_digit;
 
-// need to fix + with - number
-// need to impletet space flag
-// need to create length flag floats
-// need to handle 0 flag
-// protect malloc
-	if (f.sign)
+	if (f->sign)
 		n *= -1;
-	f.amount = set_amount(p, f);
-	f.trunc = (unsigned long long)n;
-	one_point = n - f.trunc;
-	f.decimal = one_point * f.amount;
-	test = one_point * (f.amount * 10);
+	f->amount = set_amount(p, f);
+	printf("f->amount = %llu\n", f->amount);
+	f->trunc = (unsigned long long)n;
+	printf("f->trunc = %llu\n", f->trunc);
+	one_point = n - (f->trunc - 1);
+	printf("one point = %LF\n", one_point);
+	f->decimal = one_point * f->amount;
+	printf("f->decimal = %llu\n", f->decimal);
+	test = one_point * (f->amount * 10);
 	reverse = ft_strduprev(ft_itoa(test));
-	last_digit = ft_atoi(reverse) / f.amount;
+	last_digit = ft_atoi(reverse) / f->amount;
 	if (last_digit >= 5)
-		f.decimal++;
+		f->decimal++;
 	free(reverse);
 	if (!p->precision && p->dot)
 	{
-		if (f.decimal >= 5 && (f.trunc == 1 || f.trunc == 3 || f.trunc == 5 \
-	|| f.trunc == 7 || f.trunc == 9))
-			f.trunc++;
+		if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
+	|| f->trunc == 7 || f->trunc == 9))
+			f->trunc++;
 	}
-	return (f);
 }

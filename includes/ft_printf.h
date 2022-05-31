@@ -146,6 +146,15 @@ t_parameter	*memalloc_struct(t_parameter *p);
 void		param_free(t_parameter *p);
 
 /*
+** ft_initialize_float.c
+*/
+
+void		ft_init_float(t_float *f);
+void		ft_reset_float(t_float *f);
+t_float		*memalloc_float(t_float *f);
+
+
+/*
 ** ft_length_flags.c
 */
 
@@ -186,8 +195,8 @@ int			ft_print_float(t_parameter *p, va_list *ap);
 ** ft_print_float.c
 */
 
-t_float		split_float(t_parameter *p, t_float f, long double n);
-char		*f_join(t_parameter *p, t_float f, char *nbr);
+void		split_float(t_parameter *p, t_float *f, long double n);
+char		*f_join(t_parameter *p, t_float *f, char *nbr);
 
 /*
 ** colors.c
