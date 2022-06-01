@@ -83,8 +83,8 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	}
 	if (n >= 1)
 	{
+		// printf("f->amount = %llu\n", f->amount);
 		decimal_helper = n - (f->trunc - 1);
-		// printf("decimal helper = %Lf\n", decimal_helper);
 		f->decimal = decimal_helper * f->amount;
 		// printf("f->decimal = %llu\n", f->decimal);
 		next_decimal = decimal_helper * (f->amount * 10);
@@ -96,7 +96,15 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		if (last_digit >= 5)
 			f->decimal++;
 		free(reverse);
+		// printf("f->decimal after increase  = %llu\n", f->decimal);
 		f->decimal = f->decimal - f->amount;
+		if (f->decimal == f->amount)
+		{
+			f->trunc++;
+			f->decimal = (double)0;//double necessaire ?
+		}
+		// printf("f->decimal before return = %llu\n", f->decimal);
+		// printf("f->trunc before return = %llu\n", f->trunc);
 		return ;
 	}
 	else if (n > 0)
@@ -108,6 +116,11 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		if (last_digit >= 5)
 			f->decimal++;
 		free(reverse);
+		if (f->decimal == f->amount)
+		{
+			f->trunc++;
+			f->decimal = (double)0;
+		}
 		return ;
 	}
 	else

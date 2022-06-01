@@ -80,7 +80,8 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 // need to create length flag floats
 // need to handle 0 flag
 // protect malloc
-// need to fix when width > precision
+// problem with decimal to increase if this one doesn't exist
+
 	tmp = 0;
 	f = NULL;
 	f = memalloc_float(f);
@@ -91,6 +92,8 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
+	else if (!p->precision && p->dot)
+		p->width++;
 	split_float(p, f, n);
 	// printf("f->trunc = %llu\n", f->trunc);
 	// printf("f->decimal = %llu\n", f->decimal);
@@ -113,7 +116,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
 	tmp = p->precision;
-	if (f->trunc == 0 && f->decimal == 0)
+	if (f->decimal == 0)
 	{
 		while (tmp-- > 1)
 			p->return_value += ft_print_char('0');
@@ -143,31 +146,44 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	f = NULL;
 	f = memalloc_float(f);
 	nbr = NULL;
-	n = va_arg(*ap, long double);
+	n = va_arg(*ap, double);
 	// printf("n = %f\n", n);
+	if (is_negative(n) && !p->precision) // pas bon
+		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
-	if (is_negative(n))
-		p->width--;
+	else if (!p->precision && p->dot)
+		p->width++;
 	split_float(p, f, n);
 	// printf("f->trunc = %llu\n", f->trunc);
 	// printf("f->decimal = %llu\n", f->decimal);
 	nbr = f_join(p, f, nbr);
 	// printf("nbr = %s\n", nbr);
-	ft_len_zero_handling_float(p, f, n);
-	if (is_negative(n))
+	if (p->space && !is_negative(n) && !p->plus) // pas bon non plus
+	{
+		p->return_value += ft_print_char(' ');
+		p->width--;
+	}
+	if (is_negative(n) && p->zero)
 		p->return_value += ft_print_char('-');
-	else if (p->plus)
+	else if (p->plus && p->zero)
+		p->return_value += ft_print_char('+');
+	ft_len_zero_handling_float(p, f, n);
+	if (is_negative(n) && !p->zero)
+		p->return_value += ft_print_char('-');
+	else if (p->plus && !p->zero)
 		p->return_value += ft_print_char('+');
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
 	tmp = p->precision;
-	if (f->trunc == 0 && f->decimal == 0)
+	if (f->decimal == 0)
 	{
 		while (tmp-- > 1)
 			p->return_value += ft_print_char('0');
 	}
 	ft_len_zero_handling_float(p, f, n);
+	while (p->precision-- > 1 && f->decimal == '0' && f->trunc)
+		p->return_value += ft_print_char('0');
 	free(nbr);
 	free(f);
 	return (0);
