@@ -92,7 +92,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		p->precision = 6;
 	if (!p->precision && p->dot)
 	{
-		printf("p->width ++ \n");
+		// printf("p->width ++ \n");
 		p->width++;
 	}
 	split_float(p, f, n);

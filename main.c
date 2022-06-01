@@ -447,12 +447,17 @@ int main(void)
 	// ret1 = printf("norm:%.3f\n", 7.9999997);
 	// ret2 = ft_printf("mine:%.3f\n", 7.9999997);
 	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%Lf\n", 2.5555545L);
-	// ret2 = ft_printf("mine:%Lf\n", 2.5555545L);
+	// ret1 = printf("norm:%.2f\n", 2.949);
+	// ret2 = ft_printf("mine:%.2f\n", 2.949);
 	// printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%0 10f\n", -1.50000);
-	ret2 = ft_printf("mine:%0 10f\n", -1.50000);
+	ret1 = printf("norm:%10.10f\n", -0.000000);
+	ret2 = ft_printf("mine:%10.10f\n", -0.000000);
 	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%10.10f\n", -0.000000);
+	//0.011719
+	//1.500000
+	//0.150000
+	//-0.000000
 	// system("leaks a.out");
 	return (0);
 }

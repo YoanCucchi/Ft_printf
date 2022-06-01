@@ -54,6 +54,8 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 	char	*tmp2;
 	int		zero_to_add;
 
+	tmp = NULL;
+	tmp2 = NULL;
 	zero_to_add = 0;
 	zero_to_add = ft_nbrlen(f->amount, 10) - 1 - ft_nbrlen(f->decimal, 10);
 	tmp = malloc(sizeof(char) * zero_to_add);
@@ -114,6 +116,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		free(reverse);
 		// printf("f->decimal after increase  = %llu\n", f->decimal);
 		f->decimal = f->decimal - f->amount;
+		// printf("f->decimal before if = amount  = %llu\n", f->decimal);
 		if (f->decimal == f->amount)
 		{
 			f->trunc++;

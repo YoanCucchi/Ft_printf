@@ -50,8 +50,11 @@ void	minus_flag(t_parameter *p, long long n)
 		p->len = 0;
 	if (p->plus || n < 0)
 		p->highest_value++;
-	if (p->specifier == 'p' && p->highest_value + 3 > p->len && n != 0)
-		p->highest_value--;
+	// if (p->specifier == 'p' && p->highest_value + 3 > p->len && n != 0)
+	// {
+	// 	printf("here");
+	// 	// p->highest_value--;
+	// }
 	if (p->width > p->precision && p->width > p->len)
 		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
 			p->return_value += ft_print_char(' ');
