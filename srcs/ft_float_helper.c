@@ -64,31 +64,56 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 
 void	split_float(t_parameter *p, t_float *f, long double n)
 {
-	unsigned long long	test;
-	long double			one_point;
+	long double			decimal_helper;
+	unsigned long long	next_decimal;
 	char				*reverse;
 	int					last_digit;
 
-	if (f->sign)
-		n *= -1;
+	f->sign = 1;
+	if (n < 0)
+		f->sign = -1;
+	n *= f->sign;
 	f->amount = set_amount(p, f);
-	printf("f->amount = %llu\n", f->amount);
 	f->trunc = (unsigned long long)n;
-	printf("f->trunc = %llu\n", f->trunc);
-	one_point = n - (f->trunc - 1);
-	printf("one point = %LF\n", one_point);
-	f->decimal = one_point * f->amount;
-	printf("f->decimal = %llu\n", f->decimal);
-	test = one_point * (f->amount * 10);
-	reverse = ft_strduprev(ft_itoa(test));
-	last_digit = ft_atoi(reverse) / f->amount;
-	if (last_digit >= 5)
-		f->decimal++;
-	free(reverse);
 	if (!p->precision && p->dot)
 	{
 		if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
 	|| f->trunc == 7 || f->trunc == 9))
 			f->trunc++;
+	}
+	if (n >= 1)
+	{
+		decimal_helper = n - (f->trunc - 1);
+		// printf("decimal helper = %Lf\n", decimal_helper);
+		f->decimal = decimal_helper * f->amount;
+		// printf("f->decimal = %llu\n", f->decimal);
+		next_decimal = decimal_helper * (f->amount * 10);
+		// printf("next decimal = %llu\n", next_decimal);
+		reverse = ft_strduprev(ft_itoa(next_decimal));
+		// printf("reverse = %s\n", reverse);
+		last_digit = ft_atoi(reverse) / (f->amount * 10);
+		// printf("last digit = %d\n", last_digit);
+		if (last_digit >= 5)
+			f->decimal++;
+		free(reverse);
+		f->decimal = f->decimal - f->amount;
+		return ;
+	}
+	else if (n > 0)
+	{
+		f->decimal = n * f->amount;
+		next_decimal = n * (f->amount * 10);
+		reverse = ft_strduprev(ft_itoa(next_decimal));
+		last_digit = ft_atoi(reverse) / (f->amount);
+		if (last_digit >= 5)
+			f->decimal++;
+		free(reverse);
+		return ;
+	}
+	else
+	{
+		f->decimal = 0;
+		f->trunc = 0;
+		return ;
 	}
 }

@@ -190,6 +190,7 @@ void		ft_len_zero_handling_p(t_parameter *p, long long n);
 */
 
 int			ft_print_float(t_parameter *p, va_list *ap);
+int			ft_print_l_float(t_parameter *p, va_list *ap);
 
 /*
 ** ft_print_float.c

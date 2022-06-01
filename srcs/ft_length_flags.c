@@ -22,6 +22,8 @@ static int	ft_parse_l(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_ulong_nbr(p, ap);
 	else if (p->specifier == 'x' || p->specifier == 'X')
 		p->return_value += ft_print_long_hex(p, ap);
+	else if (p->specifier == 'f')
+		p->return_value += ft_print_float(p, ap);
 	return (0);
 }
 
@@ -74,5 +76,7 @@ int	ft_length_flags(t_parameter *p, va_list *ap)
 		p->return_value += ft_parse_h(p, ap);
 	else if (!ft_strcmp("hh", p->length))
 		p->return_value += ft_parse_hh(p, ap);
+	else if (!ft_strcmp("L", p->length) && p->specifier == 'f')
+		p->return_value += ft_print_l_float(p, ap);
 	return (0);
 }
