@@ -50,13 +50,28 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 {
 	char	*s1;
 	char	*s2;
+	char	*tmp;
+	char	*tmp2;
+	int		zero_to_add;
 
+	zero_to_add = 0;
+	zero_to_add = ft_nbrlen(f->amount, 10) - 1 - ft_nbrlen(f->decimal, 10);
+	tmp = malloc(sizeof(char) * zero_to_add);
 	s1 = ft_unsigned_long_itoa(f->trunc);
 	s2 = ft_unsigned_long_itoa(f->decimal);
 	if (p->precision == 0 && p->dot && !p->sharp)
 		return (s1);
 	s1[ft_strlen(s1)] = '.';
-	nbr = ft_strjoin(s1, s2);
+	if (zero_to_add)
+	{
+		tmp = ft_strncpy(tmp, "000000000000000000000000000000000", zero_to_add);
+		tmp2 = ft_strjoin(tmp, s2);
+		nbr = ft_strjoin(s1, tmp2);
+		free(tmp);
+		free(tmp2);
+	}
+	else
+		nbr = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);
 	return (nbr);
@@ -85,6 +100,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	{
 		// printf("f->amount = %llu\n", f->amount);
 		decimal_helper = n - (f->trunc - 1);
+		// printf("decimal helper = %Lf\n", decimal_helper);
 		f->decimal = decimal_helper * f->amount;
 		// printf("f->decimal = %llu\n", f->decimal);
 		next_decimal = decimal_helper * (f->amount * 10);
@@ -110,9 +126,13 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	else if (n > 0)
 	{
 		f->decimal = n * f->amount;
+		// printf("f->decimal = %llu\n", f->decimal);
 		next_decimal = n * (f->amount * 10);
+		// printf("next decimal = %llu\n", next_decimal);
 		reverse = ft_strduprev(ft_itoa(next_decimal));
+		// printf("reverse = %s\n", reverse);
 		last_digit = ft_atoi(reverse) / (f->amount);
+		// printf("last digit = %d\n", last_digit);
 		if (last_digit >= 5)
 			f->decimal++;
 		free(reverse);
@@ -121,6 +141,8 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 			f->trunc++;
 			f->decimal = (double)0;
 		}
+		// printf("f->decimal before return = %llu\n", f->decimal);
+		// printf("f->trunc before return = %llu\n", f->trunc);
 		return ;
 	}
 	else

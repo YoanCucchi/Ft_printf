@@ -73,7 +73,6 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	double	n;
 	char	*nbr;
 	t_float	*f;
-	int		tmp;
 
 // need to fix + with - number
 // need to impletet space flag
@@ -82,18 +81,20 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 // protect malloc
 // problem with decimal to increase if this one doesn't exist
 
-	tmp = 0;
 	f = NULL;
 	f = memalloc_float(f);
 	nbr = NULL;
 	n = va_arg(*ap, double);
 	// printf("n = %f\n", n);
-	if (is_negative(n) && !p->precision) // pas bon
+	if (is_negative(n) && (p->precision < 6 || !p->precision))
 		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
-	else if (!p->precision && p->dot)
+	if (!p->precision && p->dot)
+	{
+		printf("p->width ++ \n");
 		p->width++;
+	}
 	split_float(p, f, n);
 	// printf("f->trunc = %llu\n", f->trunc);
 	// printf("f->decimal = %llu\n", f->decimal);
@@ -101,8 +102,9 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	// printf("nbr = %s\n", nbr);
 	if (p->space && !is_negative(n) && !p->plus) // pas bon non plus
 	{
+	// 	printf("printing a space \n");
 		p->return_value += ft_print_char(' ');
-		p->width--;
+		// p->width--;
 	}
 	if (is_negative(n) && p->zero)
 		p->return_value += ft_print_char('-');
@@ -115,12 +117,6 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('+');
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
-	tmp = p->precision;
-	if (f->decimal == 0)
-	{
-		while (tmp-- > 1)
-			p->return_value += ft_print_char('0');
-	}
 	ft_len_zero_handling_float(p, f, n);
 	while (p->precision-- > 1 && f->decimal == '0' && f->trunc)
 		p->return_value += ft_print_char('0');
@@ -134,7 +130,6 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	double	n;
 	char	*nbr;
 	t_float	*f;
-	int		tmp;
 
 // need to fix + with - number
 // need to impletet space flag
@@ -142,7 +137,6 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 // need to handle 0 flag
 // protect malloc
 // need to fix when width > precision
-	tmp = 0;
 	f = NULL;
 	f = memalloc_float(f);
 	nbr = NULL;
@@ -161,8 +155,9 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	// printf("nbr = %s\n", nbr);
 	if (p->space && !is_negative(n) && !p->plus) // pas bon non plus
 	{
+	// 	printf("printing a space \n");
 		p->return_value += ft_print_char(' ');
-		p->width--;
+		// p->width--;
 	}
 	if (is_negative(n) && p->zero)
 		p->return_value += ft_print_char('-');
@@ -175,17 +170,10 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('+');
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
-	tmp = p->precision;
-	if (f->decimal == 0)
-	{
-		while (tmp-- > 1)
-			p->return_value += ft_print_char('0');
-	}
 	ft_len_zero_handling_float(p, f, n);
 	while (p->precision-- > 1 && f->decimal == '0' && f->trunc)
 		p->return_value += ft_print_char('0');
 	free(nbr);
 	free(f);
 	return (0);
-}
-
+}	
