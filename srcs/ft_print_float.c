@@ -21,7 +21,7 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f, double n)
 	}
 	// parameter_print(p);
 	// printf("nbrlen = %d\n", ft_nbrlen(f->trunc, 10));
-	while (p->width-- > p->precision + p->space + p->plus + ft_nbrlen(f->trunc, 10) + 1)
+	while (p->width-- > p->precision + p->plus + p->space + ft_nbrlen(f->trunc, 10) + 1)
 	{
 		if (!p->zero)
 			p->return_value += ft_print_char(' ');
@@ -73,43 +73,39 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	double	n;
 	char	*nbr;
 	t_float	*f;
+	// int		space_check;
 
 // need to fix + with - number
-// need to impletet space flag
-// need to create length flag floats
-// need to handle 0 flag
 // protect malloc
 // problem with decimal to increase if this one doesn't exist
+// need to ask if there a way to see/use all decimals of a double inside 
+// a program
+// problem with space still
 
 	f = NULL;
 	f = memalloc_float(f);
 	nbr = NULL;
+	// space_check = 0;
 	n = va_arg(*ap, double);
-	// printf("n = %f\n", n);
 	if (is_negative(n) && (p->precision < 6 || !p->precision))
 		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
 	if (!p->precision && p->dot)
-	{
-		// printf("p->width ++ \n");
 		p->width++;
-	}
 	split_float(p, f, n);
-	// printf("f->trunc = %llu\n", f->trunc);
-	// printf("f->decimal = %llu\n", f->decimal);
 	nbr = f_join(p, f, nbr);
-	// printf("nbr = %s\n", nbr);
-	if (p->space && !is_negative(n) && !p->plus) // pas bon non plus
+	if (p->space && (!is_negative(n)))
 	{
-	// 	printf("printing a space \n");
 		p->return_value += ft_print_char(' ');
-		// p->width--;
+		// space_check = 1;
 	}
 	if (is_negative(n) && p->zero)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && p->zero)
 		p->return_value += ft_print_char('+');
+	// if (p->space && !space_check && p->zero && p->width > 0 && !p->plus)
+	// 		p->return_value += ft_print_char('0');
 	ft_len_zero_handling_float(p, f, n);
 	if (is_negative(n) && !p->zero)
 		p->return_value += ft_print_char('-');
@@ -130,39 +126,38 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	double	n;
 	char	*nbr;
 	t_float	*f;
+	// int		space_check;
 
 // need to fix + with - number
-// need to impletet space flag
-// need to create length flag floats
-// need to handle 0 flag
 // protect malloc
-// need to fix when width > precision
+// problem with decimal to increase if this one doesn't exist
+// need to ask if there a way to see/use all decimals of a double inside 
+// a program
+
 	f = NULL;
 	f = memalloc_float(f);
 	nbr = NULL;
+	// space_check = 0;
 	n = va_arg(*ap, double);
-	// printf("n = %f\n", n);
-	if (is_negative(n) && !p->precision) // pas bon
+	if (is_negative(n) && (p->precision < 6 || !p->precision))
 		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
-	else if (!p->precision && p->dot)
+	if (!p->precision && p->dot)
 		p->width++;
 	split_float(p, f, n);
-	// printf("f->trunc = %llu\n", f->trunc);
-	// printf("f->decimal = %llu\n", f->decimal);
 	nbr = f_join(p, f, nbr);
-	// printf("nbr = %s\n", nbr);
-	if (p->space && !is_negative(n) && !p->plus) // pas bon non plus
+	if (p->space && !p->plus && (!is_negative(n)))
 	{
-	// 	printf("printing a space \n");
 		p->return_value += ft_print_char(' ');
-		// p->width--;
+		// space_check = 1;
 	}
 	if (is_negative(n) && p->zero)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && p->zero)
 		p->return_value += ft_print_char('+');
+	// if (p->space && !space_check && p->zero && p->width > 0 && !p->plus)
+	// 		p->return_value += ft_print_char('0');
 	ft_len_zero_handling_float(p, f, n);
 	if (is_negative(n) && !p->zero)
 		p->return_value += ft_print_char('-');

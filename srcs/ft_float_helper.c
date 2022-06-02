@@ -57,8 +57,12 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 	tmp = NULL;
 	tmp2 = NULL;
 	zero_to_add = 0;
+	// printf("f->decimal = %llu\n", f->decimal);
+	// printf("f->trunc = %llu\n", f->trunc);
+	// printf("f->amount = %llu\n", f->amount);
 	zero_to_add = ft_nbrlen(f->amount, 10) - 1 - ft_nbrlen(f->decimal, 10);
-	tmp = malloc(sizeof(char) * zero_to_add);
+	// printf("zero to add = %d\n", zero_to_add);
+	tmp = malloc(sizeof(char) * (zero_to_add + 1));
 	s1 = ft_unsigned_long_itoa(f->trunc);
 	s2 = ft_unsigned_long_itoa(f->decimal);
 	if (p->precision == 0 && p->dot && !p->sharp)
@@ -67,8 +71,12 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 	if (zero_to_add)
 	{
 		tmp = ft_strncpy(tmp, "000000000000000000000000000000000", zero_to_add);
+		tmp[zero_to_add + 1] = '\0';
+		// printf("tmp = %s\n", tmp);
 		tmp2 = ft_strjoin(tmp, s2);
+		// printf("tmp2 = %s\n", tmp2);
 		nbr = ft_strjoin(s1, tmp2);
+		// printf("nbr = %s\n", nbr);
 		free(tmp);
 		free(tmp2);
 	}
@@ -92,12 +100,6 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	n *= f->sign;
 	f->amount = set_amount(p, f);
 	f->trunc = (unsigned long long)n;
-	if (!p->precision && p->dot)
-	{
-		if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
-	|| f->trunc == 7 || f->trunc == 9))
-			f->trunc++;
-	}
 	if (n >= 1)
 	{
 		// printf("f->amount = %llu\n", f->amount);
@@ -122,27 +124,41 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 			f->trunc++;
 			f->decimal = (double)0;//double necessaire ?
 		}
+		if (!p->precision && p->dot)
+		{
+			if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
+			|| f->trunc == 7 || f->trunc == 9))
+				f->trunc++;
+		}
 		// printf("f->decimal before return = %llu\n", f->decimal);
 		// printf("f->trunc before return = %llu\n", f->trunc);
 		return ;
 	}
 	else if (n > 0)
 	{
+		// printf("f->amount = %llu\n", f->amount);
 		f->decimal = n * f->amount;
 		// printf("f->decimal = %llu\n", f->decimal);
 		next_decimal = n * (f->amount * 10);
 		// printf("next decimal = %llu\n", next_decimal);
 		reverse = ft_strduprev(ft_itoa(next_decimal));
 		// printf("reverse = %s\n", reverse);
-		last_digit = ft_atoi(reverse) / (f->amount);
+		last_digit = ft_atoi(reverse) / (f->amount / 10);
 		// printf("last digit = %d\n", last_digit);
 		if (last_digit >= 5)
 			f->decimal++;
 		free(reverse);
+		// printf("f->decimal before if = amount  = %llu\n", f->decimal);
 		if (f->decimal == f->amount)
 		{
 			f->trunc++;
 			f->decimal = (double)0;
+		}
+		if (!p->precision && p->dot)
+		{
+			if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
+			|| f->trunc == 7 || f->trunc == 9))
+				f->trunc++;
 		}
 		// printf("f->decimal before return = %llu\n", f->decimal);
 		// printf("f->trunc before return = %llu\n", f->trunc);
