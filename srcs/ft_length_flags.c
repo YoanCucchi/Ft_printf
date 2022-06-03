@@ -78,5 +78,6 @@ int	ft_length_flags(t_parameter *p, va_list *ap)
 		p->return_value += ft_parse_hh(p, ap);
 	else if (!ft_strcmp("L", p->length) && p->specifier == 'f')
 		p->return_value += ft_print_l_float(p, ap);
+	free(p->length);
 	return (0);
 }

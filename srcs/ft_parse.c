@@ -93,7 +93,7 @@ static void	ft_parse_length(char *str, t_parameter *p)
 {
 	int		i;
 	char	*tmp;
-
+// ld
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
 	i = 0;
 	while (!ft_strchr(SPECIFIERS, str[i]))
