@@ -62,16 +62,17 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 	// printf("f->amount = %llu\n", f->amount);
 	zero_to_add = ft_nbrlen(f->amount, 10) - 1 - ft_nbrlen(f->decimal, 10);
 	// printf("zero to add = %d\n", zero_to_add);
-	tmp = malloc(sizeof(char) * (zero_to_add + 1));
+	tmp = malloc(sizeof(char) * (zero_to_add));
 	s1 = ft_unsigned_long_itoa(f->trunc);
 	s2 = ft_unsigned_long_itoa(f->decimal);
 	if (p->precision == 0 && p->dot && !p->sharp)
 		return (s1);
 	s1[ft_strlen(s1)] = '.';
-	if (zero_to_add)
+	// printf("n = %Lf", n);
+	if (zero_to_add && f->decimal != 0)
 	{
 		tmp = ft_strncpy(tmp, "000000000000000000000000000000000", zero_to_add);
-		tmp[zero_to_add + 1] = '\0';
+		// tmp[zero_to_add + 1] = '\0';
 		// printf("tmp = %s\n", tmp);
 		tmp2 = ft_strjoin(tmp, s2);
 		// printf("tmp2 = %s\n", tmp2);
@@ -137,19 +138,19 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	}
 	else if (n > 0)
 	{
-		printf("f->amount = %llu\n", f->amount);
+		// printf("f->amount = %llu\n", f->amount);
 		f->decimal = n * f->amount;
-		printf("f->decimal = %llu\n", f->decimal);
+		// printf("f->decimal = %llu\n", f->decimal);
 		next_decimal = n * (f->amount * 10);
-		printf("next decimal = %llu\n", next_decimal);
+		// printf("next decimal = %llu\n", next_decimal);
 		reverse = ft_strduprev(ft_itoa(next_decimal));
-		printf("reverse = %s\n", reverse);
+		// printf("reverse = %s\n", reverse);
 		last_digit = ft_atoi(reverse) / (f->amount / 10);
-		printf("last digit = %d\n", last_digit);
+		// printf("last digit = %d\n", last_digit);
 		if (last_digit >= 5 && p->precision > 1 && (reverse[0] != '0'))//  || ft_strlen(reverse) == 1)
 			f->decimal++;
 		free(reverse);
-		printf("f->decimal before if = amount  = %llu\n", f->decimal);
+		// printf("f->decimal before if = amount  = %llu\n", f->decimal);
 		if (f->decimal == f->amount)
 		{
 			f->trunc++;
@@ -161,8 +162,8 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 			|| f->trunc == 7 || f->trunc == 9))
 				f->trunc++;
 		}
-		printf("f->decimal before return = %llu\n", f->decimal);
-		printf("f->trunc before return = %llu\n", f->trunc);
+		// printf("f->decimal before return = %llu\n", f->decimal);
+		// printf("f->trunc before return = %llu\n", f->trunc);
 		return ;
 	}
 	else
