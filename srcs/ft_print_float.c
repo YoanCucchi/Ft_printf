@@ -105,14 +105,8 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && !p->zero)
 		p->return_value += ft_print_char('+');
-	if (ft_strcmp(nbr, "0.0"))
-	{
-		p->return_value += ft_putnstr(nbr, (p->precision + \
-		ft_nbrlen(f->trunc, 10) + 1));
-	}
-	else
-		p->return_value += ft_putnstr(nbr, (p->precision + \
-		ft_nbrlen(f->trunc, 10) + 1));
+	p->return_value += ft_putnstr(nbr, (p->precision + \
+	ft_nbrlen(f->trunc, 10) + 1));
 	if (!f->decimal)
 	{
 		while (p->precision-- > 1)
@@ -152,14 +146,8 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && !p->zero)
 		p->return_value += ft_print_char('+');
-	if (ft_strcmp(nbr, "0.0"))
-	{
-		p->return_value += ft_putnstr(nbr, (p->precision + \
-		ft_nbrlen(f->trunc, 10) + 1));
-	}
-	else
-		p->return_value += ft_putnstr(nbr, (p->precision + \
-		ft_nbrlen(f->trunc, 10) + 1));
+	p->return_value += ft_putnstr(nbr, (p->precision + \
+	ft_nbrlen(f->trunc, 10) + 1));
 	if (!f->decimal)
 	{
 		while (p->precision-- > 1)
