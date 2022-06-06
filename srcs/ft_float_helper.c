@@ -124,7 +124,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		if (f->decimal == f->amount)
 		{
 			f->trunc++;
-			f->decimal = (double)0;//double necessaire ?
+			f->decimal = 0;
 		}
 		if (!p->precision && p->dot)
 		{
@@ -154,7 +154,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		if (f->decimal == f->amount)
 		{
 			f->trunc++;
-			f->decimal = (double)0;
+			f->decimal = 0;
 		}
 		if (!p->precision && p->dot)
 		{

@@ -449,9 +449,9 @@ int main(void)
 	// ret2 = ft_printf("mine:%Lf\n", 2.5555545L);
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:%.2f\n", 0.000500);
-	ret2 = ft_printf("mine:%.2f\n", 0.000500);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%.2f\n", 0.000500);
+	// ret2 = ft_printf("mine:%.2f\n", 0.000500);
+	// printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("norm:%10.1f\n", 0.500000);
 	// ret2 = ft_printf("mine:%10.1f\n", 0.500000);
 	// printf("%d %d\n", ret1, ret2);
@@ -466,9 +466,9 @@ int main(void)
 	// ret1 = printf("norm:%0 f\n", 3.141593);
 	// ret2 = ft_printf("mine:%0 f\n", 3.141593);
 	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("norm:%-15.8f\n", 42.42);
-	// ret2 = ft_printf("mine:%-15.8f\n", 42.42);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("norm:%-15.8f\n", 42.42);
+	ret2 = ft_printf("mine:%-15.8f\n", 42.42);
+	printf("%d %d\n", ret1, ret2);
 	//0.011719
 	//1.500000
 	//0.150000
