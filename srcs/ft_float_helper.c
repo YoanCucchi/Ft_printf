@@ -85,6 +85,7 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 		nbr = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);
+	free(tmp);
 	return (nbr);
 }
 

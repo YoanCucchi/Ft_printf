@@ -473,6 +473,6 @@ int main(void)
 	//1.500000
 	//0.150000
 	//-0.000000
-	// system("leaks a.out");
+	system("leaks a.out");
 	return (0);
 }
