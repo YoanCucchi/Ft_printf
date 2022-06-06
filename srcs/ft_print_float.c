@@ -54,7 +54,7 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f, double n)
 	}
 	if (!p->minus && !p->minus_check)
 	{
-		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0 && n)
+		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
 		{
 			if (!p->zero)
 				p->return_value += ft_print_char(' ');
@@ -65,7 +65,7 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f, double n)
 	}
 	if (p->minus && p->minus_check)
 	{
-		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0 && n)
+		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
 		{
 			if (!p->zero)
 				p->return_value += ft_print_char(' ');
@@ -112,6 +112,8 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		while (p->precision-- > 1)
 			p->return_value += ft_print_char('0');
 	}
+	if (p->minus)
+		ft_len_zero_handling_float(p, f, n);
 	free(nbr);
 	free(f);
 	return (0);
@@ -153,6 +155,8 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 		while (p->precision-- > 1)
 			p->return_value += ft_print_char('0');
 	}
+	if (p->minus)
+		ft_len_zero_handling_float(p, f, n);
 	free(nbr);
 	free(f);
 	return (0);
