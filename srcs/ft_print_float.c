@@ -28,20 +28,28 @@ static int	is_negative(long double nbr)
 	return (1);
 }
 
-static int	ft_len_zero_handling_float(t_parameter *p, t_float *f, double n)
+static int	ft_minus_flag(t_parameter *p, t_float *f)
+{
+	while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
+	{
+		if (!p->zero)
+			p->return_value += ft_print_char(' ');
+		else
+			p->return_value += ft_print_char('0');
+	}
+	return (0);
+}
+
+static int	ft_len_zero_handling_float(t_parameter *p, t_float *f)
 {
 	int total;
 
 	total = 0;
-	if (p->minus && !p->minus_check)
-	{
-		p->minus_check = 1;
-		return (0);
-	}
+
 	// parameter_print(p);
 	// printf("is negative, %d\n", is_negative(n));
 	// printf("nbrlen = %d\n", ft_nbrlen(f->trunc, 10));
-	if (is_negative(n))
+	if (f->is_negative)
 		total = p->precision + ft_nbrlen(f->trunc, 10) + 1;
 	else
 		total = p->precision + p->plus + p->space + ft_nbrlen(f->trunc, 10) + 1;
@@ -52,7 +60,7 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f, double n)
 		else
 			p->return_value += ft_print_char('0');
 	}
-	if (!p->minus && !p->minus_check)
+	if (!p->minus)
 	{
 		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
 		{
@@ -62,16 +70,6 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f, double n)
 				p->return_value += ft_print_char('0');
 		}
 		return (0);
-	}
-	if (p->minus && p->minus_check)
-	{
-		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
-		{
-			if (!p->zero)
-				p->return_value += ft_print_char(' ');
-			else
-				p->return_value += ft_print_char('0');
-		}
 	}
 	return (0);
 }
@@ -86,22 +84,24 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	f = memalloc_float(f);
 	nbr = NULL;
 	n = va_arg(*ap, double);
-	if (is_negative(n) && (p->precision < 6 || !p->precision))
+	f->is_negative = is_negative(n); // if 1 = -
+	if (f->is_negative && (p->precision < 6 || !p->precision))
 		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
 	if (!p->precision && p->dot)
 		p->width++;
 	split_float(p, f, n);
-	nbr = f_join(p, f, nbr);
-	if (p->space && (!is_negative(n)))
+	nbr = float_maker(p, f, nbr);
+	if (p->space && (!f->is_negative))
 		p->return_value += ft_print_char(' ');
-	if (is_negative(n) && p->zero)
+	if (f->is_negative && p->zero)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && p->zero)
 		p->return_value += ft_print_char('+');
-	ft_len_zero_handling_float(p, f, n);
-	if (is_negative(n) && !p->zero)
+	if (!p->minus)
+		ft_len_zero_handling_float(p, f);
+	if (f->is_negative && !p->zero)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && !p->zero)
 		p->return_value += ft_print_char('+');
@@ -113,7 +113,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 			p->return_value += ft_print_char('0');
 	}
 	if (p->minus)
-		ft_len_zero_handling_float(p, f, n);
+		ft_minus_flag(p, f);
 	free(nbr);
 	free(f);
 	return (0);
@@ -121,30 +121,32 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 
 int	ft_print_l_float(t_parameter *p, va_list *ap)
 {
-	double	n;
-	char	*nbr;
-	t_float	*f;
+	long double	n;
+	char		*nbr;
+	t_float		*f;
 
 	f = NULL;
 	f = memalloc_float(f);
 	nbr = NULL;
-	n = va_arg(*ap, double);
-	if (is_negative(n) && (p->precision < 6 || !p->precision))
+	n = va_arg(*ap, long double);
+	f->is_negative = is_negative(n); // if 1 = -
+	if (f->is_negative && (p->precision < 6 || !p->precision))
 		p->width--;
 	if (!p->precision && !p->dot)
 		p->precision = 6;
 	if (!p->precision && p->dot)
 		p->width++;
 	split_float(p, f, n);
-	nbr = f_join(p, f, nbr);
-	if (p->space && (!is_negative(n)))
+	nbr = float_maker(p, f, nbr);
+	if (p->space && (!f->is_negative))
 		p->return_value += ft_print_char(' ');
-	if (is_negative(n) && p->zero)
+	if (f->is_negative && p->zero)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && p->zero)
 		p->return_value += ft_print_char('+');
-	ft_len_zero_handling_float(p, f, n);
-	if (is_negative(n) && !p->zero)
+	if (!p->minus)
+		ft_len_zero_handling_float(p, f);
+	if (f->is_negative && !p->zero)
 		p->return_value += ft_print_char('-');
 	else if (p->plus && !p->zero)
 		p->return_value += ft_print_char('+');
@@ -156,7 +158,7 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 			p->return_value += ft_print_char('0');
 	}
 	if (p->minus)
-		ft_len_zero_handling_float(p, f, n);
+		ft_minus_flag(p, f);
 	free(nbr);
 	free(f);
 	return (0);

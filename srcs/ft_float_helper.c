@@ -46,7 +46,7 @@ static unsigned long long	set_amount(t_parameter *p, t_float *f)
 	return (f->amount);
 }
 
-char	*f_join(t_parameter *p, t_float *f, char *nbr)
+char	*float_maker(t_parameter *p, t_float *f, char *nbr)
 {
 	char	*s1;
 	char	*s2;

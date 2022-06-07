@@ -60,8 +60,9 @@ typedef struct s_float
 {
 	unsigned long long	trunc;
 	unsigned long long	decimal;
-	int					sign;
 	unsigned long long	amount;
+	int					sign;
+	int					is_negative;
 }			t_float;
 
 /*
@@ -150,7 +151,6 @@ void		param_free(t_parameter *p);
 */
 
 void		ft_init_float(t_float *f);
-void		ft_reset_float(t_float *f);
 t_float		*memalloc_float(t_float *f);
 
 
@@ -197,7 +197,7 @@ int			ft_print_l_float(t_parameter *p, va_list *ap);
 */
 
 void		split_float(t_parameter *p, t_float *f, long double n);
-char		*f_join(t_parameter *p, t_float *f, char *nbr);
+char		*float_maker(t_parameter *p, t_float *f, char *nbr);
 
 /*
 ** colors.c
