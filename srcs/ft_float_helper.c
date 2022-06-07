@@ -52,6 +52,7 @@ char	*float_maker(t_parameter *p, t_float *f, char *nbr)
 	char	*s2;
 	char	*tmp;
 	char	*tmp2;
+	char	*test;
 	int		zero_to_add;
 
 	tmp = NULL;
@@ -65,27 +66,36 @@ char	*float_maker(t_parameter *p, t_float *f, char *nbr)
 	// tmp = malloc(sizeof(char) * (zero_to_add));
 	s1 = ft_unsigned_long_itoa(f->trunc);
 	s2 = ft_unsigned_long_itoa(f->decimal);
+	// printf("s1 = %s\n", s1);
+	// printf("s2 = %s\n", s2);
 	if (p->precision == 0 && p->dot && !p->sharp) // need to free stuff here
 		return (s1);
-	s1[ft_strlen(s1)] = '.';
+	// test = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	test = ft_strjoin(s1, ".");
+	// printf("test = %s\n", test);
+	// s1[ft_strlen(s1)] = '.';
+	// printf("s1 = %s\n", s1);
 	// printf("n = %Lf", n);
 	if (zero_to_add && f->decimal != 0)
 	{
+		printf("here");
 		tmp = malloc(sizeof(char) * (zero_to_add));
 		tmp = ft_strncpy(tmp, "000000000000000000000000000000000", zero_to_add);
 		// tmp[zero_to_add + 1] = '\0';
 		// printf("tmp = %s\n", tmp);
 		tmp2 = ft_strjoin(tmp, s2);
 		// printf("tmp2 = %s\n", tmp2);
-		nbr = ft_strjoin(s1, tmp2);
+		nbr = ft_strjoin(test, tmp2);
 		// printf("nbr = %s\n", nbr);
 		free(tmp);
 		free(tmp2);
 	}
 	else
-		nbr = ft_strjoin(s1, s2);
+		nbr = ft_strjoin(test, s2);
+	// printf("nbr = %s/n", nbr);
 	free(s1);
 	free(s2);
+	free(test);
 	return (nbr);
 }
 
@@ -95,7 +105,9 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	unsigned long long	next_decimal;
 	char				*reverse;
 	int					last_digit;
+	int	i;
 
+	i = 0;
 	f->sign = 1;
 	if (n < 0)
 		f->sign = -1;

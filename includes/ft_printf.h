@@ -70,7 +70,7 @@ typedef struct s_float
 */
 
 int			ft_printf(const char *str, ...);
-int			conversion_type(t_parameter *p, va_list *ap);
+int			conversion_type(t_parameter *p, va_list ap);
 
 /*
 ** ft_print_utils.c
@@ -85,28 +85,28 @@ void		minus_flag(t_parameter *p, long long n);
 ** ft_print_str.c
 */
 
-int			ft_print_str(t_parameter *p, va_list *ap);
-int			ft_print_c(t_parameter *p, va_list *ap);
+int			ft_print_str(t_parameter *p, va_list ap);
+int			ft_print_c(t_parameter *p, va_list ap);
 int			ft_print_percent(t_parameter *p);
 
 /*
 ** ft_print_nbr.c
 */
 
-int			ft_print_nbr(t_parameter *p, va_list *ap);
-int			ft_print_short_nbr(t_parameter *p, va_list *ap);
-int			ft_print_long_nbr(t_parameter *p, va_list *ap);
-int			ft_print_long_long_nbr(t_parameter *p, va_list *ap);
-int			ft_print_char_nbr(t_parameter *p, va_list *ap);
+int			ft_print_nbr(t_parameter *p, va_list ap);
+int			ft_print_short_nbr(t_parameter *p, va_list ap);
+int			ft_print_long_nbr(t_parameter *p, va_list ap);
+int			ft_print_long_long_nbr(t_parameter *p, va_list ap);
+int			ft_print_char_nbr(t_parameter *p, va_list ap);
 
 /*
 ** ft_print_unbr.c
 */
 
-int			ft_print_unsigned_nbr(t_parameter *p, va_list *ap);
-int			ft_print_ushort_nbr(t_parameter *p, va_list *ap);
-int			ft_print_ulong_nbr(t_parameter *p, va_list *ap);
-int			ft_print_uchar_nbr(t_parameter *p, va_list *ap);
+int			ft_print_unsigned_nbr(t_parameter *p, va_list ap);
+int			ft_print_ushort_nbr(t_parameter *p, va_list ap);
+int			ft_print_ulong_nbr(t_parameter *p, va_list ap);
+int			ft_print_uchar_nbr(t_parameter *p, va_list ap);
 
 /*
 ** ft_nbr_helper.c
@@ -118,23 +118,23 @@ void		ft_len_zero_handling_nbr(t_parameter *p, long long n);
 ** ft_print_hex.c
 */
 
-int			ft_print_hex(t_parameter *p, va_list *ap);
-int			ft_print_p(t_parameter *p, va_list *ap);
+int			ft_print_hex(t_parameter *p, va_list ap);
+int			ft_print_p(t_parameter *p, va_list ap);
 
 /*
 ** ft_print_flag_hex.c
 */
 
-int			ft_print_char_hex(t_parameter *p, va_list *ap);
-int			ft_print_short_hex(t_parameter *p, va_list *ap);
-int			ft_print_long_hex(t_parameter *p, va_list *ap);
-int			ft_print_long_long_hex(t_parameter *p, va_list *ap);
+int			ft_print_char_hex(t_parameter *p, va_list ap);
+int			ft_print_short_hex(t_parameter *p, va_list ap);
+int			ft_print_long_hex(t_parameter *p, va_list ap);
+int			ft_print_long_long_hex(t_parameter *p, va_list ap);
 
 /*
 ** ft_parse.c
 */
 
-int			ft_parse(char *str, va_list *ap, t_parameter *p);
+int			ft_parse(char *str, va_list ap, t_parameter *p);
 
 /*
 ** ft_initialize_parameter.c
@@ -158,17 +158,17 @@ t_float		*memalloc_float(t_float *f);
 ** ft_length_flags.c
 */
 
-int			ft_length_flags(t_parameter *p, va_list *ap);
+int			ft_length_flags(t_parameter *p, va_list ap);
 
 /*
 ** ft_print_octal.c
 */
 
-int			ft_print_octal(t_parameter *p, va_list *ap);
-int			ft_print_long_o(t_parameter *p, va_list *ap);
-int			ft_print_llong_o(t_parameter *p, va_list *ap);
-int			ft_print_short_o(t_parameter *p, va_list *ap);
-int			ft_print_char_octal(t_parameter *p, va_list *ap);
+int			ft_print_octal(t_parameter *p, va_list ap);
+int			ft_print_long_o(t_parameter *p, va_list ap);
+int			ft_print_llong_o(t_parameter *p, va_list ap);
+int			ft_print_short_o(t_parameter *p, va_list ap);
+int			ft_print_char_octal(t_parameter *p, va_list ap);
 
 /*
 ** ft_octal_helper.c
@@ -189,8 +189,8 @@ void		ft_len_zero_handling_p(t_parameter *p, long long n);
 ** ft_print_float.c
 */
 
-int			ft_print_float(t_parameter *p, va_list *ap);
-int			ft_print_l_float(t_parameter *p, va_list *ap);
+int			ft_print_float(t_parameter *p, va_list ap);
+int			ft_print_l_float(t_parameter *p, va_list ap);
 
 /*
 ** ft_print_float.c

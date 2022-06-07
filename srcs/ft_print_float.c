@@ -95,7 +95,7 @@ static void	setting_float(t_parameter *p, t_float *f, long double n)
 		p->width++;
 }
 
-int	ft_print_float(t_parameter *p, va_list *ap)
+int	ft_print_float(t_parameter *p, va_list ap)
 {
 	double	n;
 	char	*nbr;
@@ -104,7 +104,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	f = NULL;
 	nbr = NULL;
 	f = memalloc_float(f);
-	n = va_arg(*ap, double);
+	n = va_arg(ap, double);
 	setting_float(p, f, n);
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
@@ -127,7 +127,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_l_float(t_parameter *p, va_list *ap)
+int	ft_print_l_float(t_parameter *p, va_list ap)
 {
 	long double	n;
 	char		*nbr;
@@ -136,7 +136,7 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	f = NULL;
 	nbr = NULL;
 	f = memalloc_float(f);
-	n = va_arg(*ap, long double);
+	n = va_arg(ap, long double);
 	setting_float(p, f, n);
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);

@@ -41,14 +41,14 @@ static void	ft_len_zero_handling_str(t_parameter *p, int lowest)
 	}
 }
 
-int	ft_print_str(t_parameter *p, va_list *ap)
+int	ft_print_str(t_parameter *p, va_list ap)
 {
 	char	*string;
 	int		lowest;
 
 	lowest = 0;
 	p->len = 0;
-	string = va_arg(*ap, char *);
+	string = va_arg(ap, char *);
 	if (!string)
 		string = "(null)";
 	p->len = ft_strlen(string);
@@ -65,14 +65,14 @@ int	ft_print_str(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_c(t_parameter *p, va_list *ap)
+int	ft_print_c(t_parameter *p, va_list ap)
 {
 	char	c;
 	int		lowest;
 
 	lowest = 0;
 	p->len = 0;
-	c = va_arg(*ap, int);
+	c = va_arg(ap, int);
 	if (c || c == 0)
 		p->len = 1;
 	if (!p->precision && !p->dot)

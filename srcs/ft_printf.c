@@ -21,7 +21,7 @@ static void	printing(const char *str, char *first, va_list ap, t_parameter *p)
 			ft_reset_params(p);
 			first = (char *)str;
 			if (*(++str))
-				p->return_value += ft_parse((char *)str, &ap, p);
+				p->return_value += ft_parse((char *)str, ap, p);
 			while (*str && !ft_strchr(SPECIFIERS, *str))
 				str++;
 			if (!(*str))
@@ -51,7 +51,7 @@ int	ft_printf(const char *str, ...)
 	return (p->return_value);
 }
 
-int	conversion_type(t_parameter *p, va_list *ap)
+int	conversion_type(t_parameter *p, va_list ap)
 {
 	if (p->length && (ft_strchr(LENGTH_DISPATCH, p->specifier)))
 		p->return_value += ft_length_flags(p, ap);

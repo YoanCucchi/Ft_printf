@@ -31,7 +31,7 @@ static void	ft_parse_flags(char *str, t_parameter *p)
 	}
 }
 
-static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
+static void	ft_parse_width(char *str, va_list ap, t_parameter *p)
 {
 	while (!ft_strchr(SPECIFIERS, *str) && !ft_strchr(LENGTH, *str))
 	{
@@ -41,7 +41,7 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 		{
 			if (*str == '*')
 			{
-				p->width = va_arg(*ap, int);
+				p->width = va_arg(ap, int);
 				if (p->width < 0)
 				{
 					p->width = p->width * (-1);
@@ -60,7 +60,7 @@ static void	ft_parse_width(char *str, va_list *ap, t_parameter *p)
 	}
 }
 
-static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
+static void	ft_parse_precision(char *str, va_list ap, t_parameter *p)
 {
 	if (*str != '.')
 		return ;
@@ -73,7 +73,7 @@ static void	ft_parse_precision(char *str, va_list *ap, t_parameter *p)
 		{
 			if (*str == '*')
 			{
-				p->precision = va_arg(*ap, int);
+				p->precision = va_arg(ap, int);
 				if (p->precision < 0)
 				{
 					p->precision = 0;
@@ -122,7 +122,7 @@ static void	ft_parse_length(char *str, t_parameter *p)
 ** all our parameters and return the proper conversion type and format
 ** %[Flags][Width].[Precision][Length]
 */
-int	ft_parse(char *str, va_list *ap, t_parameter *p)
+int	ft_parse(char *str, va_list ap, t_parameter *p)
 {
 	p->format = str;
 	ft_parse_flags(p->format, p);

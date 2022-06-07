@@ -12,12 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_octal(t_parameter *p, va_list *ap)
+int	ft_print_octal(t_parameter *p, va_list ap)
 {
 	unsigned int	n;
 	char			*nbr;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_octal_itoa(n);
 	if (n == 0 && p->dot && !p->sharp)
 		p->len = 0;
@@ -38,12 +38,12 @@ int	ft_print_octal(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_long_o(t_parameter *p, va_list *ap)
+int	ft_print_long_o(t_parameter *p, va_list ap)
 {
 	unsigned long	n;
 	char			*nbr;
 
-	n = va_arg(*ap, long);
+	n = va_arg(ap, long);
 	nbr = ft_octal_itoa(n);
 	if (n == 0 && p->dot && !p->sharp)
 		p->len = 0;
@@ -64,12 +64,12 @@ int	ft_print_long_o(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_llong_o(t_parameter *p, va_list *ap)
+int	ft_print_llong_o(t_parameter *p, va_list ap)
 {
 	unsigned long long	n;
 	char				*nbr;
 
-	n = va_arg(*ap, long long);
+	n = va_arg(ap, long long);
 	nbr = ft_octal_itoa(n);
 	if (n == 0 && p->dot && !p->sharp)
 		p->len = 0;
@@ -90,12 +90,12 @@ int	ft_print_llong_o(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_short_o(t_parameter *p, va_list *ap)
+int	ft_print_short_o(t_parameter *p, va_list ap)
 {
 	unsigned short	n;
 	char			*nbr;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_octal_itoa(n);
 	if (n == 0 && p->dot && !p->sharp)
 		p->len = 0;
@@ -116,12 +116,12 @@ int	ft_print_short_o(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_char_octal(t_parameter *p, va_list *ap)
+int	ft_print_char_octal(t_parameter *p, va_list ap)
 {
 	unsigned char	n;
 	char			*nbr;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_octal_itoa(n);
 	if (n == 0 && p->dot && !p->sharp)
 		p->len = 0;

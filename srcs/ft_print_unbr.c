@@ -12,12 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
+int	ft_print_unsigned_nbr(t_parameter *p, va_list ap)
 {
 	unsigned int	n;
 	char			*nbr;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
 	p->len = ft_strlen(nbr);
 	ft_len_zero_handling_nbr(p, n);
@@ -39,12 +39,12 @@ int	ft_print_unsigned_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_ulong_nbr(t_parameter *p, va_list *ap)
+int	ft_print_ulong_nbr(t_parameter *p, va_list ap)
 {
 	char			*nbr;
 	unsigned long	n;
 
-	n = va_arg(*ap, long);
+	n = va_arg(ap, long);
 	nbr = ft_unsigned_long_itoa(n);
 	p->len = ft_strlen(nbr);
 	ft_len_zero_handling_nbr(p, n);
@@ -66,12 +66,12 @@ int	ft_print_ulong_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_ushort_nbr(t_parameter *p, va_list *ap)
+int	ft_print_ushort_nbr(t_parameter *p, va_list ap)
 {
 	char			*nbr;
 	unsigned short	n;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
 	p->len = ft_strlen(nbr);
 	ft_len_zero_handling_nbr(p, n);
@@ -93,12 +93,12 @@ int	ft_print_ushort_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_uchar_nbr(t_parameter *p, va_list *ap)
+int	ft_print_uchar_nbr(t_parameter *p, va_list ap)
 {
 	char			*nbr;
 	unsigned char	n;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
 	p->len = ft_strlen(nbr);
 	if (!p->precision && n == 0 && p->dot)

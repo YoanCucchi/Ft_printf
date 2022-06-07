@@ -12,11 +12,11 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_hex(t_parameter *p, va_list *ap)
+int	ft_print_hex(t_parameter *p, va_list ap)
 {
 	unsigned int	n;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	p->len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_hex(p, n);
 	if (n == 0 && !p->dot)
@@ -32,11 +32,11 @@ int	ft_print_hex(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_p(t_parameter *p, va_list *ap)
+int	ft_print_p(t_parameter *p, va_list ap)
 {
 	unsigned long	n;
 
-	n = va_arg(*ap, long);
+	n = va_arg(ap, long);
 	p->len = ft_nbrlen(n, 16);
 	ft_len_zero_handling_p(p, n);
 	if (n == 0 && !p->dot)

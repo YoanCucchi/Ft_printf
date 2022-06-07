@@ -12,12 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_nbr(t_parameter *p, va_list *ap)
+int	ft_print_nbr(t_parameter *p, va_list ap)
 {
 	int		n;
 	char	*nbr;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
@@ -41,12 +41,12 @@ int	ft_print_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_short_nbr(t_parameter *p, va_list *ap)
+int	ft_print_short_nbr(t_parameter *p, va_list ap)
 {
 	char	*nbr;
 	short	n;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
@@ -70,12 +70,12 @@ int	ft_print_short_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_long_nbr(t_parameter *p, va_list *ap)
+int	ft_print_long_nbr(t_parameter *p, va_list ap)
 {
 	char	*nbr;
 	long	n;
 
-	n = va_arg(*ap, long);
+	n = va_arg(ap, long);
 	nbr = ft_long_itoa(n);
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
@@ -99,12 +99,12 @@ int	ft_print_long_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
+int	ft_print_long_long_nbr(t_parameter *p, va_list ap)
 {
 	char				*nbr;
 	unsigned long long	n;
 
-	n = va_arg(*ap, long long);
+	n = va_arg(ap, long long);
 	nbr = ft_long_itoa(n);
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
@@ -128,12 +128,12 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list *ap)
 	return (0);
 }
 
-int	ft_print_char_nbr(t_parameter *p, va_list *ap)
+int	ft_print_char_nbr(t_parameter *p, va_list ap)
 {
 	char		*nbr;
 	signed char	n;
 
-	n = va_arg(*ap, int);
+	n = va_arg(ap, int);
 	nbr = ft_long_itoa(n);
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
