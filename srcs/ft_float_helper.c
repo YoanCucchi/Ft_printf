@@ -112,9 +112,9 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		// printf("f->decimal = %llu\n", f->decimal);
 		next_decimal = decimal_helper * (f->amount * 10);
 		// printf("next decimal = %llu\n", next_decimal);
-		reverse = ft_strduprev(ft_itoa(next_decimal));// reverse next decimal or decimal
+		reverse = ft_strduprev(ft_itoa(next_decimal));
 		// printf("reverse = %s\n", reverse);
-		last_digit = ft_atoi(reverse) / (f->amount * 10);// to change if next decimal is used
+		last_digit = ft_atoi(reverse) / (f->amount * 10);
 		// printf("last digit = %d\n", last_digit);
 		if (last_digit >= 5)
 			f->decimal++;
@@ -151,7 +151,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		// printf("last digit = %d\n", last_digit);
 		// printf("test = %llu\n", f->decimal % 10);
 		// printf("rev 0 = %c\n", reverse[0]);
-		if ((last_digit >= 5 && reverse[0] != '0'))//  || ft_strlen(reverse) == 1)
+		if (last_digit >= 5 && reverse[0] != '0')
 			f->decimal++;
 		free(reverse);
 		// printf("f->decimal before if = amount  = %llu\n", f->decimal);

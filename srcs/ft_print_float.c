@@ -42,10 +42,9 @@ static int	ft_minus_flag(t_parameter *p, t_float *f)
 
 static int	ft_len_zero_handling_float(t_parameter *p, t_float *f)
 {
-	int total;
+	int	total;
 
 	total = 0;
-
 	// parameter_print(p);
 	// printf("is negative, %d\n", is_negative(n));
 	// printf("nbrlen = %d\n", ft_nbrlen(f->trunc, 10));
@@ -76,7 +75,6 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f)
 
 static int	handling_sign(t_parameter *p, t_float *f)
 {
-
 	if (p->space && (!f->is_negative))
 		p->return_value += ft_print_char(' ');
 	if (f->is_negative && p->zero)
@@ -86,16 +84,8 @@ static int	handling_sign(t_parameter *p, t_float *f)
 	return (0);
 }
 
-int	ft_print_float(t_parameter *p, va_list *ap)
+static void	setting_float(t_parameter *p, t_float *f, long double n)
 {
-	double	n;
-	char	*nbr;
-	t_float	*f;
-
-	f = NULL;
-	nbr = NULL;
-	f = memalloc_float(f);
-	n = va_arg(*ap, double);
 	f->is_negative = is_negative(n); // if 1 = -
 	if (f->is_negative && (p->precision < 6 || !p->precision))
 		p->width--;
@@ -103,6 +93,19 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		p->precision = 6;
 	if (!p->precision && p->dot)
 		p->width++;
+}
+
+int	ft_print_float(t_parameter *p, va_list *ap)
+{
+	double	n;
+	char	*nbr;
+	t_float	*f;
+
+	f = NULL;
+	f = memalloc_float(f);
+	n = va_arg(*ap, double);
+	nbr = NULL;
+	setting_float(p, f, n);
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
 	handling_sign(p, f);
@@ -115,10 +118,8 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
 	if (!f->decimal)
-	{
 		while (p->precision-- > 1)
 			p->return_value += ft_print_char('0');
-	}
 	if (p->minus)
 		ft_minus_flag(p, f);
 	free(nbr);
@@ -133,16 +134,10 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	t_float		*f;
 
 	f = NULL;
-	nbr = NULL;
 	f = memalloc_float(f);
 	n = va_arg(*ap, long double);
-	f->is_negative = is_negative(n); // if 1 = -
-	if (f->is_negative && (p->precision < 6 || !p->precision))
-		p->width--;
-	if (!p->precision && !p->dot)
-		p->precision = 6;
-	if (!p->precision && p->dot)
-		p->width++;
+	nbr = NULL;
+	setting_float(p, f, n);
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
 	handling_sign(p, f);
@@ -155,10 +150,8 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
 	if (!f->decimal)
-	{
 		while (p->precision-- > 1)
 			p->return_value += ft_print_char('0');
-	}
 	if (p->minus)
 		ft_minus_flag(p, f);
 	free(nbr);
