@@ -116,7 +116,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		// printf("reverse = %s\n", reverse);
 		last_digit = ft_atoi(reverse) / (f->amount * 10);// to change if next decimal is used
 		// printf("last digit = %d\n", last_digit);
-		if (last_digit >= 5 && p->precision > 1)
+		if (last_digit >= 5)
 			f->decimal++;
 		free(reverse);
 		// printf("f->decimal after increase  = %llu\n", f->decimal);
@@ -129,8 +129,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		}
 		if (!p->precision && p->dot)
 		{
-			if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
-			|| f->trunc == 7 || f->trunc == 9))
+			if (f->decimal >= 5 && f->trunc % 2 > 0)
 				f->trunc++;
 		}
 		// printf("f->decimal before return = %llu\n", f->decimal);
@@ -142,13 +141,17 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		// printf("f->amount = %llu\n", f->amount);
 		f->decimal = n * f->amount;
 		// printf("f->decimal = %llu\n", f->decimal);
+		decimal_helper = n - (f->trunc);
+		// printf("decimal helper = %Lf\n", decimal_helper);
 		next_decimal = n * (f->amount * 10);
 		// printf("next decimal = %llu\n", next_decimal);
 		reverse = ft_strduprev(ft_itoa(next_decimal));
 		// printf("reverse = %s\n", reverse);
 		last_digit = ft_atoi(reverse) / (f->amount / 10);
 		// printf("last digit = %d\n", last_digit);
-		if (last_digit >= 5 && p->precision > 1 && (reverse[0] != '0'))//  || ft_strlen(reverse) == 1)
+		// printf("test = %llu\n", f->decimal % 10);
+		// printf("rev 0 = %c\n", reverse[0]);
+		if ((last_digit >= 5 && reverse[0] != '0'))//  || ft_strlen(reverse) == 1)
 			f->decimal++;
 		free(reverse);
 		// printf("f->decimal before if = amount  = %llu\n", f->decimal);
@@ -159,8 +162,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		}
 		if (!p->precision && p->dot)
 		{
-			if (f->decimal >= 5 && (f->trunc == 1 || f->trunc == 3 || f->trunc == 5 \
-			|| f->trunc == 7 || f->trunc == 9))
+			if (f->decimal >= 5 && f->trunc % 2 > 0)
 				f->trunc++;
 		}
 		// printf("f->decimal before return = %llu\n", f->decimal);
