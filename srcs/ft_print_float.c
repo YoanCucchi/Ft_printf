@@ -102,9 +102,9 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	t_float	*f;
 
 	f = NULL;
+	nbr = NULL;
 	f = memalloc_float(f);
 	n = va_arg(*ap, double);
-	nbr = NULL;
 	setting_float(p, f, n);
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
@@ -134,9 +134,9 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	t_float		*f;
 
 	f = NULL;
+	nbr = NULL;
 	f = memalloc_float(f);
 	n = va_arg(*ap, long double);
-	nbr = NULL;
 	setting_float(p, f, n);
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
