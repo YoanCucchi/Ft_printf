@@ -74,6 +74,18 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f)
 	return (0);
 }
 
+static int	handling_sign(t_parameter *p, t_float *f)
+{
+
+	if (p->space && (!f->is_negative))
+		p->return_value += ft_print_char(' ');
+	if (f->is_negative && p->zero)
+		p->return_value += ft_print_char('-');
+	else if (p->plus && p->zero)
+		p->return_value += ft_print_char('+');
+	return (0);
+}
+
 int	ft_print_float(t_parameter *p, va_list *ap)
 {
 	double	n;
@@ -81,8 +93,8 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 	t_float	*f;
 
 	f = NULL;
-	f = memalloc_float(f);
 	nbr = NULL;
+	f = memalloc_float(f);
 	n = va_arg(*ap, double);
 	f->is_negative = is_negative(n); // if 1 = -
 	if (f->is_negative && (p->precision < 6 || !p->precision))
@@ -93,12 +105,7 @@ int	ft_print_float(t_parameter *p, va_list *ap)
 		p->width++;
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
-	if (p->space && (!f->is_negative))
-		p->return_value += ft_print_char(' ');
-	if (f->is_negative && p->zero)
-		p->return_value += ft_print_char('-');
-	else if (p->plus && p->zero)
-		p->return_value += ft_print_char('+');
+	handling_sign(p, f);
 	if (!p->minus)
 		ft_len_zero_handling_float(p, f);
 	if (f->is_negative && !p->zero)
@@ -126,8 +133,8 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 	t_float		*f;
 
 	f = NULL;
-	f = memalloc_float(f);
 	nbr = NULL;
+	f = memalloc_float(f);
 	n = va_arg(*ap, long double);
 	f->is_negative = is_negative(n); // if 1 = -
 	if (f->is_negative && (p->precision < 6 || !p->precision))
@@ -138,12 +145,7 @@ int	ft_print_l_float(t_parameter *p, va_list *ap)
 		p->width++;
 	split_float(p, f, n);
 	nbr = float_maker(p, f, nbr);
-	if (p->space && (!f->is_negative))
-		p->return_value += ft_print_char(' ');
-	if (f->is_negative && p->zero)
-		p->return_value += ft_print_char('-');
-	else if (p->plus && p->zero)
-		p->return_value += ft_print_char('+');
+	handling_sign(p, f);
 	if (!p->minus)
 		ft_len_zero_handling_float(p, f);
 	if (f->is_negative && !p->zero)
