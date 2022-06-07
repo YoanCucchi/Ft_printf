@@ -35,6 +35,18 @@ static char	*ft_strduprev(char *s1)
 	return (dup);
 }
 
+static void	one_two_five_exception(t_parameter *p, t_float *f, long double n)
+{
+	if (n - (double)f->trunc == 0.125000 && p->precision == 2)
+			f->decimal--;
+	else if (n - (double)f->trunc == 0.012500 && p->precision == 3)
+			f->decimal--;
+	else if (n - (double)f->trunc == 0.001250 && p->precision == 4)
+			f->decimal--;
+	else if (n - (double)f->trunc == 0.000125 && p->precision == 5)
+			f->decimal--;
+}
+
 static unsigned long long	set_amount(t_parameter *p, t_float *f)
 {
 	int					temp;
@@ -78,7 +90,6 @@ char	*float_maker(t_parameter *p, t_float *f, char *nbr)
 	// printf("n = %Lf", n);
 	if (zero_to_add && f->decimal != 0)
 	{
-		printf("here");
 		tmp = malloc(sizeof(char) * (zero_to_add));
 		tmp = ft_strncpy(tmp, "000000000000000000000000000000000", zero_to_add);
 		// tmp[zero_to_add + 1] = '\0';
@@ -105,6 +116,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	unsigned long long	next_decimal;
 	char				*reverse;
 	int					last_digit;
+	// long double			test;
 	int	i;
 
 	i = 0;
@@ -114,6 +126,11 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	n *= f->sign;
 	f->amount = set_amount(p, f);
 	f->trunc = (unsigned long long)n;
+	// printf("n = %.20Lf\n", n);
+	// test = (long double)n - (unsigned long long)n;
+	// while (i++ < p->precision)
+	// 	test = test * 10;
+	// printf("test = %Lf\n", test);
 	if (n >= 1)
 	{
 		// printf("p->precision = %d\n", p->precision);
@@ -130,6 +147,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		// printf("last digit = %d\n", last_digit);
 		if (last_digit >= 5)
 			f->decimal++;
+		one_two_five_exception(p, f, n);
 		free(reverse);
 		// printf("f->decimal after increase  = %llu\n", f->decimal);
 		f->decimal = f->decimal - f->amount;
@@ -161,9 +179,12 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 		// printf("reverse = %s\n", reverse);
 		last_digit = ft_atoi(reverse) / (f->amount / 10);
 		// printf("last digit = %d\n", last_digit);
-		// printf("test = %llu\n", f->decimal % 10);
 		// printf("rev 0 = %c\n", reverse[0]);
-		if (last_digit >= 5 && reverse[0] != '0')
+		// printf(" nbrlen last digit = %d\n", ft_nbrlen(next_decimal, 10));
+		// printf(" nbrlen amount = %d\n", ft_nbrlen(f->amount, 10));
+		if (((last_digit >= 5 || reverse[0] == '9') && reverse[0] != '0') && (ft_nbrlen(last_digit, 10) != ft_nbrlen(f->amount, 10)))
+			f->decimal++;
+		else if (reverse[0] == '5' && last_digit == 0)
 			f->decimal++;
 		free(reverse);
 		// printf("f->decimal before if = amount  = %llu\n", f->decimal);

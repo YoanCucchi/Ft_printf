@@ -12,16 +12,18 @@
 
 #include "../includes/ft_printf.h"
 
-static int	is_negative(long double nbr)
+static int	is_negative(double nbr)
 {
 	unsigned long long	*ull;
 	int					sign;
+	double				zero;
 
 	if (nbr > 0)
 		return (0);
 	if (nbr < 0)
 		return (1);
-	ull = (unsigned long long *)&nbr;
+	zero = nbr;
+	ull = (unsigned long long *)&zero;
 	sign = (int)(*ull >> 63);
 	if (sign == 0)
 		return (0);
@@ -86,7 +88,7 @@ static int	handling_sign(t_parameter *p, t_float *f)
 
 static void	setting_float(t_parameter *p, t_float *f, long double n)
 {
-	f->is_negative = is_negative(n); // if 1 = -
+	f->is_negative = is_negative(n);
 	if (f->is_negative && (p->precision < 6 || !p->precision))
 		p->width--;
 	if (!p->precision && !p->dot)
