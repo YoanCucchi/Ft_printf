@@ -62,15 +62,16 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 	// printf("f->amount = %llu\n", f->amount);
 	zero_to_add = ft_nbrlen(f->amount, 10) - 1 - ft_nbrlen(f->decimal, 10);
 	// printf("zero to add = %d\n", zero_to_add);
-	tmp = malloc(sizeof(char) * (zero_to_add));
+	// tmp = malloc(sizeof(char) * (zero_to_add));
 	s1 = ft_unsigned_long_itoa(f->trunc);
 	s2 = ft_unsigned_long_itoa(f->decimal);
-	if (p->precision == 0 && p->dot && !p->sharp)
+	if (p->precision == 0 && p->dot && !p->sharp) // need to free stuff here
 		return (s1);
 	s1[ft_strlen(s1)] = '.';
 	// printf("n = %Lf", n);
 	if (zero_to_add && f->decimal != 0)
 	{
+		tmp = malloc(sizeof(char) * (zero_to_add));
 		tmp = ft_strncpy(tmp, "000000000000000000000000000000000", zero_to_add);
 		// tmp[zero_to_add + 1] = '\0';
 		// printf("tmp = %s\n", tmp);
@@ -85,7 +86,6 @@ char	*f_join(t_parameter *p, t_float *f, char *nbr)
 		nbr = ft_strjoin(s1, s2);
 	free(s1);
 	free(s2);
-	free(tmp);
 	return (nbr);
 }
 
