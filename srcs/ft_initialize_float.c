@@ -28,4 +28,5 @@ void	ft_init_float(t_float *f)
 	f->amount = 0;
 	f->sign = 0;
 	f->is_negative = 0;
+	f->zero_to_add = 0;
 }

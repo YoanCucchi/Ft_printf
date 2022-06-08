@@ -93,7 +93,7 @@ static void	ft_parse_length(char *str, t_parameter *p)
 {
 	int		i;
 	char	*tmp;
-// ld
+
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
 	i = 0;
 	while (!ft_strchr(SPECIFIERS, str[i]))
@@ -117,11 +117,6 @@ static void	ft_parse_length(char *str, t_parameter *p)
 	free(tmp);
 }
 
-/*
-** Here we are parsing flags, width, precision and length to set up
-** all our parameters and return the proper conversion type and format
-** %[Flags][Width].[Precision][Length]
-*/
 int	ft_parse(char *str, va_list ap, t_parameter *p)
 {
 	p->format = str;

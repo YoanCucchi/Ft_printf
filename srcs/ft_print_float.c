@@ -14,18 +14,7 @@
 
 static int	is_negative(double nbr)
 {
-	unsigned long long	*ull;
-	int					sign;
-	double				zero;
-
-	if (nbr > 0)
-		return (0);
-	if (nbr < 0)
-		return (1);
-	zero = nbr;
-	ull = (unsigned long long *)&zero;
-	sign = (int)(*ull >> 63);
-	if (sign == 0)
+	if ((1 * nbr) > 0)
 		return (0);
 	return (1);
 }
@@ -47,9 +36,6 @@ static int	ft_len_zero_handling_float(t_parameter *p, t_float *f)
 	int	total;
 
 	total = 0;
-	// parameter_print(p);
-	// printf("is negative, %d\n", is_negative(n));
-	// printf("nbrlen = %d\n", ft_nbrlen(f->trunc, 10));
 	if (f->is_negative)
 		total = p->precision + ft_nbrlen(f->trunc, 10) + 1;
 	else
@@ -159,4 +145,4 @@ int	ft_print_l_float(t_parameter *p, va_list ap)
 	free(nbr);
 	free(f);
 	return (0);
-}	
+}

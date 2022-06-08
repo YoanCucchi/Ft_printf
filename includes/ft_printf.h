@@ -63,6 +63,7 @@ typedef struct s_float
 	unsigned long long	amount;
 	int					sign;
 	int					is_negative;
+	int					zero_to_add;
 }			t_float;
 
 /*
@@ -140,11 +141,9 @@ int			ft_parse(char *str, va_list ap, t_parameter *p);
 ** ft_initialize_parameter.c
 */
 
-void		parameter_print(t_parameter *p); // A VIRER !!!
 void		ft_init_params(t_parameter *p);
 void		ft_reset_params(t_parameter *p);
 t_parameter	*memalloc_struct(t_parameter *p);
-void		param_free(t_parameter *p);
 
 /*
 ** ft_initialize_float.c
@@ -152,7 +151,6 @@ void		param_free(t_parameter *p);
 
 void		ft_init_float(t_float *f);
 t_float		*memalloc_float(t_float *f);
-
 
 /*
 ** ft_length_flags.c
