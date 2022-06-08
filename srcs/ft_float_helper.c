@@ -117,9 +117,7 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	char				*reverse;
 	int					last_digit;
 	// long double			test;
-	int	i;
 
-	i = 0;
 	f->sign = 1;
 	if (n < 0)
 		f->sign = -1;

@@ -452,8 +452,8 @@ int main(void)
 	// ret1 = printf("norm:%10.1f\n", 0.500000);
 	// ret2 = ft_printf("mine:%10.1f\n", 0.500000);
 	// printf("%d %d\n", ret1, ret2);
-	ret1 = printf("norm:%.2f\n", 958.125000);
-	ret2 = ft_printf("mine:%.2f\n", 958.125000);
+	ret1 = printf("norm:%.2f\n", -958.125000);
+	ret2 = ft_printf("mine:%.2f\n", -958.125000);
 	printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:{%f}\n", -0.000000);
