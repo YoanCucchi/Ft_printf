@@ -14,7 +14,7 @@
 
 static int	is_negative(double nbr)
 {
-	if ((1 * nbr) > 0)
+	if ((1 / nbr) > 0)
 		return (0);
 	return (1);
 }
