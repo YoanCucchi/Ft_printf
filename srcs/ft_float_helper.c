@@ -66,12 +66,64 @@ static char	*adding_zero(char *nbr, char *s2, char *add_dot, t_float *f)
 	tmp = NULL;
 	tmp2 = NULL;
 	tmp = malloc(sizeof(char) * (f->zero_to_add));
-	tmp = ft_strncpy(tmp, "000000000000000000000000000000", f->zero_to_add);
+	tmp = ft_strncpy(tmp, "000000000000000000000000000000000", f->zero_to_add);
 	tmp2 = ft_strjoin(tmp, s2);
 	nbr = ft_strjoin(add_dot, tmp2);
 	free(tmp);
 	free(tmp2);
 	return (nbr);
+}
+
+static void	rounding_big(long double n, t_parameter *p, t_float *f)
+{
+	long double			decimal_helper;
+	unsigned long long	next_decimal;
+	char				*reverse;
+	int					last_digit;
+
+	reverse = NULL;
+	decimal_helper = n - (f->trunc - 1);
+	f->decimal = decimal_helper * f->amount;
+	next_decimal = decimal_helper * (f->amount * 10);
+	reverse = ft_strduprev(ft_itoa(next_decimal));
+	last_digit = ft_atoi(reverse) / (f->amount * 10);
+	if (last_digit >= 5)
+		f->decimal++;
+	one_two_five_exception(p, f, n);
+	f->decimal = f->decimal - f->amount;
+	if (f->decimal == f->amount)
+	{
+		f->trunc++;
+		f->decimal = 0;
+	}
+	if (!p->precision && p->dot && f->decimal >= 5 && f->trunc % 2 > 0)
+		f->trunc++;
+	free(reverse);
+}
+
+static void	rounding_small(long double n, t_parameter *p, t_float *f)
+{
+	unsigned long long	next_decimal;
+	char				*reverse;
+	int					last_digit;
+
+	f->decimal = n * f->amount;
+	next_decimal = n * (f->amount * 10);
+	reverse = ft_strduprev(ft_itoa(next_decimal));
+	last_digit = ft_atoi(reverse) / (f->amount / 10);
+	if (((last_digit >= 5 || reverse[0] == '9') && reverse[0] != '0') && \
+	(ft_nbrlen(last_digit, 10) != ft_nbrlen(f->amount, 10)))
+		f->decimal++;
+	else if (reverse[0] == '5' && last_digit == 0)
+		f->decimal++;
+	if (f->decimal == f->amount)
+	{
+		f->trunc++;
+		f->decimal = 0;
+	}
+	if (!p->precision && p->dot && f->decimal >= 5 && f->trunc % 2 > 0)
+		f->trunc++;
+	free(reverse);
 }
 
 char	*float_maker(t_parameter *p, t_float *f, char *nbr)
@@ -98,11 +150,6 @@ char	*float_maker(t_parameter *p, t_float *f, char *nbr)
 
 void	split_float(t_parameter *p, t_float *f, long double n)
 {
-	long double			decimal_helper;
-	unsigned long long	next_decimal;
-	char				*reverse;
-	int					last_digit;
-
 	f->sign = 1;
 	if (n < 0)
 		f->sign = -1;
@@ -111,51 +158,12 @@ void	split_float(t_parameter *p, t_float *f, long double n)
 	f->trunc = (unsigned long long)n;
 	if (n >= 1)
 	{
-		decimal_helper = n - (f->trunc - 1);
-		f->decimal = decimal_helper * f->amount;
-		next_decimal = decimal_helper * (f->amount * 10);
-		reverse = ft_strduprev(ft_itoa(next_decimal));
-		last_digit = ft_atoi(reverse) / (f->amount * 10);
-		if (last_digit >= 5)
-			f->decimal++;
-		one_two_five_exception(p, f, n);
-		free(reverse);
-		f->decimal = f->decimal - f->amount;
-		if (f->decimal == f->amount)
-		{
-			f->trunc++;
-			f->decimal = 0;
-		}
-		if (!p->precision && p->dot)
-		{
-			if (f->decimal >= 5 && f->trunc % 2 > 0)
-				f->trunc++;
-		}
+		rounding_big(n, p, f);
 		return ;
 	}
 	else if (n > 0)
 	{
-		f->decimal = n * f->amount;
-		decimal_helper = n - (f->trunc);
-		next_decimal = n * (f->amount * 10);
-		reverse = ft_strduprev(ft_itoa(next_decimal));
-		last_digit = ft_atoi(reverse) / (f->amount / 10);
-		if (((last_digit >= 5 || reverse[0] == '9') && reverse[0] != '0') && \
-		(ft_nbrlen(last_digit, 10) != ft_nbrlen(f->amount, 10)))
-			f->decimal++;
-		else if (reverse[0] == '5' && last_digit == 0)
-			f->decimal++;
-		free(reverse);
-		if (f->decimal == f->amount)
-		{
-			f->trunc++;
-			f->decimal = 0;
-		}
-		if (!p->precision && p->dot)
-		{
-			if (f->decimal >= 5 && f->trunc % 2 > 0)
-				f->trunc++;
-		}
+		rounding_small(n, p, f);
 		return ;
 	}
 	else
