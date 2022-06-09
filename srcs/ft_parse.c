@@ -98,6 +98,7 @@ static int	ft_parse_length(char *str, t_parameter *p)
 	if (!tmp)
 		return (EXIT_FAILURE);
 	i = 0;
+	// printf("str = %s\n", str);
 	while (!ft_strchr(SPECIFIERS, str[i]))
 	{
 		if (ft_strchr(LENGTH, str[i]))
@@ -108,8 +109,21 @@ static int	ft_parse_length(char *str, t_parameter *p)
 		p->format++;
 		i++;
 	}
+	// printf("tmp avant strdup= %s\n", tmp);
+	// printf("p->length avant strdup= %s\n", p->length);
 	p->length = ft_strdup(tmp);
+	// printf("tmp apres strdup= %s\n", tmp);
+	// printf("p->length apres strdup= %s\n", p->length);
+	if (ft_strcmp("ll", p->length) && ft_strcmp("l", p->length) && \
+		ft_strcmp("h", p->length) && ft_strcmp("hh", p->length) && \
+		ft_strcmp("L", p->length))
+	{
+		free(p->length);
+		p->length = NULL;
+	}
 	free(tmp);
+	// printf("tmp apres strdup= %s\n", tmp);
+	// printf("p->length a la fin= %s\n", p->length);
 	return (0);
 }
 
@@ -121,13 +135,6 @@ int	ft_parse(char *str, va_list ap, t_parameter *p)
 	p->wildcard_check = 0;
 	ft_parse_precision(p->format, ap, p);
 	ft_parse_length(p->format, p);
-	if (ft_strcmp("ll", p->length) && ft_strcmp("l", p->length) && \
-		ft_strcmp("h", p->length) && ft_strcmp("hh", p->length) && \
-		ft_strcmp("L", p->length))
-	{
-		free(p->length);
-		p->length = NULL;
-	}
 	p->specifier = *p->format;
 	conversion_type(p, ap);
 	return (0);

@@ -38,6 +38,8 @@ int	ft_print_p(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, long);
 	p->len = ft_nbrlen(n, 16);
+	if (p->width > p->len + 2 && n != 0 && !p->precision && !p->minus)
+		p->return_value += ft_print_char(' ');
 	ft_len_zero_handling_p(p, n);
 	if (n == 0 && !p->dot)
 		p->return_value += ft_print_char('0');
