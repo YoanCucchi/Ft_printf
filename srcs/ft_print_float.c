@@ -12,77 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-static int	is_negative(double nbr)
-{
-	if ((1 / nbr) > 0)
-		return (0);
-	return (1);
-}
-
-static int	ft_minus_flag(t_parameter *p, t_float *f)
-{
-	while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
-	{
-		if (!p->zero)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
-	return (0);
-}
-
-static int	ft_len_zero_handling_float(t_parameter *p, t_float *f)
-{
-	int	total;
-
-	total = 0;
-	if (f->is_negative)
-		total = p->precision + ft_nbrlen(f->trunc, 10) + 1;
-	else
-		total = p->precision + p->plus + p->space + ft_nbrlen(f->trunc, 10) + 1;
-	while (p->width-- > total)
-	{
-		if (!p->zero)
-			p->return_value += ft_print_char(' ');
-		else
-			p->return_value += ft_print_char('0');
-	}
-	if (!p->minus)
-	{
-		while ((p->width-- - ft_nbrlen(f->trunc, 10) - 1 - p->precision) > 0)
-		{
-			if (!p->zero)
-				p->return_value += ft_print_char(' ');
-			else
-				p->return_value += ft_print_char('0');
-		}
-		return (0);
-	}
-	return (0);
-}
-
-static int	handling_sign(t_parameter *p, t_float *f)
-{
-	if (p->space && (!f->is_negative))
-		p->return_value += ft_print_char(' ');
-	if (f->is_negative && p->zero)
-		p->return_value += ft_print_char('-');
-	else if (p->plus && p->zero)
-		p->return_value += ft_print_char('+');
-	return (0);
-}
-
-static void	setting_float(t_parameter *p, t_float *f, long double n)
-{
-	f->is_negative = is_negative(n);
-	if (f->is_negative && (p->precision < 6 || !p->precision))
-		p->width--;
-	if (!p->precision && !p->dot)
-		p->precision = 6;
-	if (!p->precision && p->dot)
-		p->width++;
-}
-
 int	ft_print_float(t_parameter *p, va_list ap)
 {
 	double	n;
@@ -99,10 +28,7 @@ int	ft_print_float(t_parameter *p, va_list ap)
 	handling_sign(p, f);
 	if (!p->minus)
 		ft_len_zero_handling_float(p, f);
-	if (f->is_negative && !p->zero)
-		p->return_value += ft_print_char('-');
-	else if (p->plus && !p->zero)
-		p->return_value += ft_print_char('+');
+	handling_sign_after_zero(p, f);
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
 	if (!f->decimal)
@@ -131,10 +57,7 @@ int	ft_print_l_float(t_parameter *p, va_list ap)
 	handling_sign(p, f);
 	if (!p->minus)
 		ft_len_zero_handling_float(p, f);
-	if (f->is_negative && !p->zero)
-		p->return_value += ft_print_char('-');
-	else if (p->plus && !p->zero)
-		p->return_value += ft_print_char('+');
+	handling_sign_after_zero(p, f);
 	p->return_value += ft_putnstr(nbr, (p->precision + \
 	ft_nbrlen(f->trunc, 10) + 1));
 	if (!f->decimal)

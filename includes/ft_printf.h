@@ -191,11 +191,31 @@ int			ft_print_float(t_parameter *p, va_list ap);
 int			ft_print_l_float(t_parameter *p, va_list ap);
 
 /*
-** ft_print_float.c
+** float_helper.c
 */
 
 void		split_float(t_parameter *p, t_float *f, long double n);
 char		*float_maker(t_parameter *p, t_float *f, char *nbr);
+
+/*
+** float_rounding.c
+*/
+
+char		*ft_strduprev(char *s1);
+void		one_two_five_exception(t_parameter *p, t_float *f, long double n);
+void		rounding_big(long double n, t_parameter *p, t_float *f);
+void		rounding_small(long double n, t_parameter *p, t_float *f);
+
+/*
+** ft_float_helper_print.c
+*/
+
+void		setting_float(t_parameter *p, t_float *f, long double n);
+int			handling_sign(t_parameter *p, t_float *f);
+int			ft_len_zero_handling_float(t_parameter *p, t_float *f);
+int			handling_sign_after_zero(t_parameter *p, t_float *f);
+int			ft_minus_flag(t_parameter *p, t_float *f);
+
 
 /*
 ** colors.c
