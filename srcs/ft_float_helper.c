@@ -20,6 +20,8 @@ static char	*adding_zero(char *nbr, char *s2, char *add_dot, t_float *f)
 	tmp = NULL;
 	tmp2 = NULL;
 	tmp = malloc(sizeof(char) * (f->zero_to_add));
+	if (!tmp)
+		return (NULL);
 	tmp = ft_strncpy(tmp, "000000000000000000000000000000000", f->zero_to_add);
 	tmp2 = ft_strjoin(tmp, s2);
 	nbr = ft_strjoin(add_dot, tmp2);

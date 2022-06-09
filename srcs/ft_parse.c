@@ -95,6 +95,8 @@ static void	ft_parse_length(char *str, t_parameter *p)
 	char	*tmp;
 
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
+	if (!tmp)
+		return ;
 	i = 0;
 	while (!ft_strchr(SPECIFIERS, str[i]))
 	{
@@ -103,7 +105,6 @@ static void	ft_parse_length(char *str, t_parameter *p)
 			tmp[i] = str[i];
 			is_it_double_specifier(str, tmp, i);
 		}
-		i++;
 		p->format++;
 	}
 	p->length = ft_strdup(tmp);
