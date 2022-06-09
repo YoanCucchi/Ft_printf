@@ -22,6 +22,8 @@ void	setting_float(t_parameter *p, t_float *f, long double n)
 		p->precision = 6;
 	if (!p->precision && p->dot)
 		p->width++;
+	if (p->precision > 18)
+		p->precision = 18;
 }
 
 int	handling_sign(t_parameter *p, t_float *f)

@@ -461,9 +461,21 @@ int main(void)
 	// ret2 = ft_printf("mine:{%.3lf}{%.3lf}\n", 5.00444449999, 5.00444449999);
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:%Lf\n", 3.141593);
-	ret2 = ft_printf("mine:%Lf\n", 3.141593);
+	// ret1 = printf("norm:%0.3d\n", -8462);
+	// ret2 = ft_printf("mine:%0.3d\n", -8462);
+	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:%08.3d\n", -8473);
+	// ret2 = ft_printf("mine:%08.3d\n", -8473);
+	// printf("%d %d\n", ret1, ret2);
+
+	ret1 = printf("norm:%04.5d\n", 8375);
+	ret2 = ft_printf("mine:%04.5d\n", 8375);
 	printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:%.20f\n", 5.846546548);
+	// ret2 = ft_printf("mine:%.20f\n", 5.846546548);
+	// printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:%-15.8f\n", 42.42);
 	// ret2 = ft_printf("mine:%-15.8f\n", 42.42);
@@ -472,10 +484,9 @@ int main(void)
 	//1.500000
 	//0.150000
 	//-0.000000
-
-//  NEED TO CHECK PROBLEM WITH FLAGS ??
-// also need to check float with big precision
-
-	system("leaks a.out");
+//"%08.3u", 8375)
+//{return test("%08.3i", 8375);}
+//return test("%% *.5i 42 == |% *.5i|
+	// system("leaks a.out");
 	return (0);
 }

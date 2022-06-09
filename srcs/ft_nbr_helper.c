@@ -14,7 +14,7 @@
 
 static void	minus_plus_handling_before_zeros(t_parameter *p, long long n)
 {
-	if (n < 0 && !p->minus_check && (!p->zero || !p->precision) && \
+	if (n < 0 && !p->minus_check && (!p->zero || !p->precision || p->precision < p->len) && \
 	((p->width < p->precision || p->width < p->len) || p->zero) && \
 	p->specifier != 'u')
 	{

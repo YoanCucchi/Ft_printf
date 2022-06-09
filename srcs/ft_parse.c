@@ -89,14 +89,14 @@ static void	ft_parse_precision(char *str, va_list ap, t_parameter *p)
 	}
 }
 
-static void	ft_parse_length(char *str, t_parameter *p)
+static int	ft_parse_length(char *str, t_parameter *p)
 {
 	int		i;
 	char	*tmp;
 
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
 	if (!tmp)
-		return ;
+		return (EXIT_FAILURE);
 	i = 0;
 	while (!ft_strchr(SPECIFIERS, str[i]))
 	{
@@ -110,6 +110,7 @@ static void	ft_parse_length(char *str, t_parameter *p)
 	}
 	p->length = ft_strdup(tmp);
 	free(tmp);
+	return (0);
 }
 
 int	ft_parse(char *str, va_list ap, t_parameter *p)

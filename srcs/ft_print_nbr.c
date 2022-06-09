@@ -22,6 +22,7 @@ int	ft_print_nbr(t_parameter *p, va_list ap)
 	p->len = ft_strlen(nbr);
 	if (p->zero && n < 0 && p->precision > p->width)
 		p->minus_check = 1;
+	// printf("p->minus_check = %d\n", p->minus_check);
 	ft_len_zero_handling_nbr(p, n);
 	if (n == 0 && p->dot)
 	{
