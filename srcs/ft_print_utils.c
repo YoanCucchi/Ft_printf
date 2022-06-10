@@ -12,18 +12,21 @@
 
 #include "../includes/ft_printf.h"
 
-void	is_it_double_specifier(char *str, char *tmp, int i)
+int	is_it_double_specifier(char *str, char *tmp, int i, t_parameter *p)
 {
 	if (str[i] == 'l' && str[i + 1] == 'l')
 	{
 		i++;
 		tmp[i] = str[i];
+		p->format++;
 	}
-	if (str[i] == 'h' && str[i + 1] == 'h')
+	else if (str[i] == 'h' && str[i + 1] == 'h')
 	{
 		i++;
 		tmp[i] = str[i];
+		p->format++;
 	}
+	return (i);
 }
 
 int	who_is_biggest_of_2(int a, int b)
