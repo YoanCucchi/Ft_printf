@@ -6,5 +6,6 @@
         "ios": "c",
         "ratio": "c",
         "locale": "c"
-    }
+    },
+    "terminal.integrated.drawBoldTextInBrightColors": true
 }

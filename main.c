@@ -491,9 +491,7 @@ int main(void)
 	// ret2 = ft_printf("mine:{%0-3.7d}\n", 42);
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:%ld %hd\n", 5846546548L, 1111146548L);
-	ret2 = ft_printf("mine:%ld %hd\n", 5846546548L, 1111146548L);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("norm:%ld %hd\n", 5846546548
 
 	// ret1 = printf("norm:%-15.8f\n", 42.42);
 	// ret2 = ft_printf("mine:%-15.8f\n", 42.42);
@@ -506,5 +504,6 @@ int main(void)
 	//{return test("%08.3i", 8375);}
 	//return test("%% *.5i 42 == |% *.5i|
 	// system("leaks a.out");
+	write(1,"\x1B[32m Hello world! \x1B[0m", 25);
 	return (0);
 }
