@@ -497,12 +497,17 @@ int main(void)
 	// ret2 = ft_printf("mine:{%-7p}\n", 412);
 	// printf("%d %d\n", ret1, ret2);
 
-	// ret1 = printf("norm:{%0-3.7d}\n", 42);
-	// ret2 = ft_printf("mine:{%0-3.7d}\n", 42);
+	ret1 = printf("norm:{%0-3.7d}\n", 42);
+	ret2 = ft_printf("mine:{%0-3.7d}\n", 42);
+	printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:%03.3d\n", -8462);
+	// ret2 = ft_printf("mine:%03.3d\n", -8462);
 	// printf("%d %d\n", ret1, ret2);
 
-	ret1 = printf("norm:%o %hho\n", -42, -42);
-	ret2 = ft_printf("mine:%o %hho\n", -42, -42);
+	// ret1 = printf("norm:%o %hho\n", -42, -42);
+	// ret2 = ft_printf("mine:%o %hho\n", -42, -42);
+	// printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:%0i\n", -42);
 	// ret2 = ft_printf("mine:%0i\n", -42);

@@ -19,10 +19,7 @@ int	ft_print_nbr(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
-	p->len = ft_strlen(nbr);
-	if (p->zero && n < 0 && b_of_2(p->width, p->precision) < p->len && p->dot)
-		p->minus_check = 1;
-	ft_len_zero_handling_nbr(p, n);
+	nbr_setting(nbr, n, p);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -48,10 +45,7 @@ int	ft_print_short_nbr(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, int);
 	nbr = ft_itoa(n);
-	p->len = ft_strlen(nbr);
-	if (p->zero && n < 0 && b_of_2(p->width, p->precision) < p->len && p->dot)
-		p->minus_check = 1;
-	ft_len_zero_handling_nbr(p, n);
+	nbr_setting(nbr, n, p);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -77,10 +71,7 @@ int	ft_print_long_nbr(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, long);
 	nbr = ft_long_itoa(n);
-	p->len = ft_strlen(nbr);
-	if (p->zero && n < 0 && b_of_2(p->width, p->precision) < p->len && p->dot)
-		p->minus_check = 1;
-	ft_len_zero_handling_nbr(p, n);
+	nbr_setting(nbr, n, p);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -106,10 +97,7 @@ int	ft_print_long_long_nbr(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, long long);
 	nbr = ft_long_itoa(n);
-	p->len = ft_strlen(nbr);
-	if (p->zero && n < 0 && b_of_2(p->width, p->precision) < p->len && p->dot)
-		p->minus_check = 1;
-	ft_len_zero_handling_nbr(p, n);
+	nbr_setting(nbr, n, p);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)
@@ -135,10 +123,7 @@ int	ft_print_char_nbr(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, int);
 	nbr = ft_long_itoa(n);
-	p->len = ft_strlen(nbr);
-	if (p->zero && n < 0 && b_of_2(p->width, p->precision) < p->len && p->dot)
-		p->minus_check = 1;
-	ft_len_zero_handling_nbr(p, n);
+	nbr_setting(nbr, n, p);
 	if (n == 0 && p->dot)
 	{
 		if (p->minus)

@@ -114,6 +114,7 @@ int			ft_print_uchar_nbr(t_parameter *p, va_list ap);
 */
 
 void		ft_len_zero_handling_nbr(t_parameter *p, long long n);
+void		nbr_setting(char *nbr, long long n, t_parameter *p);
 
 /*
 ** ft_print_hex.c

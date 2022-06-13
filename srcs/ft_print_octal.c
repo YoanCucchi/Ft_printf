@@ -97,7 +97,6 @@ int	ft_print_short_o(t_parameter *p, va_list ap)
 
 	n = va_arg(ap, int);
 	nbr = ft_octal_itoa(n);
-	printf("nbr = %s\n", nbr);
 	if (n == 0 && p->dot && !p->sharp)
 		p->len = 0;
 	else

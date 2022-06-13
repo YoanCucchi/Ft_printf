@@ -100,9 +100,9 @@ static int	ft_parse_length(char *str, t_parameter *p)
 		return (EXIT_FAILURE);
 	clear_mem = ft_memset(tmp, 0, ft_strlen(str));
 	i = 0;
-	while (!ft_strchr(SPECIFIERS, str[i])) // tant qu il n y a pas de specifier
+	while (!ft_strchr(SPECIFIERS, str[i]))
 	{
-		if (ft_strchr(LENGTH, str[i])) // // si length specifier
+		if (ft_strchr(LENGTH, str[i]))
 		{
 			tmp[i] = str[i];
 			i = is_it_double_specifier(str, tmp, i, p);
