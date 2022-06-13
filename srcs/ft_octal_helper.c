@@ -36,7 +36,7 @@ void	ft_len_zero_handling_octal(t_parameter *p, long long n)
 		p->highest_value--;
 	if (p->width > p->precision && !p->minus)
 	{
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 		{
 			if (p->width > p->len)
 			{

@@ -337,9 +337,6 @@ int main(void)
 	// ret1 = printf("norm:{%u}\n", -742);
 	// ret2 = ft_printf("mine:{%u}\n", -742);
 	// printf("%d %d\n", ret1, ret2);
-// probleme avec hhu avec precision 0
-// avec - 0000000000042 probleme du - pas print au bon endroit
-// probleme 0x avec printf("norm:{%#5.0x}\n", 0);
 
 	// ret1 = printf("%12f\n", 1.935693569356);
 	// ret2 = ft_printf("%12f\n", 1.935693569356);
@@ -457,9 +454,22 @@ int main(void)
 	// ret2 = ft_printf("mine:%.2f\n", -958.125000);
 	// printf("%d %d\n", ret1, ret2);
 
-	// ret1 = printf("norm:{%.3lf}{%.3lf}\n", 5.00444449999, 5.00444449999);
-	// ret2 = ft_printf("mine:{%.3lf}{%.3lf}\n", 5.00444449999, 5.00444449999);
+	// ret1 = printf("norm:{%ho}\n", -42, -42, -42);
+	// ret2 = ft_printf("mine:{%ho}\n", -42, -42, -42);
 	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:{%o}\n", -42, -42, -42);
+	// ret2 = ft_printf("mine:{%o}\n", -42, -42, -42);
+	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:{%hho}\n", -42, -42, -42);
+	// ret2 = ft_printf("mine:{%hho}\n", -42, -42, -42);
+	// printf("%d %d\n", ret1, ret2);
+
+	// ret1 = printf("norm:{%o} {%ho} {%hho}\n", -42, -42, -42);
+	// ret2 = ft_printf("mine:{%o} {%ho} {%hho}\n", -42, -42, -42);
+	// printf("%d %d\n", ret1, ret2);
+	//norm:{37777777726} {177726} {326}$
 
 	// ret1 = printf("norm:%0.3d\n", -8462);
 	// ret2 = ft_printf("mine:%0.3d\n", -8462);
@@ -491,19 +501,19 @@ int main(void)
 	// ret2 = ft_printf("mine:{%0-3.7d}\n", 42);
 	// printf("%d %d\n", ret1, ret2);
 
-	// ret1 = printf("norm:%ld %hd\n", 5846546548
+	ret1 = printf("norm:%o %hho\n", -42, -42);
+	ret2 = ft_printf("mine:%o %hho\n", -42, -42);
 
-	// ret1 = printf("norm:%-15.8f\n", 42.42);
-	// ret2 = ft_printf("mine:%-15.8f\n", 42.42);
+	// ret1 = printf("norm:%0i\n", -42);
+	// ret2 = ft_printf("mine:%0i\n", -42);
 	// printf("%d %d\n", ret1, ret2);
-	//0.011719
-	//1.500000
-	//0.150000
-	//-0.000000
-	//"%08.3u", 8375)
-	//{return test("%08.3i", 8375);}
-	//return test("%% *.5i 42 == |% *.5i|
+
+	// First line of code: {return test("%% *.5i 42 == |% *.5i|
+	// First line of code: {return test("%0-3.3i", -8462);}
+	// First line of code: {return test("%03.3i", -8462);}
+	// First line of code: {return test("%0-3.3d", -8462);}
+	// First line of code: {return test("%03.3d", -8462);}
+
 	// system("leaks a.out");
-	write(1,"\x1B[32m Hello world! \x1B[0m", 25);
 	return (0);
 }

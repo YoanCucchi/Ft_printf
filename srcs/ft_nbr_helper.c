@@ -54,7 +54,7 @@ static void	minus_plus_handling_after_zeros(t_parameter *p, long long n)
 
 void	ft_len_zero_handling_nbr(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
+	p->highest_value = b_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
 		p->len = 0;
 	if (((n < 0 && p->precision >= p->len) || p->plus) && p->specifier != 'u' \
@@ -64,7 +64,7 @@ void	ft_len_zero_handling_nbr(t_parameter *p, long long n)
 	minus_plus_handling_before_zeros(p, n);
 	if (p->width > p->precision && !p->minus)
 	{
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 		{
 			if ((!p->zero || p->precision > p->len) || \
 			(p->zero && p->width > p->precision && p->dot))

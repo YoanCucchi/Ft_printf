@@ -29,7 +29,7 @@ int	is_it_double_specifier(char *str, char *tmp, int i, t_parameter *p)
 	return (i);
 }
 
-int	who_is_biggest_of_2(int a, int b)
+int	b_of_2(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -37,7 +37,7 @@ int	who_is_biggest_of_2(int a, int b)
 		return (b);
 }
 
-int	who_is_biggest_of_3(int a, int b, int c)
+int	b_of_3(int a, int b, int c)
 {
 	if (a >= b && a >= c)
 		return (a);
@@ -54,6 +54,6 @@ void	minus_flag(t_parameter *p, long long n)
 	if (p->plus || n < 0)
 		p->highest_value++;
 	if (p->width > p->precision && p->width > p->len)
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 			p->return_value += ft_print_char(' ');
 }

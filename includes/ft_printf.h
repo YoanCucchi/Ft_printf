@@ -78,8 +78,8 @@ int			conversion_type(t_parameter *p, va_list ap);
 */
 
 int			is_it_double_specifier(char *str, char *tmp, int i, t_parameter *p);
-int			who_is_biggest_of_2(int a, int b);
-int			who_is_biggest_of_3(int a, int b, int c);
+int			b_of_2(int a, int b);
+int			b_of_3(int a, int b, int c);
 void		minus_flag(t_parameter *p, long long n);
 
 /*

@@ -14,7 +14,7 @@
 
 static void	ft_len_zero_handling_str(t_parameter *p, int lowest)
 {
-	p->highest_value = who_is_biggest_of_2(p->precision, p->width);
+	p->highest_value = b_of_2(p->precision, p->width);
 	if (p->precision > p->len)
 		lowest = p->len;
 	else

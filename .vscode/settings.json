@@ -5,7 +5,8 @@
         "ft_printf.h": "c",
         "ios": "c",
         "ratio": "c",
-        "locale": "c"
+        "locale": "c",
+        "libft.h": "c"
     },
     "terminal.integrated.drawBoldTextInBrightColors": true
 }

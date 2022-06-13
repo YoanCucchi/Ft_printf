@@ -94,17 +94,20 @@ static int	ft_parse_length(char *str, t_parameter *p)
 	int		i;
 	char	*tmp;
 
-	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
+	tmp = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
 	if (!tmp)
 		return (EXIT_FAILURE);
 	i = 0;
 	printf("str = %s\n", str);
-	while (!ft_strchr(SPECIFIERS, str[i]))
+	// printf(" is digit = %d\n", ft_isdigit(str[i]));
+	while (!ft_strchr(SPECIFIERS, str[i])) 
 	{
 		if (ft_strchr(LENGTH, str[i]))
 		{
+			printf("tmp tout debut = [%s]\n", tmp);
+			printf("str[i] = %c\n", str[i]);
 			tmp[i] = str[i];
-			printf("i = %d\n", i);
+			// printf("i = %d\n", i);
 			printf("tmp avant double specifier = [%s]\n", tmp);
 			i = is_it_double_specifier(str, tmp, i, p);
 			printf("tmp apres double specifier = [%s]\n", tmp);
@@ -120,7 +123,7 @@ static int	ft_parse_length(char *str, t_parameter *p)
 	// printf("p->length apres strdup= %s\n", p->length);
 	free(tmp);
 	// printf("tmp apres strdup= %s\n", tmp);
-	// printf("p->length a la fin= %s\n", p->length);
+	printf("p->length a la fin= %s\n", p->length);
 	return (0);
 }
 

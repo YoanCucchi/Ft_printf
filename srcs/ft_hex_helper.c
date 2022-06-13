@@ -43,7 +43,7 @@ int	ft_recursive_hex(t_parameter *p, size_t n, size_t iteration)
 
 void	ft_len_zero_handling_hex(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
+	p->highest_value = b_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
 		p->len = 0;
 	if (p->sharp && n != 0)
@@ -53,7 +53,7 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n)
 		if (p->sharp && (p->dot || p->zero) && n != 0 && \
 		(p->precision < p->len || !p->precision))
 			zerox_print(p);
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 		{
 			if (p->zero && !p->dot && (p->precision < p->len || !p->precision))
 				p->return_value += ft_print_char('0');
@@ -70,7 +70,7 @@ void	ft_len_zero_handling_hex(t_parameter *p, long long n)
 
 void	ft_len_zero_handling_p(t_parameter *p, long long n)
 {
-	p->highest_value = who_is_biggest_of_3(p->precision, p->width, p->len);
+	p->highest_value = b_of_3(p->precision, p->width, p->len);
 	if (n == 0 && p->dot)
 		p->len = 0;
 	p->highest_value -= 2;
@@ -80,7 +80,7 @@ void	ft_len_zero_handling_p(t_parameter *p, long long n)
 	{
 		if (p->highest_value + 3 > p->len && n != 0 && !p->precision)
 			p->highest_value--;
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 		{
 			if ((p->zero) && (p->precision > p->len || !p->precision))
 				p->return_value += ft_print_char('0');

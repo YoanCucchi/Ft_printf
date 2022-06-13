@@ -27,7 +27,7 @@ int	ft_print_hex(t_parameter *p, va_list ap)
 	if (p->minus)
 		minus_flag(p, n);
 	if (p->width > p->precision && p->zero)
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 			p->return_value += ft_print_char('0');
 	return (0);
 }
@@ -49,7 +49,7 @@ int	ft_print_p(t_parameter *p, va_list ap)
 	if (p->minus)
 		minus_flag(p, n);
 	if (p->width > p->precision && p->zero)
-		while (p->highest_value-- > who_is_biggest_of_2(p->precision, p->len))
+		while (p->highest_value-- > b_of_2(p->precision, p->len))
 			p->return_value += ft_print_char('0');
 	return (0);
 }
