@@ -66,6 +66,33 @@ int	ft_print_ulong_nbr(t_parameter *p, va_list ap)
 	return (0);
 }
 
+int	ft_print_ulong_long_nbr(t_parameter *p, va_list ap)
+{
+	char				*nbr;
+	unsigned long long	n;
+
+	n = va_arg(ap, long long);
+	nbr = ft_unsigned_long_itoa(n);
+	p->len = ft_strlen(nbr);
+	ft_len_zero_handling_nbr(p, n);
+	if (!p->precision && n == 0 && p->dot)
+	{
+		if (p->minus)
+			minus_flag(p, n);
+		free(nbr);
+		return (0);
+	}
+	else if (n == 0 && p->precision <= 0)
+		p->return_value += ft_print_char('0');
+	else
+		p->return_value += write(1, nbr, p->len);
+	p->len = ft_strlen(nbr);
+	if (p->minus)
+		minus_flag(p, n);
+	free(nbr);
+	return (0);
+}
+
 int	ft_print_ushort_nbr(t_parameter *p, va_list ap)
 {
 	char			*nbr;

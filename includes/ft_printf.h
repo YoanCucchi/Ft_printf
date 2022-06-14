@@ -30,7 +30,7 @@
 # include <stdarg.h>
 
 /*
-** Prototypes
+** Structures
 */
 
 typedef struct s_parameter
@@ -66,7 +66,7 @@ typedef struct s_float
 }			t_float;
 
 /*
-** main.c
+** ft_printf.c
 */
 
 int			ft_printf(const char *str, ...);
@@ -106,6 +106,7 @@ int			ft_print_char_nbr(t_parameter *p, va_list ap);
 int			ft_print_unsigned_nbr(t_parameter *p, va_list ap);
 int			ft_print_ushort_nbr(t_parameter *p, va_list ap);
 int			ft_print_ulong_nbr(t_parameter *p, va_list ap);
+int			ft_print_ulong_long_nbr(t_parameter *p, va_list ap);
 int			ft_print_uchar_nbr(t_parameter *p, va_list ap);
 
 /*
@@ -194,8 +195,8 @@ int			ft_print_l_float(t_parameter *p, va_list ap);
 ** float_helper.c
 */
 
-void		split_float(t_parameter *p, t_float *f, long double n);
 char		*float_maker(t_parameter *p, t_float *f, char *nbr);
+void		split_float(t_parameter *p, t_float *f, long double n);
 
 /*
 ** float_rounding.c

@@ -93,12 +93,11 @@ static int	ft_parse_length(char *str, t_parameter *p)
 {
 	int		i;
 	char	*tmp;
-	void	*clear_mem;
 
 	tmp = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
 	if (!tmp)
 		return (EXIT_FAILURE);
-	clear_mem = ft_memset(tmp, 0, ft_strlen(str));
+	ft_memset(tmp, 0, ft_strlen(str));
 	i = 0;
 	while (!ft_strchr(SPECIFIERS, str[i]))
 	{

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/13 12:51:17 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/06/14 14:01:05 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -469,7 +469,6 @@ int main(void)
 	// ret1 = printf("norm:{%o} {%ho} {%hho}\n", -42, -42, -42);
 	// ret2 = ft_printf("mine:{%o} {%ho} {%hho}\n", -42, -42, -42);
 	// printf("%d %d\n", ret1, ret2);
-	//norm:{37777777726} {177726} {326}$
 
 	// ret1 = printf("norm:%0.3d\n", -8462);
 	// ret2 = ft_printf("mine:%0.3d\n", -8462);
@@ -489,9 +488,9 @@ int main(void)
 
 // static void *a12;
 
-	// ret1 = printf("norm:{%15p}\n", &a12);
-	// ret2 = ft_printf("mine:{%15p}\n", &a12);
-	// printf("%d %d\n", ret1, ret2);
+// 	ret1 = printf("norm:{%15p}\n", &a12);
+// 	ret2 = ft_printf("mine:{%15p}\n", &a12);
+// 	printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:{%-7p}\n", 412);
 	// ret2 = ft_printf("mine:{%-7p}\n", 412);
@@ -504,8 +503,8 @@ int main(void)
 // %.3f: {-958.125}
 //%.4f: {-958.1250}$
 //%.5f: {-958.12500}$
-	ret1 = printf("norm:%.18Lf\n",-2147483647.8801045124499999999l);
-	ret2 = ft_printf("mine:%.18Lf\n",-2147483647.8801045124499999999l);
+	ret1 = printf("norm:%.17lf\n", 65465446.18446744073709551615);
+	ret2 = ft_printf("mine:%.17lf\n", 65465446.18446744073709551615);
 	printf("%d %d\n", ret1, ret2);
 
 	// ret1 = printf("norm:%08.3d\n", -8473);
