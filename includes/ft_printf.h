@@ -28,7 +28,6 @@
 
 # include "../libft/includes/libft.h"
 # include <stdarg.h>
-# include <stdio.h> // A VIRER !!!!!
 
 /*
 ** Prototypes
@@ -216,9 +215,5 @@ int			handling_sign(t_parameter *p, t_float *f);
 int			ft_len_zero_handling_float(t_parameter *p, t_float *f);
 int			handling_sign_after_zero(t_parameter *p, t_float *f);
 int			ft_minus_flag(t_parameter *p, t_float *f);
-
-/*
-** colors.c
-*/
 
 #endif
